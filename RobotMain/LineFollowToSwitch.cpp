@@ -9,8 +9,12 @@ void LineFollowToSwitch::initialize() {
 	pinMode(12, INPUT_PULLUP);
 }
 
+
+/** 
+ * Commands the robot to follow the line at the specified speed
+ **/
 void LineFollowToSwitch::execute() {
-	drivetrain.drive(0.5, lineTracker.lineError());
+	drivetrain.drive(_speed, lineTracker.lineError());
 }
 
 void LineFollowToSwitch::end() {
