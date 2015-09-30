@@ -1,15 +1,18 @@
 #ifndef DRIVETRAIN_H
 #define DRIVETRAIN_H
 
-#include<Arduino.h>
+#include <Arduino.h>
+#include <Servo.h>
 
 class Drivetrain {
 public:
 	void drive(float speed, float turnRate);
-	void driveForard(float speed);
+	void driveForward(float speed);
 	void swingTurn(float turnRate);
 	void pointTurn(float turnRate);
 	void stop();
+	Servo leftMotor;
+	Servo rightMotor;
 
 private:
 	static const int LEFT_MOTOR_PIN = 6;
