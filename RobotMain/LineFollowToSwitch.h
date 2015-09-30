@@ -3,6 +3,8 @@
 
 #include "Command.h"
 #include <Arduino.h>
+#include "Drivetrain.h"
+#include "LineTracker.h"
 
 class LineFollowToSwitch : public Command {
 public:
@@ -13,7 +15,8 @@ public:
 	bool isFinished();
 private:
 	unsigned long _speed;
-	int lineError();
+	Drivetrain drivetrain;
+	LineTracker lineTracker;
 };
 
 #endif
