@@ -4,9 +4,10 @@
    * @author Hans Johnson
    **/
 #include "BlinkLED.h"
+#include "Robot.h"
 #include "Scheduler.h"
-#include "Drivetrain.h"
 
+//#TODO This got moved to the robot class.  Will be removed soon
 Scheduler* scheduler = Scheduler::getInstance();
 
 /** Code to initialize the robot **/
