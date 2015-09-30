@@ -9,7 +9,6 @@ void LineFollowToSwitch::initialize() {
 	pinMode(12, INPUT_PULLUP);
 }
 
-
 /** 
  * Commands the robot to follow the line at the specified speed
  **/
@@ -22,5 +21,5 @@ void LineFollowToSwitch::end() {
 }
 
 bool LineFollowToSwitch::isFinished() {
-	return !digitalRead(12); // Is finished if limit switch is triggered
+	return alignmentDetector.isAligned(); // Is finished if limit switch is triggered
 }

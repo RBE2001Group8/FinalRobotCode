@@ -3,7 +3,7 @@
 
 /** 
  * Computes the distance that the approximate distance that the line is away from the center of the line sensor in 1/16ths of an inch.
- * @return Int error in 1/16ths of an inch
+ * @return Float error in 1/16ths of an inch
  **/
 
 float LineTracker::lineError () {

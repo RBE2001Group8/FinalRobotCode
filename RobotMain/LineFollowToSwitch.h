@@ -5,6 +5,7 @@
 #include <Arduino.h>
 #include "Drivetrain.h"
 #include "LineTracker.h"
+#include "AlignmentDetector.h"
 
 class LineFollowToSwitch : public Command {
 public:
@@ -17,6 +18,7 @@ private:
 	unsigned long _speed;
 	Drivetrain drivetrain;
 	LineTracker lineTracker;
+	AlignmentDetector alignmentDetector;
 };
 
 #endif
