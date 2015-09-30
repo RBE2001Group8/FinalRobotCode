@@ -1,0 +1,90 @@
+/** Commands encapsulate functionality of a task to execute
+  * iteratively with a timeout.
+  * Code is mostly copied from WPILib, and adapted to work 
+  * on the Arduino
+  * credits to PeterMitrano for initial code porting
+  * 
+  **/
+
+#include "Command.h"
+#include "Scheduler.h"
+
+/** Generic Constructor **/
+Command::Command() : initialized(false)
+{}
+
+/** Constructor that specifies a name for the command
+  * @param name Name of the command
+  **/
+Command::Command(String name) : initialized(false), name(name)
+{}
+
+/** Sets the timeout period of the command
+  * @param timeout Timeout in milliseconds
+  **/
+void Command::setTimeout(unsigned long timeout) {
+	this->timeout = timeout;
+}
+
+/** Get the time from the start of the command
+  * @return time since the command has started in milliseconds
+  **/
+unsigned long Command::getTime() {
+	return millis() - this->startTime;
+}
+
+/** Check if the command has timed out
+  * @return True if the command has timed out
+  **/
+bool Command::isTimedOut() {
+	return getTime() > timeout;
+}
+
+/** Checks if the command is currently running
+  * @return True if the command is currently running
+  **/
+bool Command::isRunning() {
+	return running;
+}
+
+/** Schedule the command to start executing
+  **/
+void Command::start() {
+	Scheduler::getInstance()->addCommand(this);
+}
+
+/* Background code for initialization */
+void Command::_initialize() {
+	running = true;
+	startTime = millis();
+}
+
+/* Background code for executing */
+void Command::_execute() {
+}
+
+/* Background code for ending */
+void Command::_end() {
+	running = false;
+}
+
+/** Execute an iteration of the command
+  **/
+bool Command::cycle() {
+	bool finished = false;
+
+	if(!initialized) {
+		initialize();
+		_initialize();
+		initialized = true;
+	} else if (isFinished()) {
+		finished = true;
+		end();
+		_end();
+	} else {
+		execute();
+		_execute();
+	}
+
+	return finished;
+}
