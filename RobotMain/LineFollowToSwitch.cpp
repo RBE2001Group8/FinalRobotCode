@@ -1,8 +1,14 @@
-#include "LineFollowToSwitch.h"
+//#include "LineFollowToSwitch.h"
 
+<<<<<<< HEAD
 /* Constructor */
 LineFollowToSwitch::LineFollowToSwitch(int speed) : Command("LineFollowToSwitch") {
 	_speed = speed;
+=======
+/* Constructor */ /*
+BlinkLED::BlinkLED(unsigned long period) : Command("BlinkLED") {
+	_period = period;
+>>>>>>> master
 }
 
 void LineFollowToSwitch::initialize() {
@@ -23,6 +29,7 @@ bool LineFollowToSwitch::isFinished() {
 	return !digitalRead(12); // Is finished if limit switch is triggered
 }
 
+<<<<<<< HEAD
 float lineError () {
   int s0 = analogRead(0);
   int s1 = analogRead(1);
@@ -35,3 +42,8 @@ float lineError () {
 
   return (m1*(s0-s7)+m2*(s1-s6)+m3*(s2-s5)+m4*(s3-s4))/(s0+s1+s2+s3+s4+s5+s6+s7);
 }
+=======
+bool BlinkLED::isFinished() {
+	return getTime() > _period;
+} */
+>>>>>>> master
