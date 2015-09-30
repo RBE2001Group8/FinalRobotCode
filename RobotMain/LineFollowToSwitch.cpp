@@ -1,6 +1,6 @@
-#include "LineFollowToSwitch.h"
+//#include "LineFollowToSwitch.h"
 
-/* Constructor */
+/* Constructor */ /*
 BlinkLED::BlinkLED(unsigned long period) : Command("BlinkLED") {
 	_period = period;
 }
@@ -23,4 +23,4 @@ void BlinkLED::end() {
 
 bool BlinkLED::isFinished() {
 	return getTime() > _period;
-}
+} */
