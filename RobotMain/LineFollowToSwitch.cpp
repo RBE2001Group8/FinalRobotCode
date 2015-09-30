@@ -1,26 +1,22 @@
-//#include "LineFollowToSwitch.h"
+#include "LineFollowToSwitch.h"
 
-/* Constructor */ /*
-BlinkLED::BlinkLED(unsigned long period) : Command("BlinkLED") {
-	_period = period;
+/* Constructor */
+LineFollowToSwitch::LineFollowToSwitch(int speed) : Command("LineFollowToSwitch") {
+	_speed = speed;
 }
 
-void BlinkLED::initialize() {
-	pinMode(LEDPin, OUTPUT);
+void LineFollowToSwitch::initialize() {
+	pinMode(12, INPUT_PULLUP);
 }
 
-void BlinkLED::execute() {
-	if(getTime() > _period/2) {
-		digitalWrite(LEDPin, LOW);
-	} else {
-		digitalWrite(LEDPin, HIGH);
-	}
+void LineFollowToSwitch::execute() {
+	drivetrain.drive(0.5, lineTracker.lineError());
 }
 
-void BlinkLED::end() {
-
+void LineFollowToSwitch::end() {
+	drivetrain.stop();
 }
 
-bool BlinkLED::isFinished() {
-	return getTime() > _period;
-} */
+bool LineFollowToSwitch::isFinished() {
+	return !digitalRead(12); // Is finished if limit switch is triggered
+}
