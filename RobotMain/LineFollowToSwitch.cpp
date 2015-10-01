@@ -1,12 +1,11 @@
 #include "LineFollowToSwitch.h"
 
 /* Constructor */
-LineFollowToSwitch::LineFollowToSwitch(int speed) : Command("LineFollowToSwitch") {
+LineFollowToSwitch::LineFollowToSwitch(float speed) : Command("LineFollowToSwitch") {
 	_speed = speed;
 }
 
 void LineFollowToSwitch::initialize() {
-
 }
 
 /** 
