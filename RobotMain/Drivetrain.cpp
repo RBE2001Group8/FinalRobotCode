@@ -23,8 +23,8 @@ void Drivetrain::initialize() {
   **/
 void Drivetrain::drive(float speed, float turnRate) {
 	//Calculate the values for each motor based on speed and turn rate.  Note right is reversed
-	int leftValue = MICROSECONDS_STOP + (MICROSECONDS_MAX_RANGE*speed) - ((float)MICROSECONDS_MAX_RANGE*turnRate);
-	int rightValue = MICROSECONDS_STOP - (MICROSECONDS_MAX_RANGE*speed) - ((float)MICROSECONDS_MAX_RANGE*turnRate);
+	int leftValue = MICROSECONDS_STOP - (MICROSECONDS_MAX_RANGE*speed) + ((float)MICROSECONDS_MAX_RANGE*turnRate);
+	int rightValue = MICROSECONDS_STOP + (MICROSECONDS_MAX_RANGE*speed) + ((float)MICROSECONDS_MAX_RANGE*turnRate);
 
 	//Constrain the values to valid ranges for the servo
 	leftValue = constrain(leftValue, MICROSECONDS_FULL_REVERSE, MICROSECONDS_FULL_FORWARD);
