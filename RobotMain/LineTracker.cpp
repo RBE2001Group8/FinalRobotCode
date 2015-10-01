@@ -1,5 +1,8 @@
 #include "LineTracker.h"
 
+LineTracker::LineTracker() {
+	
+}
 
 /** 
  * Computes the distance that the approximate distance that the line is away from the center of the line sensor in 1/16ths of an inch.
