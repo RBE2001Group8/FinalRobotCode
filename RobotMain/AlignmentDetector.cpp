@@ -10,5 +10,5 @@ AlignmentDetector::AlignmentDetector() {
  **/
 
 boolean AlignmentDetector::isAligned() {
-	return !digitalRead(12);
+	return !digitalRead(12); // Inverted because of pullup resistor
 }
