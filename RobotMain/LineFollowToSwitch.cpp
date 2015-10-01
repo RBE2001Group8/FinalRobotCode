@@ -6,6 +6,8 @@ LineFollowToSwitch::LineFollowToSwitch(float speed) : Command("LineFollowToSwitc
 }
 
 void LineFollowToSwitch::initialize() {
+	drivetrain.initialize();
+	Serial.begin(9600);
 }
 
 /** 
@@ -13,7 +15,8 @@ void LineFollowToSwitch::initialize() {
  *@param speed Speed that the robot should line follow at
  **/
 void LineFollowToSwitch::execute() {
-	drivetrain.drive(_speed, lineTracker.lineError());
+	drivetrain.drive(_speed, 0.0*lineTracker.lineError());
+	Serial.println(0.00*lineTracker.lineError());
 }
 
 void LineFollowToSwitch::end() {

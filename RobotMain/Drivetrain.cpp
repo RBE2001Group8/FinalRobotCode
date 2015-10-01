@@ -22,12 +22,16 @@ void Drivetrain::initialize() {
   * @param turnRate Rate that the robot should turn at
   **/
 void Drivetrain::drive(float speed, float turnRate) {
-	int leftValue = MICROSECONDS_STOP + (MICROSECONDS_MAX_RANGE*speed) - (MICROSECONDS_MAX_RANGE*turnRate);
-	int rightValue = MICROSECONDS_STOP - (MICROSECONDS_MAX_RANGE*speed) - (MICROSECONDS_MAX_RANGE*turnRate);
+	int leftValue = MICROSECONDS_STOP + (MICROSECONDS_MAX_RANGE*speed) - ((float)MICROSECONDS_MAX_RANGE*turnRate);
+	int rightValue = MICROSECONDS_STOP - (MICROSECONDS_MAX_RANGE*speed) - ((float)MICROSECONDS_MAX_RANGE*turnRate);
 	leftValue = constrain(leftValue, MICROSECONDS_FULL_FORWARD, MICROSECONDS_FULL_REVERSE);
 	rightValue = constrain(rightValue, MICROSECONDS_FULL_FORWARD, MICROSECONDS_FULL_REVERSE);
 	leftMotor.writeMicroseconds(leftValue);
 	rightMotor.writeMicroseconds(rightValue);
+	Serial.print(leftValue);
+	Serial.print(", ");
+	Serial.println(rightValue);
+
 }
 
 /** Moves the robot through a swing turn at the given

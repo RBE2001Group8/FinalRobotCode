@@ -19,5 +19,5 @@ float LineTracker::lineError () {
   int s6 = analogRead(6);
   int s7 = analogRead(7);
 
-  return (m1*(s0-s7)+m2*(s1-s6)+m3*(s2-s5)+m4*(s3-s4))/(s0+s1+s2+s3+s4+s5+s6+s7);
+  return (m1*(s7-s0)+m2*(s6-s1)+m3*(s5-s2)+m4*(s4-s3))/(s0+s1+s2+s3+s4+s5+s6+s7);
 }
