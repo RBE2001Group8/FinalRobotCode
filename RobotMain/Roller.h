@@ -12,8 +12,6 @@ public:
 	void spit();
 	void stop();
 private:
-	int _direction;
-	int _duration;
 	Servo rollerMotor;
 	static const int ROLLER_MOTOR_PIN = 8;
 };
