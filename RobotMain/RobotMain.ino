@@ -23,15 +23,6 @@ void setup() {
 	//lineFollowToSwitch.initialize();
 	//scheduler->addCommand(&lineFollowToSwitch);
 
-	Serial.begin(115200);
-	drivetrain.initialize();
-	for(float i=0; i<1.0; i+=0.1) {
-		drivetrain.drive(0, i);
-		delay(500);
-	}
-	drivetrain.drive(0,0);
-
-
 }
 
 /** Code to iteratively operate the robot **/
