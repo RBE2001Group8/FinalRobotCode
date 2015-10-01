@@ -6,7 +6,7 @@ LineFollowToSwitch::LineFollowToSwitch(int speed) : Command("LineFollowToSwitch"
 }
 
 void LineFollowToSwitch::initialize() {
-	pinMode(12, INPUT_PULLUP);
+
 }
 
 /** 
