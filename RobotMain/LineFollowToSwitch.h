@@ -5,18 +5,20 @@
 #include <Arduino.h>
 #include "Drivetrain.h"
 #include "LineTracker.h"
+#include "AlignmentDetector.h"
 
 class LineFollowToSwitch : public Command {
 public:
-	LineFollowToSwitch(int speed);
+	LineFollowToSwitch(float speed);
 	void initialize();
 	void execute();
 	void end();
 	bool isFinished();
 private:
-	unsigned long _speed;
+	float _speed;
 	Drivetrain drivetrain;
 	LineTracker lineTracker;
+	AlignmentDetector alignmentDetector;
 };
 
 #endif

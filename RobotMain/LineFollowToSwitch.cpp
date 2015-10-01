@@ -1,16 +1,18 @@
 #include "LineFollowToSwitch.h"
 
 /* Constructor */
-LineFollowToSwitch::LineFollowToSwitch(int speed) : Command("LineFollowToSwitch") {
+LineFollowToSwitch::LineFollowToSwitch(float speed) : Command("LineFollowToSwitch") {
 	_speed = speed;
 }
 
 void LineFollowToSwitch::initialize() {
-	pinMode(12, INPUT_PULLUP);
 }
 
+/** 
+ * Commands the robot to follow the line at the specified speed
+ **/
 void LineFollowToSwitch::execute() {
-	drivetrain.drive(0.5, lineTracker.lineError());
+	drivetrain.drive(_speed, lineTracker.lineError());
 }
 
 void LineFollowToSwitch::end() {
@@ -18,5 +20,5 @@ void LineFollowToSwitch::end() {
 }
 
 bool LineFollowToSwitch::isFinished() {
-	return !digitalRead(12); // Is finished if limit switch is triggered
+	return alignmentDetector.isAligned(); // Is finished if limit switch is triggered
 }
