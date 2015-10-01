@@ -16,20 +16,27 @@ Scheduler* scheduler = Scheduler::getInstance();
 
 //AlignmentDetector alignmentDetector;
 //LineTracker lineTracker;
-LineFollowToSwitch lineFollowToSwitch(0.0);
+//LineFollowToSwitch lineFollowToSwitch(0.0);
+Drivetrain drivetrain;
 /** Code to initialize the robot **/
 void setup() {
-	lineFollowToSwitch.initialize();
-	scheduler->addCommand(&lineFollowToSwitch);
+	//lineFollowToSwitch.initialize();
+	//scheduler->addCommand(&lineFollowToSwitch);
 
-	//Serial.begin(9600);
+	Serial.begin(115200);
+	drivetrain.initialize();
+	for(float i=0; i<1.0; i+=0.1) {
+		drivetrain.drive(0, i);
+		delay(500);
+	}
+	drivetrain.drive(0,0);
 
 
 }
 
 /** Code to iteratively operate the robot **/
 void loop() {
-	scheduler->run();
+	//scheduler->run();
 	//Serial.println(lineTracker.lineError());
 }
 

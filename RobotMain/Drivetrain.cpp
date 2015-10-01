@@ -24,12 +24,17 @@ void Drivetrain::initialize() {
 void Drivetrain::drive(float speed, float turnRate) {
 	int leftValue = MICROSECONDS_STOP + (MICROSECONDS_MAX_RANGE*speed) - ((float)MICROSECONDS_MAX_RANGE*turnRate);
 	int rightValue = MICROSECONDS_STOP - (MICROSECONDS_MAX_RANGE*speed) - ((float)MICROSECONDS_MAX_RANGE*turnRate);
-	leftValue = constrain(leftValue, MICROSECONDS_FULL_FORWARD, MICROSECONDS_FULL_REVERSE);
-	rightValue = constrain(rightValue, MICROSECONDS_FULL_FORWARD, MICROSECONDS_FULL_REVERSE);
+	Serial.print("Left value: ");
+	Serial.print(leftValue);
+	Serial.print(", Right value: ");
+	Serial.println(rightValue);
+	leftValue = constrain(leftValue, MICROSECONDS_FULL_REVERSE, MICROSECONDS_FULL_FORWARD);
+	rightValue = constrain(rightValue, MICROSECONDS_FULL_REVERSE, MICROSECONDS_FULL_FORWARD);
 	leftMotor.writeMicroseconds(leftValue);
 	rightMotor.writeMicroseconds(rightValue);
+	Serial.print("Left value: ");
 	Serial.print(leftValue);
-	Serial.print(", ");
+	Serial.print(", Right value: ");
 	Serial.println(rightValue);
 
 }
