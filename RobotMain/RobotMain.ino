@@ -10,7 +10,6 @@
 //#TODO This got moved to the robot class.  Will be removed soon
 Scheduler* scheduler = Scheduler::getInstance();
 
-Drivetrain drivetrain;
 /** Code to initialize the robot **/
 void setup() {
 	//scheduler->addCommand();
