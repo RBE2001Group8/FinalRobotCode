@@ -10,6 +10,7 @@ void LineFollowToSwitch::initialize() {
 
 /** 
  * Commands the robot to follow the line at the specified speed
+ *@param speed Speed that the robot should line follow at
  **/
 void LineFollowToSwitch::execute() {
 	drivetrain.drive(_speed, lineTracker.lineError());
