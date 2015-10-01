@@ -18,6 +18,6 @@ void setup() {
 /** Code to iteratively operate the robot **/
 void loop() {
 	scheduler->run();
-	
+
 }
 
