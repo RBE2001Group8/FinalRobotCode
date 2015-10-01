@@ -15,8 +15,7 @@ void LineFollowToSwitch::initialize() {
  *@param speed Speed that the robot should line follow at
  **/
 void LineFollowToSwitch::execute() {
-	drivetrain.drive(_speed, 0.0*lineTracker.lineError());
-	Serial.println(0.00*lineTracker.lineError());
+	drivetrain.drive(_speed, 0.08*lineTracker.lineError());
 }
 
 void LineFollowToSwitch::end() {
