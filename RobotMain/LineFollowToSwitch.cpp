@@ -13,8 +13,7 @@ void LineFollowToSwitch::initialize() {
  * Commands the robot to follow the line at the specified speed
  **/
 void LineFollowToSwitch::execute() {
-	float error = map(lineTracker.lineError(), -15, 15, -1, 1);
-	drivetrain.drive(_speed, error);
+	drivetrain.drive(_speed, lineTracker.lineError());
 }
 
 void LineFollowToSwitch::end() {
