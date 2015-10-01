@@ -12,12 +12,12 @@ Scheduler* scheduler = Scheduler::getInstance();
 
 /** Code to initialize the robot **/
 void setup() {
-	//scheduler->addCommand();
 
 }
 
 /** Code to iteratively operate the robot **/
 void loop() {
 	scheduler->run();
+	
 }
 
