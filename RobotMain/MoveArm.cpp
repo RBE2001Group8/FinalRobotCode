@@ -1,0 +1,58 @@
+#include "MoveArm.h"
+
+/**
+ * Constructor - does not initalize the motor. 
+ * @param Setpoint The pot value to move the arm to
+ **/
+MoveArm::MoveArm(int Setpoint) : Command("MoveArm") {
+	setpoint = Setpoint;
+}
+
+/** 
+ * Initializes the motor pin
+ **/
+void MoveArm::initialize() {
+	armMotor.attach(MOTOR_PIN);
+	Serial.begin(9600);
+}
+
+/**
+ * Drives the MoveArm to the provided setpoint
+ **/
+void MoveArm::execute() {
+	input = analogRead(POTPIN);
+	error = setpoint-input;
+	//current_time = millis();
+	//accum_error += error/(float)(current_time-prev_time);
+
+	output = Kp*(float)error + Kd*(float)(error-last_error);// Ki*(float)(accum_error) + 
+
+	output = constrain(output, -500, 500);
+	armMotor.writeMicroseconds(1500-output);//+output);
+	last_error = error;
+	//prev_time = current_time;
+	/*Serial.print(Kp*(float)error);
+	Serial.print(", ");
+	Serial.print(Ki*(accum_error));
+	Serial.print(", ");
+	Serial.print(Kd*(float)(error-last_error));
+	Serial.print(", ");
+	Serial.print(output);
+	Serial.print(", ");
+	Serial.println(error);*/
+}
+
+/**
+ * Finished when error is less than the threshold specified in MoveArm.h
+ **/
+bool MoveArm::isFinished() {
+	return abs(error) < 10;
+}
+
+/**
+ * Stops the MoveArm movement when Finished
+ **/
+
+void MoveArm::end() {
+	armMotor.writeMicroseconds(1500);
+}
