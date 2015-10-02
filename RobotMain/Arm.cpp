@@ -1,10 +1,10 @@
 #include "Arm.h"
 
-
 /**
  * Constructor - does not initalize the motor
  **/
-Arm::Arm() {
+Arm::Arm(int Setpoint) : Command("Arm") {
+	setpoint = Setpoint;
 }
 
 /** 
@@ -18,7 +18,7 @@ void Arm::initialize() {
 /**
  * Drives the arm to the provided setpoint
  **/
-void Arm::moveToSetpoint(int setpoint) {
+void Arm::execute() {
 	input = analogRead(POTPIN);
 	error = setpoint-input;
 	//current_time = millis();
@@ -41,9 +41,17 @@ void Arm::moveToSetpoint(int setpoint) {
 	Serial.println(error);*/
 }
 
-/** 
- * Stops the movement of the arm
+/**
+ * Finished when error is less than the threshold specified in Arm.h
  **/
-void Arm::stop() {
+bool Arm::isFinished() {
+	return abs(error) < 10;
+}
+
+/**
+ * Stops the arm movement when Finished
+ **/
+
+void Arm::end() {
 	armMotor.writeMicroseconds(1500);
 }
