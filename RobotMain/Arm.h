@@ -14,12 +14,13 @@ public:
 	void stop();
 private:
 	Servo armMotor;
-	static const int ARM_MOTOR_PIN = 8;
+	static const int MOTOR_PIN = 7;
 	static const int POTPIN = 11;
-	int input, error, last_error;
-	static const int Kp = 0.95;
-	static const int Kd = 0.1;
-	float output;
+	int input, error, last_error, accum_error, current_time, prev_time;
+	static const float Kp = 5.0;
+	//static const float Ki = 0.0;
+	static const float Kd = 1.5;
+	float output, cOutput;
 
 };
 

@@ -11,7 +11,7 @@ Arm::Arm() {
  * Initializes the motor pin
  **/
 void Arm::initialize() {
-	armMotor.attach(ARM_MOTOR_PIN);
+	armMotor.attach(MOTOR_PIN);
 	Serial.begin(9600);
 }
 
@@ -24,13 +24,21 @@ void Arm::moveToSetpoint(int setpoint) {
 	//current_time = millis();
 	//accum_error += error/(float)(current_time-prev_time);
 
-	output = Kp*error + Kd*(error-last_error);// + Ki*(accum_error) 
+	output = Kp*(float)error + Kd*(float)(error-last_error);// Ki*(float)(accum_error) + 
 
-	//last_error = error;
-	//prev_time = current_time;
-	armMotor.writeMicroseconds(1500+output);
+	output = constrain(output, -500, 500);
+	armMotor.writeMicroseconds(1500-output);//+output);
 	last_error = error;
-	Serial.println(input);
+	//prev_time = current_time;
+	/*Serial.print(Kp*(float)error);
+	Serial.print(", ");
+	Serial.print(Ki*(accum_error));
+	Serial.print(", ");
+	Serial.print(Kd*(float)(error-last_error));
+	Serial.print(", ");
+	Serial.print(output);
+	Serial.print(", ");
+	Serial.println(error);*/
 }
 
 /** 
