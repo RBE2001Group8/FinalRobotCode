@@ -5,10 +5,6 @@
  * Constructor - does not initalize the motor
  **/
 Arm::Arm() {
-	//PID armPID(&_input, &_output, &_setpoint, 0.95, 0, 0.1, REVERSE);
-	armPID.SetTuning(0.95, 0.0, 0.1);
-	armPID.SetMode(AUTOMATIC);
-  	armPID.SetOutputLimits(-90, 90);
 }
 
 /** 
@@ -16,16 +12,25 @@ Arm::Arm() {
  **/
 void Arm::initialize() {
 	armMotor.attach(ARM_MOTOR_PIN);
-
+	Serial.begin(9600);
 }
 
 /**
  * Drives the arm to the provided setpoint
  **/
-void Arm::moveToSetpoint(double setpoint) {
+void Arm::moveToSetpoint(int setpoint) {
 	input = analogRead(POTPIN);
-	armPID.Compute();
-	armMotor.write(90+output);
+	error = setpoint-input;
+	//current_time = millis();
+	//accum_error += error/(float)(current_time-prev_time);
+
+	output = Kp*error + Kd*(error-last_error);// + Ki*(accum_error) 
+
+	//last_error = error;
+	//prev_time = current_time;
+	armMotor.writeMicroseconds(1500+output);
+	last_error = error;
+	Serial.println(input);
 }
 
 /** 
