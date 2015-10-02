@@ -21,3 +21,12 @@ float LineTracker::lineError () {
 
   return (m1*(s7-s0)+m2*(s6-s1)+m3*(s5-s2)+m4*(s4-s3))/(s0+s1+s2+s3+s4+s5+s6+s7);
 }
+
+/**
+ * @return True if outer two sensors are on a black line
+ **/
+bool LineTracker::isAtCross () {
+  int s0 = analogRead(0);
+  int s7 = analogRead(7);
+  return (s0 > 500) && (s7 > 500);
+}

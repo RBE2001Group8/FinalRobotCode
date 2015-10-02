@@ -6,6 +6,7 @@ class LineTracker{
 public:
 	LineTracker();
 	float lineError();
+	bool isAtCross();
 private:
 	static const int m1 = 21; // In 1/16ths of an inch
 	static const int m2 = 15;
