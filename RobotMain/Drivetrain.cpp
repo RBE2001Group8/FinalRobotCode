@@ -3,16 +3,19 @@
 
 
 /** Constructor
+  * Assumes the left and right motors are Vex motors geared 1:1
+  * @param leftMotorPin Pin that the left motor is plugged into
+  * @param rightMotorPin Pin that the right motor is plugged into
   * Intentionally does not initialize the drivetrain
   **/
-Drivetrain::Drivetrain() {
+Drivetrain::Drivetrain(int leftMotorPin, int rightMotorPin) : LEFT_PIN(leftMotorPin), RIGHT_PIN(rightMotorPin){
 
 }
 /** Initializes the drivetrain, and sets up the motor port
   **/
 void Drivetrain::initialize() {
-	leftMotor.attach(LEFT_MOTOR_PIN);
-	rightMotor.attach(RIGHT_MOTOR_PIN);
+	leftMotor.attach(LEFT_PIN);
+	rightMotor.attach(RIGHT_PIN);
 }
 
 /** Drives the robot with the given speed and turn rate.

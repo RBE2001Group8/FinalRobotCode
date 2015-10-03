@@ -6,7 +6,7 @@
 
 class Drivetrain {
 public:
-	Drivetrain();
+	Drivetrain(int leftMotorPin, int rightMotorPin);
 	void initialize();
 	void drive(float speed, float turnRate);
 	void swingTurn(float turnRate);
@@ -14,8 +14,8 @@ public:
 	void stop();
 
 private:
-	static const int LEFT_MOTOR_PIN = 6;
-	static const int RIGHT_MOTOR_PIN = 5;
+	const int LEFT_PIN;
+	const int RIGHT_PIN;
 	static const int MICROSECONDS_STOP = 1500;
 	static const int MICROSECONDS_FULL_FORWARD = 2000;
 	static const int MICROSECONDS_FULL_REVERSE = 1000;
