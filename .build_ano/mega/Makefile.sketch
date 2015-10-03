@@ -1,0 +1,14 @@
+
+
+
+
+
+.build_ano/mega/src/RobotMain.cpp : src/RobotMain.ino
+	@mkdir -p .build_ano/mega/src
+	@echo [93msrc/RobotMain.ino[0m
+	@/usr/local/bin/ano preproc --source-dir src  -o $@ $^
+
+
+all : .build_ano/mega/src/RobotMain.cpp
+	@true
+
