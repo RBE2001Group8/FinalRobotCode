@@ -19,6 +19,7 @@ void Drive::initialize() {
 
 void Drive::execute() {
 	drivetrain.drive(_speed, _turn);
+
 }
 
 void Drive::end() {
@@ -26,5 +27,5 @@ void Drive::end() {
 }
 
 bool Drive::isFinished() {
-	return getTime() < _duration; 
+	return getTime() > _duration; 
 }

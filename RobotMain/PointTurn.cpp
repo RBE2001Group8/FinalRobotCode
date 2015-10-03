@@ -24,5 +24,5 @@ void PointTurn::end() {
 }
 
 bool PointTurn::isFinished() {
-	return getTime() < _duration; 
+	return getTime() > _duration; 
 }

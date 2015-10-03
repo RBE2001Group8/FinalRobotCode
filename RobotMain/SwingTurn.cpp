@@ -24,5 +24,5 @@ void SwingTurn::end() {
 }
 
 bool SwingTurn::isFinished() {
-	return getTime() < _duration; 
+	return getTime() > _duration; 
 }
