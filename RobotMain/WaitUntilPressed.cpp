@@ -26,7 +26,7 @@ void WaitUntilPressed::execute() {
 
 /** Does nothing when the button is pressed
   **/
-void end() {
+void WaitUntilPressed::end() {
 
 }
 
