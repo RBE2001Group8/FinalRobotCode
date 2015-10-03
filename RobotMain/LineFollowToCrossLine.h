@@ -8,7 +8,7 @@
 
 class LineFollowToCrossLine : public Command {
 public:
-	LineFollowToCrossLine(float speed);
+	LineFollowToCrossLine(float speed, Drivetrain drive);
 	void initialize();
 	void execute();
 	void end();
