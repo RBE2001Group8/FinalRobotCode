@@ -9,7 +9,7 @@
 
 class LineFollowToSwitch : public Command {
 public:
-	LineFollowToSwitch(float speed);
+	LineFollowToSwitch(float speed, Drivetrain drive);
 	void initialize();
 	void execute();
 	void end();
