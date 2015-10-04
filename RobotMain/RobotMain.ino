@@ -10,18 +10,14 @@
 #include "LineFollowToCrossLine.h"
 #include "LineFollowToSwitch.h"
 #include "MoveArm.h"
-<<<<<<< HEAD
 #include "RollerSpit.h"
 #include "RollerSuck.h"
 #include "Drive.h"
 #include "SwingTurn.h"
 #include "PointTurn.h"
-=======
-#include "Roller.h"
 #include "Drivetrain.h"
 #include "WaitUntilPressed.h"
 #include "UserButton.h"
->>>>>>> master
 
 //#TODO This got moved to the robot class.  Will be removed soon
 Scheduler* scheduler = Scheduler::getInstance();
@@ -31,25 +27,33 @@ Drivetrain myDrive(LEFT_MOTOR_PIN, RIGHT_MOTOR_PIN);
 UserButton myButton(USER_BUTTON_PIN);
 
 /** Code to initialize the robot **/
-<<<<<<< HEAD
 void setup() {	
-	scheduler->addCommand(new MoveArm(1015));
-	scheduler->addCommand(new RollerSuck(2000));
-	scheduler->addCommand(new MoveArm(680));
-	scheduler->addCommand(new Drive(-0.75, 0.2, 750));
-	scheduler->addCommand(new PointTurn(-1.0, 1200));
-	scheduler->addCommand(new LineFollowToCrossLine(0.5));
-	scheduler->addCommand(new Drive(-0.75, 0.2, 100));
-	scheduler->addCommand(new SwingTurn(1.0, 1600));
-	scheduler->addCommand(new LineFollowToSwitch(0.75));
-	scheduler->addCommand(new RollerSpit(1500));
-=======
-void setup() {
-	myDrive.initialize();
 	myButton.initialize();
+	//Serial.begin(9600);
 	scheduler->addCommand(new WaitUntilPressed(myButton));
-	scheduler->addCommand(new LineFollowToSwitch(0.5, myDrive));
->>>>>>> master
+	scheduler->addCommand(new MoveArm(1010));
+	scheduler->addCommand(new RollerSuck(1500));
+	scheduler->addCommand(new Drive(-0.25, 0.2, 200, myDrive));
+	scheduler->addCommand(new RollerSuck(1000));
+	scheduler->addCommand(new MoveArm(900));
+	scheduler->addCommand(new RollerSpit(250));
+	scheduler->addCommand(new MoveArm(675));
+	scheduler->addCommand(new Drive(-0.75, 0.2, 750, myDrive));
+	scheduler->addCommand(new PointTurn(-0.5, 2000, myDrive));
+	scheduler->addCommand(new LineFollowToCrossLine(0.5, myDrive));
+	scheduler->addCommand(new Drive(0.75, 0.2, 200, myDrive));
+	scheduler->addCommand(new LineFollowToCrossLine(0.5, myDrive));
+	scheduler->addCommand(new Drive(-0.75, 0.2, 200, myDrive));
+	scheduler->addCommand(new SwingTurn(1.0, 1100, myDrive));
+	scheduler->addCommand(new LineFollowToSwitch(0.75, myDrive));
+	scheduler->addCommand(new RollerSpit(1000));
+	scheduler->addCommand(new Drive(-0.25, 0.2, 200, myDrive));
+	scheduler->addCommand(new MoveArm(665));
+	scheduler->addCommand(new RollerSpit(1000));
+	scheduler->addCommand(new Drive(-0.75, 0.2, 500, myDrive));
+	scheduler->addCommand(new PointTurn(-0.5, 2000, myDrive));
+	scheduler->addCommand(new LineFollowToSwitch(0.75, myDrive));
+	scheduler->addCommand(new RollerSuck(1500));
 }
 
 /** Code to iteratively operate the robot **/
