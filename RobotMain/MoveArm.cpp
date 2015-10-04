@@ -46,7 +46,7 @@ void MoveArm::execute() {
  * Finished when error is less than the threshold specified in MoveArm.h
  **/
 bool MoveArm::isFinished() {
-	return abs(error) < 10;
+	return abs(error) < threshold;
 }
 
 /**
