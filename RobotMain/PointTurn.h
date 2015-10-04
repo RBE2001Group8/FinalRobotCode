@@ -7,7 +7,7 @@
 
 class PointTurn : public Command {
 public:
-	PointTurn(float turn, int duration);
+	PointTurn(float turn, int duration, Drivetrain drive);
 	void initialize();
 	void execute();
 	void end();

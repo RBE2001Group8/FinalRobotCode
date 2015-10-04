@@ -7,7 +7,7 @@
 
 class Drive : public Command {
 public:
-	Drive(float speed, float turn, int duration);
+	Drive(float speed, float turn, int duration, Drivetrain drive);
 	void initialize();
 	void execute();
 	void end();

@@ -7,7 +7,7 @@
 
 class SwingTurn : public Command {
 public:
-	SwingTurn(float turn, int duration);
+	SwingTurn(float turn, int duration, Drivetrain drive);
 	void initialize();
 	void execute();
 	void end();
