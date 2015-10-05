@@ -25,7 +25,7 @@ Scheduler* scheduler = Scheduler::getInstance();
 Roller roller;
 Drivetrain myDrive(LEFT_MOTOR_PIN, RIGHT_MOTOR_PIN);
 UserButton myButton(USER_BUTTON_PIN);
-const int potDown = 690;
+const int potDown = 670;
 
 /** Code to initialize the robot **/
 void setup() {	
@@ -33,14 +33,14 @@ void setup() {
 	//Serial.begin(9600);
 	scheduler->addCommand(new WaitUntilPressed(myButton));
 
-	scheduler->addCommand(new MoveArm(650));
+	scheduler->addCommand(new MoveArm(potDown));
 	scheduler->addCommand(new RollerSuck(1500));
 	scheduler->addCommand(new Drive(-0.25, 0.1, 200, myDrive));
 	scheduler->addCommand(new RollerSuck(1000));
 	scheduler->addCommand(new MoveArm(potDown+120));
 
 	scheduler->addCommand(new RollerSpit(250));
-	scheduler->addCommand(new MoveArm(potDown+265));
+	scheduler->addCommand(new MoveArm(potDown+290));
 
 	scheduler->addCommand(new Drive(-0.5, 0.1, 1000, myDrive));
 	scheduler->addCommand(new PointTurn(-0.5, 2100, myDrive));
@@ -50,7 +50,7 @@ void setup() {
 	scheduler->addCommand(new Drive(0.5, 0.1, 300, myDrive));
 	scheduler->addCommand(new LineFollowToCrossLine(0.5, myDrive)); // Second line
 
-	scheduler->addCommand(new Drive(-0.5, 0.1, 300, myDrive)); // Back up to center on lone
+	scheduler->addCommand(new Drive(-0.5, 0.1, 200, myDrive)); // Back up to center on lone
 
 	scheduler->addCommand(new SwingTurn(1.0, 1100, myDrive));
 	scheduler->addCommand(new LineFollowToSwitch(0.75, myDrive));
@@ -64,11 +64,11 @@ void setup() {
 
 	scheduler->addCommand(new LineFollowToSwitch(0.75, myDrive));
 
-	scheduler->addCommand(new RollerSuck(1500));
+	scheduler->addCommand(new RollerSuck(1000));
 
 	scheduler->addCommand(new Drive(-0.5, 0.1, 750, myDrive));
 
-	scheduler->addCommand(new RollerSuck(1500));
+	scheduler->addCommand(new RollerSuck(1000));
 
 }
 
