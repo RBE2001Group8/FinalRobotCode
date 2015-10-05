@@ -6,6 +6,8 @@ class AlignmentDetector {
 public:
 	AlignmentDetector();
 	boolean isAligned();
+private:
+	static const int SWITCH_PIN = 22;
 };
 
 #endif
