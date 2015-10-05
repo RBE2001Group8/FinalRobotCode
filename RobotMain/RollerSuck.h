@@ -7,7 +7,7 @@
 
 class RollerSuck : public Command {
 public:
-	RollerSuck(int duration);
+	RollerSuck(int duration, Roller roll);
 	void initialize();
 	void execute();
 	void end();

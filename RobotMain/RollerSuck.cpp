@@ -5,7 +5,7 @@
  * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right
  * @param duration Length of time in milliseconds to turn for
  **/
-RollerSuck::RollerSuck(int duration) : Command("RollerSuck") {
+RollerSuck::RollerSuck(int duration, Roller roll) : Command("RollerSuck"), roller(roll) {
 	_duration = duration;
 }
 

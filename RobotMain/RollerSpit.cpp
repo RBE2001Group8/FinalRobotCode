@@ -5,12 +5,12 @@
  * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right
  * @param duration Length of time in milliseconds to turn for
  **/
-RollerSpit::RollerSpit(int duration) : Command("RollerSpit") {
+RollerSpit::RollerSpit(int duration, Roller roll) : Command("RollerSpit"), roller(roll) {
 	_duration = duration;
 }
 
 void RollerSpit::initialize() {
-	roller.initialize();
+	//roller.initialize();
 	Serial.begin(9600);
 }
 

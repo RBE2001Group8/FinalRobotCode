@@ -7,7 +7,7 @@
 
 class RollerSpit : public Command {
 public:
-	RollerSpit(int duration);
+	RollerSpit(int duration, Roller roll);
 	void initialize();
 	void execute();
 	void end();
