@@ -1,7 +1,7 @@
 #include "AlignmentDetector.h"
 
 AlignmentDetector::AlignmentDetector() {
-	pinMode(SWITCH_PIN, INPUT_PULLUP);
+	pinMode(ALIGNMENT_SWITCH_PIN, INPUT_PULLUP);
 }
 
 /**
@@ -10,5 +10,5 @@ AlignmentDetector::AlignmentDetector() {
  **/
 
 boolean AlignmentDetector::isAligned() {
-	return !digitalRead(SWITCH_PIN); // Inverted because of pullup resistor
+	return !digitalRead(ALIGNMENT_SWITCH_PIN); // Inverted because of pullup resistor
 }
