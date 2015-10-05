@@ -23,7 +23,7 @@ private:
 	static const float Kp = 8.5;
 	//static const float Ki = 0.0;
 	static const float Kd = 0.0;
-	static const int threshold = 10;
+	static const int threshold = 15;
 	float output;
 
 };
