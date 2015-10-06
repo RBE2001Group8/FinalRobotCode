@@ -11,15 +11,14 @@ public:
 	void printCommands();
 	void run();
 	//void addPersistent(Command cmd);
-	//void addParallel(Command cmd);
-	//void addSynchronized(Command cmd);
+	void addParallelCommand(Command* command);
+	void addSequentialCommand(Command* command);
 	//void remove(Command cmd);
 
 private:
 	Scheduler();
 	static Scheduler* instance; 
 	LinkedList<Command *> commands;
-
 
 };
 
