@@ -24,6 +24,7 @@
 Scheduler* scheduler = Scheduler::getInstance();
 
 Roller roller;
+<<<<<<< HEAD
 Drivetrain myDrive(LEFT_MOTOR_PIN, RIGHT_MOTOR_PIN);
 UserButton myButton(USER_BUTTON_PIN);
 Roller myRoller;
@@ -88,6 +89,15 @@ void setup() {
 	scheduler->addCommand(new RollerSpit(1250, myRoller));
 	scheduler->addCommand(new MoveArm(potDown+100));
 
+=======
+Robot* curie = Robot::getInstance();
+
+/** Code to initialize the robot **/
+void setup() {
+	curie->initializeSubsystems();
+	scheduler->addCommand(new WaitUntilPressed(curie->button));
+	scheduler->addCommand(new LineFollowToSwitch(0.5, curie->drivetrain));
+>>>>>>> master
 }
 
 /** Code to iteratively operate the robot **/
