@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <Servo.h>
+#include "RobotConstants.h"
 
 class Roller {
 public:
@@ -13,7 +14,6 @@ public:
 	void stop();
 private:
 	Servo rollerMotor;
-	static const int ROLLER_MOTOR_PIN = 8;
 };
 
 #endif

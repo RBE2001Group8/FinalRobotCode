@@ -1,24 +1,22 @@
-#ifndef LINEFOLLOW2S_H
-#define LINEFOLLOW2S_H
+#ifndef POINTTURN2LINE_H
+#define POINTTURN2LINE_H
 
 #include "Command.h"
 #include <Arduino.h>
 #include "Drivetrain.h"
 #include "LineTracker.h"
-#include "AlignmentDetector.h"
 
-class LineFollowToSwitch : public Command {
+class PointTurnToLine : public Command {
 public:
-	LineFollowToSwitch(float speed, Drivetrain drive);
+	PointTurnToLine(float turn, Drivetrain drive);
 	void initialize();
 	void execute();
 	void end();
 	bool isFinished();
 private:
-	float _speed;
+	float _turn;
 	Drivetrain drivetrain;
 	LineTracker lineTracker;
-	AlignmentDetector alignmentDetector;
 };
 
 #endif

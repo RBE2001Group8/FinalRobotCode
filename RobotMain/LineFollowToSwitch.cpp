@@ -1,7 +1,7 @@
 #include "LineFollowToSwitch.h"
 
 /* Constructor */
-LineFollowToSwitch::LineFollowToSwitch(float speed) : Command("LineFollowToSwitch") {
+LineFollowToSwitch::LineFollowToSwitch(float speed, Drivetrain drive) : Command("LineFollowToSwitch"), drivetrain(drive) {
 	_speed = speed;
 }
 

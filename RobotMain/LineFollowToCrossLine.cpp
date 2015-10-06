@@ -1,7 +1,7 @@
 #include "LineFollowToCrossLine.h"
 
 /* Constructor */
-LineFollowToCrossLine::LineFollowToCrossLine(float speed) : Command("LineFollowToCrossLine") {
+LineFollowToCrossLine::LineFollowToCrossLine(float speed, Drivetrain drive) : Command("LineFollowToCrossLine"), drivetrain(drive){
 	_speed = speed;
 }
 

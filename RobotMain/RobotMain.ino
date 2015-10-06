@@ -7,14 +7,15 @@
 #include "Robot.h"
 #include "RobotConstants.h"
 #include "Scheduler.h"
+#include "LineFollowToCrossLine.h"
 #include "LineFollowToSwitch.h"
+#include "PointTurnToLine.h"
 #include "MoveArm.h"
 #include "Roller.h"
 #include "WaitUntilPressed.h"
 #include "UserButton.h"
 #include "PersistentBlink.h"
 
-//#TODO This got moved to the robot class.  Will be removed soon
 Scheduler* scheduler = Scheduler::getInstance();
 
 Roller roller;
@@ -37,7 +38,5 @@ void setup() {
 /** Code to iteratively operate the robot **/
 void loop() {
 	scheduler->run();
-	scheduler->printCommands();
-
 }
 
