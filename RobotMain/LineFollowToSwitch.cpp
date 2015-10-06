@@ -6,8 +6,6 @@ LineFollowToSwitch::LineFollowToSwitch(float speed, Drivetrain drive) : Command(
 }
 
 void LineFollowToSwitch::initialize() {
-	drivetrain.initialize();
-	Serial.begin(9600);
 }
 
 /** 

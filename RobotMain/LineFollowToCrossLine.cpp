@@ -6,8 +6,6 @@ LineFollowToCrossLine::LineFollowToCrossLine(float speed, Drivetrain drive) : Co
 }
 
 void LineFollowToCrossLine::initialize() {
-	drivetrain.initialize();
-	Serial.begin(9600);
 }
 
 /** 
