@@ -20,84 +20,70 @@
 #include "WaitUntilPressed.h"
 #include "UserButton.h"
 
-//#TODO This got moved to the robot class.  Will be removed soon
-Scheduler* scheduler = Scheduler::getInstance();
-
-Roller roller;
-<<<<<<< HEAD
-Drivetrain myDrive(LEFT_MOTOR_PIN, RIGHT_MOTOR_PIN);
-UserButton myButton(USER_BUTTON_PIN);
-Roller myRoller;
 const int potDown = 670;
 
-/** Code to initialize the robot **/
-void setup() {	
-	myButton.initialize();
-	myRoller.initialize();
-	//Serial.begin(9600);
-	scheduler->addCommand(new WaitUntilPressed(myButton));
-    //scheduler->addCommand(new Drive(-1.0, 0.0, 10000000, myDrive));
-	scheduler->addCommand(new MoveArm(potDown));
-	scheduler->addCommand(new RollerSuck(1500, myRoller));
-	scheduler->addCommand(new Drive(-0.25, 0.0, 200, myDrive));
-	scheduler->addCommand(new RollerSuck(1000, myRoller));
-	scheduler->addCommand(new MoveArm(potDown+90));
+Scheduler* scheduler = Scheduler::getInstance();
 
-	scheduler->addCommand(new RollerSpit(250, myRoller));
-	scheduler->addCommand(new MoveArm(potDown+290));
-
-	scheduler->addCommand(new Drive(-0.5, 0.0, 1000, myDrive));
-	scheduler->addCommand(new PointTurn(-0.5, 1000, myDrive));
-	scheduler->addCommand(new PointTurnToLine(-0.5, myDrive));
-
-	scheduler->addCommand(new LineFollowToCrossLine(0.5, myDrive)); // First line
-
-	scheduler->addCommand(new Drive(0.5, 0.1, 300, myDrive));
-	scheduler->addCommand(new LineFollowToCrossLine(0.5, myDrive)); // Second line
-
-	scheduler->addCommand(new Drive(-0.5, 0.0, 200, myDrive)); // Back up to center on lone
-
-	scheduler->addCommand(new SwingTurn(1.0, 1100, myDrive));
-	scheduler->addCommand(new LineFollowToSwitch(0.75, myDrive));
-
-	scheduler->addCommand(new RollerSpit(1500, myRoller));
-	scheduler->addCommand(new Drive(-0.25, 0.0, 350, myDrive));
-	scheduler->addCommand(new RollerSpit(500, myRoller)); // Ensure rod is fully placed
-
-	scheduler->addCommand(new Drive(-0.5, 0.1, 1400, myDrive)); // Back up so wheels are on main line(ish)
-	scheduler->addCommand(new PointTurn(-0.375, 600, myDrive)); // Turn around, 2300 for fresh rod storage tube directly opposite
-	
-	scheduler->addCommand(new PointTurnToLine(-0.375, myDrive)); // Switch direction of turns to change 
-	scheduler->addCommand(new Drive(-0.5, 0.0, 500, myDrive));
-	scheduler->addCommand(new LineFollowToCrossLine(0.5, myDrive)); 
-	scheduler->addCommand(new Drive(-0.5, 0.0, 200, myDrive)); 
-	scheduler->addCommand(new SwingTurn(-1.0, 1100, myDrive));
-
-	scheduler->addCommand(new LineFollowToSwitch(0.75, myDrive));
-	scheduler->addCommand(new RollerSuck(1000, myRoller));
-	scheduler->addCommand(new Drive(-0.5, 0.0, 750, myDrive));
-	scheduler->addCommand(new RollerSuck(1000, myRoller));
-
-	scheduler->addCommand(new MoveArm(potDown+90));
-
-	scheduler->addCommand(new Drive(-0.5, 0.0, 750, myDrive));
-	scheduler->addCommand(new PointTurn(-0.375, 600, myDrive));
-	scheduler->addCommand(new PointTurnToLine(-0.375, myDrive));
-	scheduler->addCommand(new LineFollowToSwitch(0.75, myDrive));
-
-	scheduler->addCommand(new MoveArm(potDown));
-	scheduler->addCommand(new RollerSpit(1250, myRoller));
-	scheduler->addCommand(new MoveArm(potDown+100));
-
-=======
 Robot* curie = Robot::getInstance();
 
 /** Code to initialize the robot **/
-void setup() {
+void setup() {	
 	curie->initializeSubsystems();
+
+	//Serial.begin(9600);
 	scheduler->addCommand(new WaitUntilPressed(curie->button));
-	scheduler->addCommand(new LineFollowToSwitch(0.5, curie->drivetrain));
->>>>>>> master
+    //scheduler->addCommand(new Drive(-1.0, 0.0, 10000000, curie->drivetrain));
+	scheduler->addCommand(new MoveArm(potDown));
+	scheduler->addCommand(new RollerSuck(1500, curie->roller));
+	scheduler->addCommand(new Drive(-0.25, 0.0, 200, curie->drivetrain));
+	scheduler->addCommand(new RollerSuck(1000, curie->roller));
+	scheduler->addCommand(new MoveArm(potDown+90));
+
+	scheduler->addCommand(new RollerSpit(250, curie->roller));
+	scheduler->addCommand(new MoveArm(potDown+290));
+
+	scheduler->addCommand(new Drive(-0.5, 0.0, 1000, curie->drivetrain));
+	scheduler->addCommand(new PointTurn(-0.5, 1000, curie->drivetrain));
+	scheduler->addCommand(new PointTurnToLine(-0.5, curie->drivetrain));
+
+	scheduler->addCommand(new LineFollowToCrossLine(0.5, curie->drivetrain)); // First line
+
+	scheduler->addCommand(new Drive(0.5, 0.1, 300, curie->drivetrain));
+	scheduler->addCommand(new LineFollowToCrossLine(0.5, curie->drivetrain)); // Second line
+
+	scheduler->addCommand(new Drive(-0.5, 0.0, 200, curie->drivetrain)); // Back up to center on lone
+
+	scheduler->addCommand(new SwingTurn(1.0, 1100, curie->drivetrain));
+	scheduler->addCommand(new LineFollowToSwitch(0.75, curie->drivetrain));
+
+	scheduler->addCommand(new RollerSpit(1500, curie->roller));
+	scheduler->addCommand(new Drive(-0.25, 0.0, 350, curie->drivetrain));
+	scheduler->addCommand(new RollerSpit(500, curie->roller)); // Ensure rod is fully placed
+
+	scheduler->addCommand(new Drive(-0.5, 0.1, 1400, curie->drivetrain)); // Back up so wheels are on main line(ish)
+	scheduler->addCommand(new PointTurn(-0.375, 600, curie->drivetrain)); // Turn around, 2300 for fresh rod storage tube directly opposite
+	
+	scheduler->addCommand(new PointTurnToLine(-0.375, curie->drivetrain)); // Switch direction of turns to change 
+	scheduler->addCommand(new Drive(-0.5, 0.0, 500, curie->drivetrain));
+	scheduler->addCommand(new LineFollowToCrossLine(0.5, curie->drivetrain)); 
+	scheduler->addCommand(new Drive(-0.5, 0.0, 200, curie->drivetrain)); 
+	scheduler->addCommand(new SwingTurn(-1.0, 1100, curie->drivetrain));
+
+	scheduler->addCommand(new LineFollowToSwitch(0.75, curie->drivetrain));
+	scheduler->addCommand(new RollerSuck(1000, curie->roller));
+	scheduler->addCommand(new Drive(-0.5, 0.0, 750, curie->drivetrain));
+	scheduler->addCommand(new RollerSuck(1000, curie->roller));
+
+	scheduler->addCommand(new MoveArm(potDown+90));
+
+	scheduler->addCommand(new Drive(-0.5, 0.0, 750, curie->drivetrain));
+	scheduler->addCommand(new PointTurn(-0.375, 600, curie->drivetrain));
+	scheduler->addCommand(new PointTurnToLine(-0.375, curie->drivetrain));
+	scheduler->addCommand(new LineFollowToSwitch(0.75, curie->drivetrain));
+
+	scheduler->addCommand(new MoveArm(potDown));
+	scheduler->addCommand(new RollerSpit(1250, curie->roller));
+	scheduler->addCommand(new MoveArm(potDown+100));
 }
 
 /** Code to iteratively operate the robot **/
