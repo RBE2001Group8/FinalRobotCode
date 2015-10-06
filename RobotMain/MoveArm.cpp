@@ -12,7 +12,7 @@ MoveArm::MoveArm(int Setpoint) : Command("MoveArm") {
  * Initializes the motor pin
  **/
 void MoveArm::initialize() {
-	armMotor.attach(MOTOR_PIN);
+	armMotor.attach(ARM_MOTOR_PIN);
 	Serial.begin(9600);
 }
 
@@ -28,7 +28,7 @@ void MoveArm::execute() {
 	output = Kp*(float)error + Kd*(float)(error-last_error);// Ki*(float)(accum_error) + 
 
 	output = constrain(output, -500, 500);
-	armMotor.writeMicroseconds(1500-output);//+output);
+	armMotor.writeMicroseconds(1500+output);//+output);
 	last_error = error;
 	//prev_time = current_time;
 	/*Serial.print(Kp*(float)error);
@@ -46,7 +46,7 @@ void MoveArm::execute() {
  * Finished when error is less than the threshold specified in MoveArm.h
  **/
 bool MoveArm::isFinished() {
-	return abs(error) < 10;
+	return abs(error) < threshold;
 }
 
 /**
