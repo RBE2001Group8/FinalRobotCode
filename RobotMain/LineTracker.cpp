@@ -30,3 +30,23 @@ bool LineTracker::isAtCross () {
   int s7 = analogRead(7);
   return (s0 > 500) && (s7 > 500);
 }
+
+bool LineTracker::rearOnLine () {
+  int left = analogRead(10);
+  int right = analogRead(9);
+  return (left > 500 && right > 500);
+}
+
+bool LineTracker::oneRearOnLine () {
+  int left = analogRead(10);
+  int right = analogRead(9);
+  return (left > 500 || right > 500);
+}
+
+int LineTracker::leftRear() {
+  return analogRead(10);
+}
+
+int LineTracker::rightRear() {
+  return analogRead(9);
+}
