@@ -35,7 +35,7 @@ void setup() {
 	myRoller.initialize();
 	//Serial.begin(9600);
 	scheduler->addCommand(new WaitUntilPressed(myButton));
-
+    //scheduler->addCommand(new Drive(-1.0, 0.0, 10000000, myDrive));
 	scheduler->addCommand(new MoveArm(potDown));
 	scheduler->addCommand(new RollerSuck(1500, myRoller));
 	scheduler->addCommand(new Drive(-0.25, 0.0, 200, myDrive));
@@ -61,10 +61,14 @@ void setup() {
 
 	scheduler->addCommand(new RollerSpit(1500, myRoller));
 	scheduler->addCommand(new Drive(-0.25, 0.0, 350, myDrive));
-	scheduler->addCommand(new RollerSpit(500, myRoller));
+	scheduler->addCommand(new RollerSpit(500, myRoller)); // Ensure rod is fully placed
 
-	scheduler->addCommand(new Drive(-0.75, 0.0, 500, myDrive));
-	scheduler->addCommand(new PointTurn(-0.375, 2300, myDrive));
+	scheduler->addCommand(new Drive(-0.75, 0.0, 900, myDrive));
+	scheduler->addCommand(new PointTurn(-0.375, 1150, myDrive)); // Turn around, 2300 is about 180
+
+	scheduler->addCommand(new LineFollowToCrossLine(0.5, myDrive)); // Second line
+	scheduler->addCommand(new Drive(-0.5, 0.0, 200, myDrive)); // Back up to center on lone
+	scheduler->addCommand(new SwingTurn(-1.0, 1100, myDrive));
 
 	scheduler->addCommand(new LineFollowToSwitch(0.75, myDrive));
 
