@@ -1,6 +1,12 @@
 #include "LineFollowToNearest.h"
 
 /* Constructor */
+/**
+ * @param speed Linefollowing speed
+ * @param drive Drivetrain object to use for driving, must be initialized
+ * @param bitmask uses lowest 4 bits of char, assumes 1 indicates open storage slot
+ * @param firstSide True if starting with storage slots on the left
+ **/
 LineFollowToNearest::LineFollowToNearest(float speed, Drivetrain drive, char bitmask, bool firstSide) : Command("LineFollowToNearest"), drivetrain(drive){
 	_speed = speed;
 	if (firstSide) {
