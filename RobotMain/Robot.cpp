@@ -21,5 +21,6 @@ Robot* Robot::getInstance() {
 void Robot::initializeSubsystems() {
 	drivetrain.initialize();
 	button.initialize();
+	roller.initialize();
 }
 
