@@ -18,15 +18,13 @@
 Scheduler* scheduler = Scheduler::getInstance();
 
 Roller roller;
-Drivetrain myDrive(LEFT_MOTOR_PIN, RIGHT_MOTOR_PIN);
-UserButton myButton(USER_BUTTON_PIN);
+Robot* curie = Robot::getInstance();
 
 /** Code to initialize the robot **/
 void setup() {
-	myDrive.initialize();
-	myButton.initialize();
-	scheduler->addCommand(new WaitUntilPressed(myButton));
-	scheduler->addCommand(new LineFollowToSwitch(0.5, myDrive));
+	curie->initializeSubsystems();
+	scheduler->addCommand(new WaitUntilPressed(curie->button));
+	scheduler->addCommand(new LineFollowToSwitch(0.5, curie->drivetrain));
 }
 
 /** Code to iteratively operate the robot **/
