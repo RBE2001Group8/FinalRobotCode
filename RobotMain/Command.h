@@ -42,12 +42,18 @@ public:
 	/* Schedule the command */
 	void start();
 
+	/* Set if the command should run in parallel */
+	void setParallel(bool value);
+
+	/* Check the parallel flag */
+	bool isParallel();
+
+
 
 private:
-	bool initialized, running;
+	bool initialized, running, parallel;
 	unsigned long startTime;	//In msec
 	unsigned long timeout;		//In msec
-
 };
 
 #endif
