@@ -8,7 +8,7 @@
 
 class LineFollowToNearest : public Command {
 public:
-	LineFollowToNearest(float speed, Drivetrain drive, char bitmask);
+	LineFollowToNearest(float speed, Drivetrain drive, char bitmask, bool firstSide);
 	void initialize();
 	void execute();
 	void end();

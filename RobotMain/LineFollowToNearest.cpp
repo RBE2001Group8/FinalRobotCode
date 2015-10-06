@@ -1,18 +1,32 @@
 #include "LineFollowToNearest.h"
 
 /* Constructor */
-LineFollowToNearest::LineFollowToNearest(float speed, Drivetrain drive, char bitmask) : Command("LineFollowToNearest"), drivetrain(drive){
+LineFollowToNearest::LineFollowToNearest(float speed, Drivetrain drive, char bitmask, bool firstSide) : Command("LineFollowToNearest"), drivetrain(drive){
 	_speed = speed;
-	if (bitmask & 0x01) {
-		linesToCross = 1;
-	} else if (bitmask & 0x02) {
-		linesToCross = 2;
-	} else if (bitmask & 0x04) {
-		linesToCross = 3;
-	} else if (bitmask & 0x08) {
-		linesToCross = 4;
+	if (firstSide) {
+		if (bitmask & 0x01) {
+			linesToCross = 1;
+		} else if (bitmask & 0x02) {
+			linesToCross = 2;
+		} else if (bitmask & 0x04) {
+			linesToCross = 3;
+		} else if (bitmask & 0x08) {
+			linesToCross = 4;
+		} else {
+			linesToCross = 1; // Should never happen
+		}
 	} else {
-		linesToCross = 1;
+		if (bitmask & 0x08) {
+			linesToCross = 1;
+		} else if (bitmask & 0x04) {
+			linesToCross = 2;
+		} else if (bitmask & 0x02) {
+			linesToCross = 3;
+		} else if (bitmask & 0x01) {
+			linesToCross = 4;
+		} else {
+			linesToCross = 1; // Should never happen
+		}
 	}
 }
 
