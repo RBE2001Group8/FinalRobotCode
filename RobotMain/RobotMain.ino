@@ -63,13 +63,14 @@ void setup() {
 	scheduler->addCommand(new Drive(-0.25, 0.0, 350, myDrive));
 	scheduler->addCommand(new RollerSpit(500, myRoller)); // Ensure rod is fully placed
 
-	scheduler->addCommand(new Drive(-0.5, 0.0, 1300, myDrive)); // Back up so wheels are on main line(ish)
-	scheduler->addCommand(new PointTurn(-0.375, 600, myDrive)); // Turn around, 2300 is about 180
-	scheduler->addCommand(new PointTurnToLine(-0.375, myDrive));
+	scheduler->addCommand(new Drive(-0.5, 0.1, 1400, myDrive)); // Back up so wheels are on main line(ish)
+	scheduler->addCommand(new PointTurn(0.375, 600, myDrive)); // Turn around, 2300 is about 180
+	scheduler->addCommand(new PointTurnToLine(0.375, myDrive));
+	scheduler->addCommand(new Drive(-0.5, 0.0, 500, myDrive));
 
 	scheduler->addCommand(new LineFollowToCrossLine(0.5, myDrive)); 
 	scheduler->addCommand(new Drive(-0.5, 0.0, 200, myDrive)); 
-	scheduler->addCommand(new SwingTurn(-1.0, 1100, myDrive));
+	scheduler->addCommand(new SwingTurn(1.0, 1100, myDrive));
 
 	scheduler->addCommand(new LineFollowToSwitch(0.75, myDrive));
 	scheduler->addCommand(new RollerSuck(1000, myRoller));
@@ -79,7 +80,7 @@ void setup() {
 	scheduler->addCommand(new MoveArm(potDown+90));
 
 	scheduler->addCommand(new Drive(-0.5, 0.0, 750, myDrive));
-	scheduler->addCommand(new PointTurn(-0.375, 500, myDrive));
+	scheduler->addCommand(new PointTurn(-0.375, 600, myDrive));
 	scheduler->addCommand(new PointTurnToLine(-0.375, myDrive));
 	scheduler->addCommand(new LineFollowToSwitch(0.75, myDrive));
 
