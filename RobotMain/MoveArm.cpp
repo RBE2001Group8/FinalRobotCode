@@ -13,7 +13,6 @@ MoveArm::MoveArm(int Setpoint) : Command("MoveArm") {
  **/
 void MoveArm::initialize() {
 	armMotor.attach(ARM_MOTOR_PIN);
-	Serial.begin(9600);
 }
 
 /**

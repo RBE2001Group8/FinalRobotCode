@@ -12,7 +12,6 @@ SwingTurn::SwingTurn(float turn, int duration, Drivetrain drive) : Command("Swin
 
 void SwingTurn::initialize() {
 	drivetrain.initialize();
-	Serial.begin(9600);
 }
 
 void SwingTurn::execute() {

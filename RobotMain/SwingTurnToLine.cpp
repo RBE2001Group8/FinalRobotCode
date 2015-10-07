@@ -10,7 +10,6 @@ SwingTurnToLine::SwingTurnToLine(float turn, Drivetrain drive) : Command("SwingT
 }
 
 void SwingTurnToLine::initialize() {
-	Serial.begin(9600);
 }
 
 void SwingTurnToLine::execute() {

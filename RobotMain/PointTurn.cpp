@@ -12,7 +12,6 @@ PointTurn::PointTurn(float turn, int duration, Drivetrain drive) : Command("Poin
 
 void PointTurn::initialize() {
 	drivetrain.initialize();
-	Serial.begin(9600);
 }
 
 void PointTurn::execute() {

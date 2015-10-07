@@ -14,7 +14,6 @@ Drive::Drive(float speed, float turn, int duration, Drivetrain drive) : Command(
 
 void Drive::initialize() {
 	drivetrain.initialize();
-	Serial.begin(9600);
 }
 
 void Drive::execute() {

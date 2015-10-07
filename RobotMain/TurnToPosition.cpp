@@ -22,7 +22,6 @@ TurnToPosition::TurnToPosition(float turn, int duration, Drivetrain drive, int *
 
 void TurnToPosition::initialize() {
 	drivetrain.initialize();
-	Serial.begin(9600);
 	pinMode(24, OUTPUT);
 }
 

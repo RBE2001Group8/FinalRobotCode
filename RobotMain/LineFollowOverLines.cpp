@@ -13,7 +13,6 @@ LineFollowOverLines::LineFollowOverLines(float speed, Drivetrain drive, int *cur
 }
 
 void LineFollowOverLines::initialize() {
-	Serial.begin(9600);
 }
 
 /** 

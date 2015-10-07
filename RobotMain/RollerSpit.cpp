@@ -11,7 +11,6 @@ RollerSpit::RollerSpit(int duration, Roller roll) : Command("RollerSpit"), rolle
 
 void RollerSpit::initialize() {
 	//roller.initialize();
-	Serial.begin(9600);
 }
 
 void RollerSpit::execute() {
