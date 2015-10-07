@@ -26,9 +26,26 @@ float LineTracker::lineError () {
  * @return True if outer two sensors are on a black line
  **/
 bool LineTracker::isAtCross () {
-  int s0 = analogRead(0);
-  int s7 = analogRead(7);
-  return (s0 > 500) && (s7 > 500);
+  //Read all of the sensors
+  int values[8];
+  values[0] = analogRead(0);
+  values[1] = analogRead(1);
+  values[2] = analogRead(2);
+  values[3] = analogRead(3);
+  values[4] = analogRead(4);
+  values[5] = analogRead(5);
+  values[6] = analogRead(6);
+  values[7] = analogRead(7);
+
+  //Sum all of the sensors that detect a line
+  int numSensorsOnLine = 0;
+  for(int i=0; i<8; i++) {
+    if(values[i] > 500) {
+      numSensorsOnLine++;
+    }
+  }
+  //Sensor is on the line if 3 or more detect a line
+  return numSensorsOnLine >= 3;
 }
 
 bool LineTracker::rearOnLine () {
@@ -49,4 +66,12 @@ int LineTracker::leftRear() {
 
 int LineTracker::rightRear() {
   return analogRead(9);
+}
+
+bool LineTracker::centerOnLine () {
+  int s3 = analogRead(3);
+  int s4 = analogRead(4);
+  int s2 = analogRead(2);
+  int s5 = analogRead(5);
+  return (s3 > 500) || (s4 > 500) || (s2 > 500) || (s5 > 500);
 }
