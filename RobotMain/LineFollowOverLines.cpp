@@ -1,9 +1,11 @@
 #include "LineFollowOverLines.h"
 
 /* Constructor */
-/**
+/** Line follows, counting lines until the robot is at the position specified in newPos parameter, based on the inital position of the robot
  * @param speed Linefollowing speed
  * @param drive Drivetrain object to use for driving, must be initialized
+ * @param currentPos Position of robot on the field at the beginning of the command
+ * @param newPos Position the robot should be at when the command finishes
  **/
 LineFollowOverLines::LineFollowOverLines(float speed, Drivetrain drive, int *currentPos, int *newPos) : Command("LineFollowOverLines"), drivetrain(drive){
 	_speed = speed;
