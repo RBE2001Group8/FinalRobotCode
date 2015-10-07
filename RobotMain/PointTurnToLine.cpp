@@ -23,5 +23,5 @@ void PointTurnToLine::end() {
 }
 
 bool PointTurnToLine::isFinished() {
-	return abs(lineTracker.lineError()) < 0.5 && onLine; 
+	return lineTracker.centerOnLine() && onLine; 
 }
