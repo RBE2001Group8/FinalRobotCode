@@ -25,6 +25,7 @@
 
 const int potDown = 665;
 
+
 char storageBitMap = 10;
 
 int dropoffPos = 1;
@@ -90,7 +91,6 @@ void setup() {
 	scheduler->addSequentialCommand(new RollerSpit(1250, curie->roller));
 	scheduler->addParallelCommand(new RollerSpit(500, curie->roller));
 	scheduler->addSequentialCommand(new MoveArm(potDown+100));
-
 }
 
 /** Code to iteratively operate the robot **/
