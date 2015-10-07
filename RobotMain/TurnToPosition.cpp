@@ -23,9 +23,11 @@ TurnToPosition::TurnToPosition(float turn, int duration, Drivetrain drive, int *
 void TurnToPosition::initialize() {
 	drivetrain.initialize();
 	Serial.begin(9600);
+	pinMode(24, OUTPUT);
 }
 
 void TurnToPosition::execute() {
+	prevCenter = lineTracker.centerOnLine();
 	if (deltaPos != 0) {
 		drivetrain.swingTurn(_turn);
 	} else {
@@ -38,5 +40,10 @@ void TurnToPosition::end() {
 }
 
 bool TurnToPosition::isFinished() {
-	return getTime() > _duration; 
+	if(getTime() > 1000) {
+		digitalWrite(24, HIGH);
+	} else {
+		digitalWrite(24, LOW);
+	}
+	return (getTime() > 1000) && (lineTracker.centerOnLine() && (!prevCenter)); 
 }

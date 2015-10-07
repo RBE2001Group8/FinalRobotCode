@@ -4,6 +4,7 @@
 #include "Command.h"
 #include <Arduino.h>
 #include "Drivetrain.h"
+#include "LineTracker.h"
 
 class TurnToPosition : public Command {
 public:
@@ -17,6 +18,8 @@ private:
 	int _duration;
 	Drivetrain drivetrain;
 	int deltaPos;
+	bool prevCenter = true;
+	LineTracker lineTracker;
 };
 
 #endif
