@@ -6,14 +6,13 @@
 /** Constructor
   **/
 SetRadiationLevel::SetRadiationLevel(Robot* robot, int radiationLevel) 
-	: Command("SetRadiationLevel"), _radLevel(radiationLevel) {
-
+	: Command("SetRadiationLevel"), _radLevel(radiationLevel), _robot(robot) {
 }
 
 /** Nothing to initialize
   **/
 void SetRadiationLevel::initialize() {
-
+	_robot->setRadLevel(_radLevel);
 }
 
 /** Set the robot radiation level
@@ -21,7 +20,6 @@ void SetRadiationLevel::initialize() {
 //#TODO might need to move to initialize for faster execution
 // Does this take 2 cycles to fully complete?
 void SetRadiationLevel::execute() {
-	_robot->setRadLevel(_radLevel);
 }
 
 /** Nothing to clean up
