@@ -22,5 +22,18 @@ void Robot::initializeSubsystems() {
 	drivetrain.initialize();
 	button.initialize();
 	roller.initialize();
+	radInd->initialize();
 }
 
+/** Set the radiation level for the robot
+  * when the robot is carying an unshielded rod
+  **/
+void Robot::setRadLevel(int newRadLevel) {
+	radLevel = newRadLevel;
+}
+
+/** Get the radiation level for the robot
+  **/
+int Robot::getRadLevel() {
+	return radLevel;
+}
