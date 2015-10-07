@@ -56,7 +56,7 @@ void setup() {
 	scheduler->addSequentialCommand(new LineFollowOverLines(0.5, curie->drivetrain, 0, &dropoffPos));
 
 	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 200, curie->drivetrain)); // Back up to center on line
-	scheduler->addSequentialCommand(new SwingTurn(-1.0, 1100, curie->drivetrain));
+	scheduler->addSequentialCommand(new SwingTurn(-1.0, 950, curie->drivetrain));
 	scheduler->addSequentialCommand(new LineFollowToSwitch(0.75, curie->drivetrain));
 
 	scheduler->addSequentialCommand(new RollerSpit(1000, curie->roller)); // Ensure rod is fully placed
@@ -70,8 +70,8 @@ void setup() {
 	scheduler->addSequentialCommand(new DriveAndSquareOnLine(0.375, 0.07, curie->drivetrain));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 600, curie->drivetrain));
     scheduler->addSequentialCommand(new LineFollowOverLines(0.5, curie->drivetrain, &dropoffPos, &pickupPos));
-    scheduler->addSequentialCommand(new TurnToPosition(0.5, 2000, curie->drivetrain, &dropoffPos, &pickupPos));
-    scheduler->addSequentialCommand(new LineFollowToSwitch(0.375, curie->drivetrain));
+    scheduler->addSequentialCommand(new TurnToPosition(0.375, 2000, curie->drivetrain, &dropoffPos, &pickupPos));
+    scheduler->addSequentialCommand(new LineFollowToSwitch(0.5, curie->drivetrain));
 
     scheduler->addSequentialCommand(new RollerSuck(1000, curie->roller));
 	scheduler->addParallelCommand(new Drive(-0.5, 0.0, 750, curie->drivetrain));
@@ -81,7 +81,7 @@ void setup() {
 
 	scheduler->addSequentialCommand(new DriveToRearLine(-0.375, 0.07, curie->drivetrain));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 250, curie->drivetrain));
-	scheduler->addSequentialCommand(new PointTurn(0.5, 1600, curie->drivetrain));
+	scheduler->addSequentialCommand(new PointTurn(0.5, 1400, curie->drivetrain));
 
 	scheduler->addSequentialCommand(new LineFollowToSwitch(0.75, curie->drivetrain));
 
