@@ -87,7 +87,10 @@ void setup() {
 
 	scheduler->addCommand(new MoveArm(potDown));
 	scheduler->addCommand(new RollerSpit(1250, curie->roller));
+	scheduler->addCommand(new Drive(-0.25, 0.0, 200, curie->drivetrain));
+	scheduler->addCommand(new RollerSpit(1250, curie->roller));
 	scheduler->addCommand(new MoveArm(potDown+100));
+
 }
 
 /** Code to iteratively operate the robot **/
