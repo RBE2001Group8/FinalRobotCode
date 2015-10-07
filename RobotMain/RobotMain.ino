@@ -22,8 +22,7 @@
 #include "DriveAndSquareOnLine.h"
 #include "PointTurnToPosition.h"
 #include "TurnToPosition.h"
-
-#include "RadiationIndicator.h"
+#include "PersistentWarnRadiation.h"
 
 const int potDown = 665;
 
@@ -37,15 +36,12 @@ Scheduler* scheduler = Scheduler::getInstance();
 
 Robot* curie = Robot::getInstance();
 
-RadiationIndicator* myRadInd = new RadiationIndicator(RADIATION_LED_PIN, 750);
-
 /** Code to initialize the robot **/
 void setup() {	
 	curie->initializeSubsystems();
-	myRadInd->initialize();
-	myRadInd->setBlink();
 
 	//Serial.begin(9600);
+	scheduler->addParallelCommand(new PersistentWarnRadiation(curie, curie->radInd));
 	scheduler->addSequentialCommand(new WaitUntilPressed(curie->button));
 	/*
 	scheduler->addSequentialCommand(new MoveArm(potDown));
@@ -103,6 +99,10 @@ void setup() {
 /** Code to iteratively operate the robot **/
 void loop() {
 	scheduler->run();
-	myRadInd->update();
+	if(millis() % 16000 < 8000) {
+		curie->setRadLevel(RAD_LEVEL_NEW);
+	} else {
+		curie->setRadLevel(RAD_LEVEL_NONE);
+	}
 }
 
