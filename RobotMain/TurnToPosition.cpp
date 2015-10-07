@@ -1,9 +1,12 @@
 #include "TurnToPosition.h"
 
 /* Constructor */
-/**
+/** Turns toward the next position based on where the robot is currently
  * @param turn Turning rate of robot
  * @param duration Length of time in milliseconds to turn for
+ * @param drivetrain Drivetrain object to use for driving
+ * @param currentPos Position of robot on the field at the beginning of the command
+ * @param nextPos Position the robot should be pointing toward when the command finishes
  **/
 TurnToPosition::TurnToPosition(float turn, int duration, Drivetrain drive, int *currentPos, int *nextPos) : Command("TurnToPosition"), drivetrain(drive) {
 	deltaPos = *nextPos-*currentPos;

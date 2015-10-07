@@ -1,6 +1,9 @@
 #include "LineFollowToSwitch.h"
 
-/* Constructor */
+/** Line follows until the limit switch in the slot on the front of the robot is triggered
+ * @param speed Linefollowing speed
+ * @param drive Drivetrain object to use for driving, must be initialized
+ **/
 LineFollowToSwitch::LineFollowToSwitch(float speed, Drivetrain drive) : Command("LineFollowToSwitch"), drivetrain(drive) {
 	_speed = speed;
 }
