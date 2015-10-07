@@ -1,5 +1,5 @@
 
-#include <PersistentBlink.h>
+#include "PersistentBlink.h"
 
 PersistentBlink::PersistentBlink(unsigned long period) : Command("PersistentBlink") {
 	_period = period;
