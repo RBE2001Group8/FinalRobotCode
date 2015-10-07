@@ -11,12 +11,7 @@
 #include "LineFollowToSwitch.h"
 #include "PointTurnToLine.h"
 #include "MoveArm.h"
-#include "RollerSpit.h"
-#include "RollerSuck.h"
-#include "Drive.h"
-#include "SwingTurn.h"
-#include "PointTurn.h"
-#include "Drivetrain.h"
+#include "Roller.h"
 #include "WaitUntilPressed.h"
 #include "UserButton.h"
 #include "LineFollowOverLines.h"
@@ -36,7 +31,8 @@ int newPos = 1;
 
 Scheduler* scheduler = Scheduler::getInstance();
 
-Robot* curie = Robot::getInstance();
+Roller roller;
+UserButton myButton(USER_BUTTON_PIN);
 
 /** Code to initialize the robot **/
 void setup() {	

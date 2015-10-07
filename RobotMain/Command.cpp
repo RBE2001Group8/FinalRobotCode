@@ -10,13 +10,13 @@
 #include "Scheduler.h"
 
 /** Generic Constructor **/
-Command::Command() : initialized(false)
+Command::Command() : initialized(false), parallel(false)
 {}
 
 /** Constructor that specifies a name for the command
   * @param name Name of the command
   **/
-Command::Command(String name) : initialized(false), name(name)
+Command::Command(String name) : initialized(false), name(name), parallel(false)
 {}
 
 /** Sets the timeout period of the command
@@ -87,4 +87,20 @@ bool Command::cycle() {
 	}
 
 	return finished;
+}
+
+/** Set the flag to run in parallel, or
+  * run sequentially
+  * @param value If true, parallel, if false sequential
+  **/ 
+void Command::setParallel(bool value) {
+	parallel = value;
+}
+
+/** Check if the flag is set to run this command
+  * in parallel
+  * @return True if the command should run in parallel
+  **/
+bool Command::isParallel() {
+	return parallel;
 }
