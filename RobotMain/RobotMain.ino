@@ -39,6 +39,7 @@ Robot* curie = Robot::getInstance();
 
 /** Code to initialize the robot **/
 void setup() {	
+	Serial.begin(115200);
 	curie->initializeSubsystems();
 
 	scheduler->addParallelCommand(new PersistentWarnRadiation(curie, curie->radInd));
@@ -97,10 +98,14 @@ void setup() {
 	scheduler->addParallelCommand(new RollerSpit(500, curie->roller));
 	scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_NONE));
 	scheduler->addSequentialCommand(new MoveArm(potDown+100));
+
+	//curie->setRadLevel(RAD_LEVEL_NEW);
 }
 
 /** Code to iteratively operate the robot **/
 void loop() {
 	scheduler->run();
+	//Serial.print("Rad Level: ");
+	//Serial.println(curie->getRadLevel());
 }
 
