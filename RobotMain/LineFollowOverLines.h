@@ -1,23 +1,25 @@
-#ifndef POINTTURN2LINE_H
-#define POINTTURN2LINE_H
+#ifndef LINEFOLLOWOVERLINES_H
+#define LINEFOLLOWOVERLINES_H
 
 #include "Command.h"
 #include <Arduino.h>
 #include "Drivetrain.h"
 #include "LineTracker.h"
 
-class PointTurnToLine : public Command {
+class LineFollowOverLines : public Command {
 public:
-	PointTurnToLine(float turn, Drivetrain drive);
+	LineFollowOverLines(float speed, Drivetrain drive, int *currentPos, int *nextPos);
 	void initialize();
 	void execute();
 	void end();
 	bool isFinished();
 private:
-	float _turn;
+	float _speed;
 	Drivetrain drivetrain;
 	LineTracker lineTracker;
 	bool onLine = false;
+	char linesCrossed = 0;
+	char linesToCross;
 };
 
 #endif

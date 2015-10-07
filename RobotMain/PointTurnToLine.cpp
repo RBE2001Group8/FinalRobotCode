@@ -10,12 +10,12 @@ PointTurnToLine::PointTurnToLine(float turn, Drivetrain drive) : Command("PointT
 }
 
 void PointTurnToLine::initialize() {
-	drivetrain.initialize();
 	Serial.begin(9600);
 }
 
 void PointTurnToLine::execute() {
 	drivetrain.pointTurn(_turn);
+	onLine = (abs(lineTracker.lineError()) > 8) | onLine;
 }
 
 void PointTurnToLine::end() {
@@ -23,5 +23,5 @@ void PointTurnToLine::end() {
 }
 
 bool PointTurnToLine::isFinished() {
-	return abs(lineTracker.lineError()) > 8; 
+	return abs(lineTracker.lineError()) < 0.5 && onLine; 
 }
