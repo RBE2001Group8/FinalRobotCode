@@ -30,8 +30,8 @@ const int potDown = 665;
 
 char storageBitMap = 10;
 
-int dropoffPos = 1;
-int pickupPos = 3;
+int dropoffPos = 2;
+int pickupPos = 1;
 
 Scheduler* scheduler = Scheduler::getInstance();
 
@@ -75,7 +75,7 @@ void setup() {
 	scheduler->addSequentialCommand(new DriveAndSquareOnLine(0.375, 0.07, curie->drivetrain));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 600, curie->drivetrain));
     scheduler->addSequentialCommand(new LineFollowOverLines(0.5, curie->drivetrain, &dropoffPos, &pickupPos));
-    scheduler->addSequentialCommand(new TurnToPosition(0.375, 2000, curie->drivetrain, &dropoffPos, &pickupPos));
+    scheduler->addSequentialCommand(new TurnToPosition(0.4, 2000, curie->drivetrain, &dropoffPos, &pickupPos));
     scheduler->addSequentialCommand(new LineFollowToSwitch(0.5, curie->drivetrain));
 
     scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_NEW));
