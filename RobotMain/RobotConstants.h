@@ -9,6 +9,7 @@ const int ARM_MOTOR_PIN = 7;
 const int POTPIN = 11;
 const int ROLLER_MOTOR_PIN = 8;
 const int ALIGNMENT_SWITCH_PIN = 22;
+const int RADIATION_LED_PIN = 24;
 
 
 #endif
