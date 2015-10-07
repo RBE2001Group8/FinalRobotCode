@@ -10,7 +10,6 @@ PointTurnToLine::PointTurnToLine(float turn, Drivetrain drive) : Command("PointT
 }
 
 void PointTurnToLine::initialize() {
-	Serial.begin(9600);
 }
 
 void PointTurnToLine::execute() {

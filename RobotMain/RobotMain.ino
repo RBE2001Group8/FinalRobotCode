@@ -23,6 +23,7 @@
 #include "PointTurnToPosition.h"
 #include "TurnToPosition.h"
 #include "PersistentWarnRadiation.h"
+#include "SetRadiationLevel.h"
 
 const int potDown = 665;
 
@@ -40,11 +41,11 @@ Robot* curie = Robot::getInstance();
 void setup() {	
 	curie->initializeSubsystems();
 
-	//Serial.begin(9600);
 	scheduler->addParallelCommand(new PersistentWarnRadiation(curie, curie->radInd));
 	scheduler->addSequentialCommand(new WaitUntilPressed(curie->button));
 	
 	scheduler->addSequentialCommand(new MoveArm(potDown));
+	scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_SPENT));
 	scheduler->addSequentialCommand(new RollerSuck(1500, curie->roller));
 	scheduler->addParallelCommand(new Drive(-0.25, 0.0, 200, curie->drivetrain));
 	scheduler->addSequentialCommand(new RollerSuck(1000, curie->roller));
@@ -64,6 +65,7 @@ void setup() {
 	scheduler->addSequentialCommand(new RollerSpit(1000, curie->roller)); // Ensure rod is fully placed
 	scheduler->addParallelCommand(new RollerSpit(1000, curie->roller));
 	scheduler->addSequentialCommand(new Drive(-0.25, 0.0, 350, curie->drivetrain));
+	scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_NONE));
 
 	scheduler->addSequentialCommand(new DriveToRearLine(-0.375, 0.07, curie->drivetrain));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 250, curie->drivetrain));
@@ -75,6 +77,7 @@ void setup() {
     scheduler->addSequentialCommand(new TurnToPosition(0.5, 2000, curie->drivetrain, &dropoffPos, &pickupPos));
     scheduler->addSequentialCommand(new LineFollowToSwitch(0.375, curie->drivetrain));
 
+    scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_NEW));
     scheduler->addSequentialCommand(new RollerSuck(1000, curie->roller));
 	scheduler->addParallelCommand(new Drive(-0.5, 0.0, 750, curie->drivetrain));
 	scheduler->addSequentialCommand(new RollerSuck(1000, curie->roller));
@@ -92,13 +95,12 @@ void setup() {
 	scheduler->addSequentialCommand(new Drive(-0.25, 0.0, 200, curie->drivetrain));
 	scheduler->addSequentialCommand(new RollerSpit(1250, curie->roller));
 	scheduler->addParallelCommand(new RollerSpit(500, curie->roller));
+	scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_NONE));
 	scheduler->addSequentialCommand(new MoveArm(potDown+100));
-	
 }
 
 /** Code to iteratively operate the robot **/
 void loop() {
 	scheduler->run();
-
 }
 

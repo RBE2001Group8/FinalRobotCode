@@ -19,7 +19,6 @@ PointTurnToPosition::PointTurnToPosition(float turn, int duration, Drivetrain dr
 
 void PointTurnToPosition::initialize() {
 	drivetrain.initialize();
-	Serial.begin(9600);
 }
 
 void PointTurnToPosition::execute() {

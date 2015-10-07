@@ -11,7 +11,6 @@ RollerSuck::RollerSuck(int duration, Roller roll) : Command("RollerSuck"), rolle
 
 void RollerSuck::initialize() {
 	roller.initialize();
-	Serial.begin(9600);
 }
 
 void RollerSuck::execute() {

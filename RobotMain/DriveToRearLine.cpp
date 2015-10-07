@@ -13,7 +13,6 @@ DriveToRearLine::DriveToRearLine(float speed, float turn, Drivetrain drive) : Co
 
 void DriveToRearLine::initialize() {
 	drivetrain.initialize();
-	Serial.begin(9600);
 }
 
 void DriveToRearLine::execute() {
