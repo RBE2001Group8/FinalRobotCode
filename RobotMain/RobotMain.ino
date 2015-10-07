@@ -7,7 +7,6 @@
 #include "Robot.h"
 #include "RobotConstants.h"
 #include "Scheduler.h"
-#include "LineFollowToCrossLine.h"
 #include "LineFollowToSwitch.h"
 #include "PointTurnToLine.h"
 #include "MoveArm.h"
@@ -16,18 +15,15 @@
 #include "Drive.h"
 #include "SwingTurn.h"
 #include "PointTurn.h"
-#include "Drivetrain.h"
 #include "WaitUntilPressed.h"
-#include "UserButton.h"
 #include "LineFollowOverLines.h"
 #include "DriveToRearLine.h"
-#include "SwingTurnToLine.h"
 #include "SwingTurnToPosition.h"
 #include "DriveAndSquareOnLine.h"
 #include "PointTurnToPosition.h"
 #include "TurnToPosition.h"
 
-const int potDown = 665;
+const int potDown = 660;
 
 char storageBitMap = 10;
 
