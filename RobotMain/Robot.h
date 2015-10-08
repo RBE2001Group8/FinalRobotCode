@@ -14,6 +14,9 @@
 //#TODO Hack to fix cyclical dependency
 class RadiationIndicator;
 
+//#TODO Hack to fix cyclical dependency
+class RadiationIndicator;
+
 class Robot {
 public:
 	static Robot* getInstance();
