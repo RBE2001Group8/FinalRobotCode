@@ -24,13 +24,16 @@
 #include "TurnToPosition.h"
 #include "PersistentWarnRadiation.h"
 #include "SetRadiationLevel.h"
+#include "LineFollowToStorage.h"
 
 const int potDown = 665;
 
 char storageBitMap = 10;
 
-int dropoffPos = 2;
-int pickupPos = 1;
+int dropoffPos1 = 2;
+int dropoffPos2 = 4;
+int pickupPos1 = 1;
+int pickupPos2 = 3;
 
 Scheduler* scheduler = Scheduler::getInstance();
 
@@ -56,7 +59,7 @@ void setup() {
 	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 1000));
 	scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 	scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
-	scheduler->addSequentialCommand(new LineFollowOverLines(0.5, 0, &dropoffPos));
+	scheduler->addSequentialCommand(new LineFollowToStorage(0.5, dropoffPos1, true));
 
 	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 200)); // Back up to center on line
 	scheduler->addSequentialCommand(new SwingTurn(1.0, 950));
@@ -69,12 +72,12 @@ void setup() {
 
 	scheduler->addSequentialCommand(new DriveToRearLine(-0.375, 0.07));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 250));
-	scheduler->addSequentialCommand(new PointTurnToPosition(0.375, 1700, &dropoffPos, &pickupPos, true));
+	scheduler->addSequentialCommand(new PointTurnToPosition(0.375, 1700, dropoffPos1, pickupPos1, true));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 550));
 	scheduler->addSequentialCommand(new DriveAndSquareOnLine(0.375, 0.07));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 600));
-    scheduler->addSequentialCommand(new LineFollowOverLines(0.5, &dropoffPos, &pickupPos));
-    scheduler->addSequentialCommand(new TurnToPosition(0.4, 2000, &dropoffPos, &pickupPos, true));
+    scheduler->addSequentialCommand(new LineFollowOverLines(0.5, dropoffPos1, pickupPos1));
+    scheduler->addSequentialCommand(new TurnToPosition(0.4, 2000, dropoffPos1, pickupPos1, true));
     scheduler->addSequentialCommand(new LineFollowToSwitch(0.5));
 
     scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_NEW));
@@ -116,7 +119,7 @@ void setup() {
 	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 1000));
 	scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 	scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
-	scheduler->addSequentialCommand(new LineFollowOverLines(0.5, 0, &dropoffPos));
+	scheduler->addSequentialCommand(new LineFollowToStorage(0.5, dropoffPos2, false));
 
 	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 200)); // Back up to center on line
 	scheduler->addSequentialCommand(new SwingTurn(-1.0, 950));
@@ -129,12 +132,12 @@ void setup() {
 
 	scheduler->addSequentialCommand(new DriveToRearLine(-0.375, 0.07));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 250));
-	scheduler->addSequentialCommand(new PointTurnToPosition(0.375, 1700, &dropoffPos, &pickupPos, false));
+	scheduler->addSequentialCommand(new PointTurnToPosition(0.375, 1700, dropoffPos2, pickupPos2, false));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 550));
 	scheduler->addSequentialCommand(new DriveAndSquareOnLine(0.375, 0.07));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 600));
-    scheduler->addSequentialCommand(new LineFollowOverLines(0.5, &dropoffPos, &pickupPos));
-    scheduler->addSequentialCommand(new TurnToPosition(0.4, 2000, &dropoffPos, &pickupPos, false));
+    scheduler->addSequentialCommand(new LineFollowOverLines(0.5, dropoffPos2, pickupPos2));
+    scheduler->addSequentialCommand(new TurnToPosition(0.4, 2000, dropoffPos2, pickupPos2, false));
     scheduler->addSequentialCommand(new LineFollowToSwitch(0.5));
 
     scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_NEW));
