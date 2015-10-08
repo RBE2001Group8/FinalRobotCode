@@ -7,6 +7,7 @@ ReactorLink::ReactorLink() {
 	Serial3.begin(115200);
 }
 
+//#TODO Make a constructor that specifies the serial interface to use
 //Alternate Constructor that specifies the serial interface to use,
 //team number, 
 /*
@@ -17,6 +18,9 @@ ReactorLink::ReactorLink(HardwareSerial serialPort, uint8_t teamNum) {
 }
 *
 
+//#TODO use the HardwareSerial specified in the constructor
+//e.g. linkSerial.write(xxx);
+// for debugging: debugSerial.write(XXX);
 /** Send a heartbeat packet to the Field Computer **/
 void ReactorLink::sendHeartbeat() {
     Serial3.write(PACKET_START_BYTE);
