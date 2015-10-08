@@ -9,6 +9,9 @@
 #include "Roller.h"
 #include "RadiationIndicator.h"
 
+//#TODO Hack to fix cyclical dependency
+class RadiationIndicator;
+
 class Robot {
 public:
 	static Robot* getInstance();
@@ -18,7 +21,7 @@ public:
 	LineTracker lineTracker = *new LineTracker();
 	UserButton button = *new UserButton(USER_BUTTON_PIN);
 	Roller roller = *new Roller();
-	RadiationIndicator* radInd = new RadiationIndicator(RADIATION_LED_PIN, 750);
+	RadiationIndicator* radInd;// = new RadiationIndicator(RADIATION_LED_PIN, 750);
 
 
 	void setRadLevel(int newRadLevel);
