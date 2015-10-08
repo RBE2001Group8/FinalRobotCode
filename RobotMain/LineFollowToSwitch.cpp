@@ -4,8 +4,9 @@
  * @param speed Linefollowing speed
  * @param drive Drivetrain object to use for driving, must be initialized
  **/
-LineFollowToSwitch::LineFollowToSwitch(float speed, Drivetrain drive) : Command("LineFollowToSwitch"), drivetrain(drive) {
+LineFollowToSwitch::LineFollowToSwitch(float speed) : Command("LineFollowToSwitch") {
 	_speed = speed;
+	curie = Robot::getInstance();
 }
 
 void LineFollowToSwitch::initialize() {
@@ -16,13 +17,13 @@ void LineFollowToSwitch::initialize() {
  *@param speed Speed that the robot should line follow at
  **/
 void LineFollowToSwitch::execute() {
-	drivetrain.drive(_speed, 0.08*lineTracker.lineError());
+	curie->drivetrain.drive(_speed, 0.08*curie->lineTracker.lineError());
 }
 
 void LineFollowToSwitch::end() {
-	drivetrain.stop();
+	curie->drivetrain.stop();
 }
 
 bool LineFollowToSwitch::isFinished() {
-	return alignmentDetector.isAligned(); // Is finished if limit switch is triggered
+	return curie->alignmentDetector.isAligned(); // Is finished if limit switch is triggered
 }

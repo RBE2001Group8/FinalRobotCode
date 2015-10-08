@@ -7,9 +7,10 @@
  * @param currentPos Position of robot on the field at the beginning of the command
  * @param newPos Position the robot should be at when the command finishes
  **/
-LineFollowOverLines::LineFollowOverLines(float speed, Drivetrain drive, int *currentPos, int *newPos) : Command("LineFollowOverLines"), drivetrain(drive){
+LineFollowOverLines::LineFollowOverLines(float speed, int *currentPos, int *newPos) : Command("LineFollowOverLines"){
 	_speed = speed;
 	linesToCross = abs(*newPos-*currentPos);
+	curie = Robot::getInstance();
 }
 
 void LineFollowOverLines::initialize() {
@@ -20,8 +21,8 @@ void LineFollowOverLines::initialize() {
  *@param speed Speed that the robot should line follow at
  **/
 void LineFollowOverLines::execute() {
-	drivetrain.drive(_speed, 0.08*lineTracker.lineError());
-	if (lineTracker.isAtCross()) {
+	curie->drivetrain.drive(_speed, 0.08*curie->lineTracker.lineError());
+	if (curie->lineTracker.isAtCross()) {
 		if (!onLine) {
 			linesCrossed++;
 		}
@@ -32,7 +33,7 @@ void LineFollowOverLines::execute() {
 }
 
 void LineFollowOverLines::end() {
-	drivetrain.stop();
+	curie->drivetrain.stop();
 }
 
 bool LineFollowOverLines::isFinished() {

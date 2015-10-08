@@ -3,18 +3,18 @@
 
 #include "Command.h"
 #include <Arduino.h>
-#include "Roller.h"
+#include "Robot.h"
 
 class RollerSuck : public Command {
 public:
-	RollerSuck(int duration, Roller roll);
+	RollerSuck(int duration);
 	void initialize();
 	void execute();
 	void end();
 	bool isFinished();
 private:
 	int _duration;
-	Roller roller;
+	Robot* curie;
 };
 
 #endif

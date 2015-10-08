@@ -5,7 +5,8 @@
  * @param turn Turning rate of robot
  * @param duration Length of time in milliseconds to turn for
  **/
-PointTurnToPosition::PointTurnToPosition(float turn, int duration, Drivetrain drive, int *currentPos, int *nextPos) : Command("PointTurnToPosition"), drivetrain(drive) {
+PointTurnToPosition::PointTurnToPosition(float turn, int duration, int *currentPos, int *nextPos) : Command("PointTurnToPosition") {
+	curie = Robot::getInstance();
 	deltaPos = *nextPos-*currentPos;
 	if (deltaPos != 0) {
 		_turn = abs(turn)*deltaPos/abs(deltaPos);
@@ -18,15 +19,15 @@ PointTurnToPosition::PointTurnToPosition(float turn, int duration, Drivetrain dr
 }
 
 void PointTurnToPosition::initialize() {
-	drivetrain.initialize();
+	curie->drivetrain.initialize();
 }
 
 void PointTurnToPosition::execute() {
-	drivetrain.pointTurn(_turn);
+	curie->drivetrain.pointTurn(_turn);
 }
 
 void PointTurnToPosition::end() {
-	drivetrain.stop();
+	curie->drivetrain.stop();
 }
 
 bool PointTurnToPosition::isFinished() {
