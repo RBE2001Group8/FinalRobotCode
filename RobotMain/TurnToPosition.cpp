@@ -8,8 +8,8 @@
  * @param currentPos Position of robot on the field at the beginning of the command
  * @param nextPos Position the robot should be pointing toward when the command finishes
  **/
-TurnToPosition::TurnToPosition(float turn, int duration, int *currentPos, int *nextPos, bool sideA) : Command("TurnToPosition") {
-	deltaPos = *nextPos-*currentPos;
+TurnToPosition::TurnToPosition(float turn, int duration, int currentPos, int nextPos, bool sideA) : Command("TurnToPosition") {
+	deltaPos = nextPos-currentPos;
 	if (deltaPos != 0) {
 		_turn = -1*abs(turn)*deltaPos/abs(deltaPos);
 		_duration = duration;
