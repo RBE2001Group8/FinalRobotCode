@@ -13,7 +13,6 @@ SwingTurnToPosition::SwingTurnToPosition(float turn, int duration, Drivetrain dr
 
 void SwingTurnToPosition::initialize() {
 	drivetrain.initialize();
-	Serial.begin(9600);
 }
 
 void SwingTurnToPosition::execute() {

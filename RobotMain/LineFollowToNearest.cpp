@@ -37,7 +37,6 @@ LineFollowToNearest::LineFollowToNearest(float speed, Drivetrain drive, char bit
 }
 
 void LineFollowToNearest::initialize() {
-	Serial.begin(9600);
 }
 
 /** 

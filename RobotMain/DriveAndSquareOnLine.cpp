@@ -13,7 +13,6 @@ DriveAndSquareOnLine::DriveAndSquareOnLine(float speed, float turn, Drivetrain d
 
 void DriveAndSquareOnLine::initialize() {
 	drivetrain.initialize();
-	Serial.begin(9600);
 }
 
 void DriveAndSquareOnLine::execute() {
