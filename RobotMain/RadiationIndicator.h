@@ -2,7 +2,6 @@
 #define RADIATIONINDICATOR_H
 
 #include <Arduino.h>
-#include "Robot.h"
 
 class RadiationIndicator {
 public:
