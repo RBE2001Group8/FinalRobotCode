@@ -10,7 +10,7 @@
 PersistentSendHeartbeats::PersistentSendHeartbeats() : Command("PersistentSendHeartbeats") {
 }
 
-/** Initialize the command by getting a reference to the reacto
+/** Initialize the command by getting a reference to the reactor
   * link and instantiating a new ElapsedTimer
   **/
 void PersistentSendHeartbeats::initialize() {
@@ -35,7 +35,7 @@ void PersistentSendHeartbeats::end() {
 
 }
 
-/** Always return true so that the command is persistent
+/** Always return false so that the command is persistent
   **/
 bool PersistentSendHeartbeats::isFinished() {
 	return false;
