@@ -24,6 +24,7 @@
 #include "TurnToPosition.h"
 #include "PersistentWarnRadiation.h"
 #include "SetRadiationLevel.h"
+#include "LineFollowToStorage.h"
 #include "PersistentSendHeartbeats.h"
 #include "PersistentSendRadAlerts.h"
 #include "PersistentGetPackets.h"
@@ -31,12 +32,6 @@
 
 const int potDown = 665;
 
-char storageBitMap = 10;
-
-int dropoffPos1 = 2;
-int dropoffPos2 = 4;
-int pickupPos1 = 1;
-int pickupPos2 = 3;
 
 Scheduler* scheduler = Scheduler::getInstance();
 
@@ -51,6 +46,7 @@ void setup() {
 	scheduler->addParallelCommand(new PersistentSendHeartbeats());
 	scheduler->addParallelCommand(new PersistentSendRadAlerts());
 	scheduler->addParallelCommand(new PersistentGetPackets());
+
 	scheduler->addSequentialCommand(new WaitUntilPressed());
 	
 	scheduler->addSequentialCommand(new MoveArm(potDown));
@@ -95,7 +91,7 @@ void setup() {
 
 	scheduler->addSequentialCommand(new DriveToRearLine(-0.375, 0.07));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 250));
-	scheduler->addSequentialCommand(new PointTurn(-0.5, 1400));
+	scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 
 	scheduler->addSequentialCommand(new LineFollowToSwitch(0.75));
 
@@ -155,7 +151,7 @@ void setup() {
 
 	scheduler->addSequentialCommand(new DriveToRearLine(-0.375, 0.07));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 250));
-	scheduler->addSequentialCommand(new PointTurn(0.5, 1400));
+	scheduler->addSequentialCommand(new PointTurn(0.5, 1700));
 
 	scheduler->addSequentialCommand(new LineFollowToSwitch(0.75));
 
