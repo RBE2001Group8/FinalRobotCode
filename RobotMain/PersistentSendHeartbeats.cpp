@@ -6,8 +6,7 @@
 
 #include "PersistentSendHeartbeats.h"
 
-/** Constructor
-  **/
+/** Constructor **/
 PersistentSendHeartbeats::PersistentSendHeartbeats() : Command("PersistentSendHeartbeats") {
 }
 
@@ -33,7 +32,7 @@ void PersistentSendHeartbeats::execute() {
 /** Nothing to do for end, since this command never ends
   **/
 void PersistentSendHeartbeats::end() {
-	
+
 }
 
 /** Always return true so that the command is persistent
