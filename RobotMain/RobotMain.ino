@@ -24,7 +24,13 @@
 #include "TurnToPosition.h"
 #include "PersistentWarnRadiation.h"
 #include "SetRadiationLevel.h"
+<<<<<<< HEAD
 #include "LineFollowToStorage.h"
+=======
+#include "PersistentSendHeartbeats.h"
+#include "PersistentSendRadAlerts.h"
+#include "PersistentGetPackets.h"
+>>>>>>> BluetoothCommands
 
 const int potDown = 665;
 
@@ -45,7 +51,14 @@ void setup() {
 	curie->initializeSubsystems();
 
 	scheduler->addParallelCommand(new PersistentWarnRadiation(curie, curie->radInd));
+<<<<<<< HEAD
 	scheduler->addSequentialCommand(new WaitUntilPressed());
+=======
+	scheduler->addParallelCommand(new PersistentSendHeartbeats());
+	scheduler->addParallelCommand(new PersistentSendRadAlerts());
+	scheduler->addParallelCommand(new PersistentGetPackets());
+	scheduler->addSequentialCommand(new WaitUntilPressed(curie->button));
+>>>>>>> BluetoothCommands
 	
 	scheduler->addSequentialCommand(new MoveArm(potDown));
 	scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_SPENT));
