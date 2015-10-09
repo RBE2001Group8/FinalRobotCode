@@ -18,5 +18,9 @@ const int RAD_LEVEL_NEW = 2;
 const int RAD_LEVEL_SPENT = 1;
 const int RAD_LEVEL_NONE = 0;
 
+//Pins for the Serial3 ports
+const int SERIAL3_RX_PIN = 15;
+const int SERIAL3_TX_PIN = 14;
+
 
 #endif
