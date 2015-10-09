@@ -8,6 +8,9 @@
 #include "UserButton.h"
 #include "Roller.h"
 #include "RadiationIndicator.h"
+#include "LineTracker.h"
+#include "AlignmentDetector.h"
+#include "TubeProcessing.h"
 #include "ReactorLink.h"
 
 //#TODO Hack to fix cyclical dependency
@@ -19,12 +22,14 @@ public:
 	//#TODO Code Clean up: switch classes to pointers, like RadInd
 	Scheduler *scheduler; 
 	Drivetrain drivetrain = *new Drivetrain(LEFT_MOTOR_PIN, RIGHT_MOTOR_PIN);
-	LineTracker lineTracker = *new LineTracker();
 	UserButton button = *new UserButton(USER_BUTTON_PIN);
-	Roller roller = *new Roller();
+	Roller roller = *new Roller(); //#TODO add parameter for pin
 	RadiationIndicator* radInd = new RadiationIndicator(RADIATION_LED_PIN, 750);
+	LineTracker lineTracker = *new LineTracker(); //#TODO add parameter for sensor pins
+	AlignmentDetector alignmentDetector = *new AlignmentDetector(); //#TODO add switch pin parameter
+	TubeProcessing tubeProcessor = *new TubeProcessing();
 	ReactorLink* reactorLink = new ReactorLink();
-
+	int currentPos = 2;
 
 	void setRadLevel(int newRadLevel);
 	int getRadLevel();

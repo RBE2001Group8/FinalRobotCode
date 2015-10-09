@@ -1,8 +1,9 @@
 #include "LineFollowToCrossLine.h"
 
 /* Constructor */
-LineFollowToCrossLine::LineFollowToCrossLine(float speed, Drivetrain drive) : Command("LineFollowToCrossLine"), drivetrain(drive){
+LineFollowToCrossLine::LineFollowToCrossLine(float speed) : Command("LineFollowToCrossLine"){
 	_speed = speed;
+	curie = Robot::getInstance();
 }
 
 void LineFollowToCrossLine::initialize() {
@@ -13,13 +14,13 @@ void LineFollowToCrossLine::initialize() {
  *@param speed Speed that the robot should line follow at
  **/
 void LineFollowToCrossLine::execute() {
-	drivetrain.drive(_speed, 0.08*lineTracker.lineError());
+	curie->drivetrain.drive(_speed, 0.08*curie->lineTracker.lineError());
 }
 
 void LineFollowToCrossLine::end() {
-	drivetrain.stop();
+	curie->drivetrain.stop();
 }
 
 bool LineFollowToCrossLine::isFinished() {
-	return lineTracker.isAtCross(); // Is finished if outer sensors are on black (only happens if on a cross line)
+	return curie->lineTracker.isAtCross(); // Is finished if outer sensors are on black (only happens if on a cross line)
 }

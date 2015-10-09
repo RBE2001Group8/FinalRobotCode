@@ -1,18 +1,19 @@
 #ifndef WAITUNTILPRESSED_H
 #define WAITUNTILPRESSED_H
 
-#include "UserButton.h"
+#include "Robot.h"
 #include "Command.h"
+
 
 class WaitUntilPressed : public Command {
 public:
-	WaitUntilPressed(UserButton button);
+	WaitUntilPressed();
 	void initialize();
 	void execute();
 	void end();
 	bool isFinished();
 private:
-	UserButton _button;
+	Robot* curie;
 };
 
 #endif

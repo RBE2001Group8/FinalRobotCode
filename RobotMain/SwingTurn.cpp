@@ -5,21 +5,22 @@
  * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right
  * @param duration Length of time in milliseconds to turn for
  **/
-SwingTurn::SwingTurn(float turn, int duration, Drivetrain drive) : Command("SwingTurn"), drivetrain(drive) {
+SwingTurn::SwingTurn(float turn, int duration) : Command("SwingTurn") {
 	_turn = turn;
 	_duration = duration;
+	curie = Robot::getInstance();
 }
 
 void SwingTurn::initialize() {
-	drivetrain.initialize();
+	curie->drivetrain.initialize();
 }
 
 void SwingTurn::execute() {
-	drivetrain.swingTurn(_turn);
+	curie->drivetrain.swingTurn(_turn);
 }
 
 void SwingTurn::end() {
-	drivetrain.stop();
+	curie->drivetrain.stop();
 }
 
 bool SwingTurn::isFinished() {

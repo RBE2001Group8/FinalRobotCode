@@ -3,22 +3,18 @@
 
 #include "Command.h"
 #include <Arduino.h>
-#include "Drivetrain.h"
-#include "LineTracker.h"
-#include "AlignmentDetector.h"
+#include "Robot.h"
 
 class LineFollowToSwitch : public Command {
 public:
-	LineFollowToSwitch(float speed, Drivetrain drive);
+	LineFollowToSwitch(float speed);
 	void initialize();
 	void execute();
 	void end();
 	bool isFinished();
 private:
 	float _speed;
-	Drivetrain drivetrain;
-	LineTracker lineTracker;
-	AlignmentDetector alignmentDetector;
+	Robot* curie;
 };
 
 #endif
