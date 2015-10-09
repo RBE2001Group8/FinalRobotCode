@@ -18,6 +18,8 @@ private:
 	Robot* curie;
 	int deltaPos;
 	bool prevCenter = true;
+	bool _sideA;
+	char _bitmask;
 };
 
 #endif

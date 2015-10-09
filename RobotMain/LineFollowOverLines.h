@@ -7,7 +7,7 @@
 
 class LineFollowOverLines : public Command {
 public:
-	LineFollowOverLines(float speed);
+	LineFollowOverLines(float speed, bool sideA);
 	void initialize();
 	void execute();
 	void end();
@@ -18,6 +18,8 @@ private:
 	bool onLine = false;
 	char linesCrossed = 0;
 	char linesToCross;
+	char _bitmask;
+	bool _sideA;
 };
 
 #endif

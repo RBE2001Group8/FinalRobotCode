@@ -76,7 +76,7 @@ void setup() {
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 550));
 	scheduler->addSequentialCommand(new DriveAndSquareOnLine(0.375, 0.07));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 600));
-    scheduler->addSequentialCommand(new LineFollowOverLines(0.5));
+    scheduler->addSequentialCommand(new LineFollowOverLines(0.5, true));
     scheduler->addSequentialCommand(new TurnToPosition(0.4, 2000, true));
     scheduler->addSequentialCommand(new LineFollowToSwitch(0.5));
 
@@ -136,7 +136,7 @@ void setup() {
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 550));
 	scheduler->addSequentialCommand(new DriveAndSquareOnLine(0.375, 0.07));
 	scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 600));
-    scheduler->addSequentialCommand(new LineFollowOverLines(0.5));
+    scheduler->addSequentialCommand(new LineFollowOverLines(0.5, false));
     scheduler->addSequentialCommand(new TurnToPosition(0.4, 2000, false));
     scheduler->addSequentialCommand(new LineFollowToSwitch(0.5));
 

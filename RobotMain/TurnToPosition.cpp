@@ -12,10 +12,12 @@ TurnToPosition::TurnToPosition(float turn, int duration, bool sideA) : Command("
 	curie = Robot::getInstance();
 	_turn = abs(turn);
 	_duration = duration;
+	_side = sideA;
 }
 
 void TurnToPosition::initialize() {
-	deltaPos = curie->nextPos-curie->currentPos;
+	_bitmask = curie->reactorLink.getSupplyAvailabilityByte();
+	deltaPos = curie->tubeProcessor.getFreshRodTube(_bitmask, _sideA)-curie->currentPos;
 	if (deltaPos != 0) {
 		_turn = -1*_turn*deltaPos/abs(deltaPos);
 	} else { // Turning from perpendicular to the new fuel rod directly opposite

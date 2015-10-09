@@ -9,10 +9,12 @@ PointTurnToPosition::PointTurnToPosition(float turn, int duration, bool sideA) :
 	curie = Robot::getInstance();
 	_turn = turn;
 	_duration = duration;
+	_sideA = sideA;
 }
 
 void PointTurnToPosition::initialize() {
-	deltaPos = curie->nextPos-curie->currentPos;
+	_bitmask = curie->reactorLink.getSupplyAvailabilityByte();
+	deltaPos = curie->tubeProcessor.getFreshRodTube(_bitmask, _sideA)-curie->currentPos;
 	if (deltaPos != 0) {
 		_turn = -1*abs(_turn)*deltaPos/abs(deltaPos);
 	} 

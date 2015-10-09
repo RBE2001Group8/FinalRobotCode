@@ -7,13 +7,15 @@
  * @param currentPos Position of robot on the field at the beginning of the command
  * @param newPos Position the robot should be at when the command finishes
  **/
-LineFollowOverLines::LineFollowOverLines(float speed) : Command("LineFollowOverLines"){
+LineFollowOverLines::LineFollowOverLines(float speed, bool sideA) : Command("LineFollowOverLines"){
 	_speed = speed;
 	curie = Robot::getInstance();
+	_sideA = sideA;
 }
 
 void LineFollowOverLines::initialize() {
-	linesToCross = curie->nextPos-curie->currentPos;
+	_bitmask = curie->reactorLink.getSupplyAvailabilityByte();
+	linesToCross = abs(curie->tubeProcessor.getFreshRodTube(_bitmask, _sideA)-curie->currentPos);
 }
 
 /** 

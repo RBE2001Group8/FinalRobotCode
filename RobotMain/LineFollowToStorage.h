@@ -19,6 +19,7 @@ private:
 	char linesCrossed = 0;
 	char linesToCross;
 	bool _side;
+	int tubeNum;
 };
 
 #endif

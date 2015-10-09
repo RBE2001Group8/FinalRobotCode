@@ -17,6 +17,8 @@ private:
 	int _duration;
 	Robot* curie;
 	int deltaPos;
+	char _bitmask;
+	bool _sideA;
 };
 
 #endif
