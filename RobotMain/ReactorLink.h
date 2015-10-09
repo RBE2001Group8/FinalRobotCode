@@ -2,6 +2,7 @@
 #define REACTORLINK_H
 
 #include <Arduino.h>
+#include "RobotConstants.h"
 
 class ReactorLink {
 public:
@@ -12,6 +13,7 @@ public:
 	uint8_t getPacket();
 	uint8_t getStorageAvailabilityByte();
 	uint8_t getSupplyAvailabilityByte();
+	bool robotShouldStop();
 
 private:
 	//Constants for the Reactor Protocol
@@ -59,6 +61,9 @@ private:
 
 	//Flag for only being able to read a partial packet
 	uint8_t hasReadPartialPacket = false;
+
+	//Flag to signal if the robot should stop
+	uint8_t shouldStop = 0;
 
 
 };
