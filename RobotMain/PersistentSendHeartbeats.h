@@ -1,8 +1,10 @@
 #ifndef PERSISTENTSENDHEARTBEATS_H
-#def PERSISTENTSENDHEARTBEATS_H
+#define PERSISTENTSENDHEARTBEATS_H
 
+#include "Command.h"
 #include "Robot.h"
 #include "ReactorLink.h"
+#include "ElapsedTimer.h"
 
 class PersistentSendHeartbeats : public Command {
 public:
@@ -12,6 +14,9 @@ public:
 	void end();
 	bool isFinished();
 private:
+	ElapsedTimer hbTimer;
+	ReactorLink* rLink;
+	const int period = 1500;  //Time between heartbeats in msec
 	
 };
 
