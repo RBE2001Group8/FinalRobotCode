@@ -1,3 +1,9 @@
+/** Implements a timer that outputs the time in milliseconds
+  * since the program has started, but can be paused by 
+  * setting a flag
+  * @author Jordan Burklund
+  * @date Oct. 2015
+  **/
 
 #include "PausableTimer.h"
 
