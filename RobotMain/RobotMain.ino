@@ -102,6 +102,8 @@ void setup() {
 	//curie->setRadLevel(RAD_LEVEL_NEW);
 }
 
+//do something
+
 /** Code to iteratively operate the robot **/
 void loop() {
 	scheduler->run();
