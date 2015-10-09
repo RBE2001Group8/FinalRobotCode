@@ -7,7 +7,7 @@ SetCurrentPosition::SetCurrentPosition(bool sideA) : Command("SetCurrentPosition
 
 void SetCurrentPosition::initialize() {
 	_bitmask = curie->reactorLink->getStorageAvailabilityByte();
-	tubeNum = curie->tubeProcessor.getStorageTube(_bitmask, _sideA);
+	tubeNum = curie->tubeProcessor->getStorageTube(_bitmask, _sideA);
 	curie->currentPos = tubeNum;
 }
 

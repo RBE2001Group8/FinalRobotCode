@@ -17,7 +17,7 @@ TurnToPosition::TurnToPosition(float turn, int duration, bool sideA) : Command("
 
 void TurnToPosition::initialize() {
 	_bitmask = curie->reactorLink->getSupplyAvailabilityByte();
-	deltaPos = curie->tubeProcessor.getFreshRodTube(_bitmask, _sideA)-curie->currentPos;
+	deltaPos = curie->tubeProcessor->getFreshRodTube(_bitmask, _sideA)-curie->currentPos;
 	if (deltaPos != 0) {
 		_turn = -1*_turn*deltaPos/abs(deltaPos);
 	} else { // Turning from perpendicular to the new fuel rod directly opposite
@@ -26,18 +26,18 @@ void TurnToPosition::initialize() {
 }
 
 void TurnToPosition::execute() {
-	prevCenter = curie->lineTracker.centerOnLine();
+	prevCenter = curie->lineTracker->centerOnLine();
 	if (deltaPos != 0) {
-		curie->drivetrain.swingTurn(_turn);
+		curie->drivetrain->swingTurn(_turn);
 	} else {
-		curie->drivetrain.pointTurn(_turn);
+		curie->drivetrain->pointTurn(_turn);
 	}
 }
 
 void TurnToPosition::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool TurnToPosition::isFinished() {
-	return (getTime() > 1000) && (curie->lineTracker.centerOnLine() && (!prevCenter)); 
+	return (getTime() > 1000) && (curie->lineTracker->centerOnLine() && (!prevCenter)); 
 }

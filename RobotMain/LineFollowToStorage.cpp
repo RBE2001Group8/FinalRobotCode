@@ -14,7 +14,7 @@ LineFollowToStorage::LineFollowToStorage(float speed, bool sideA) : Command("Lin
 
 void LineFollowToStorage::initialize() {
 	_bitmask = curie->reactorLink->getStorageAvailabilityByte();
-	tubeNum = curie->tubeProcessor.getStorageTube(_bitmask, _sideA);
+	tubeNum = curie->tubeProcessor->getStorageTube(_bitmask, _sideA);
 	curie->currentPos = tubeNum;
 	linesToCross = (_sideA) ? tubeNum : (5-tubeNum);
 }
@@ -24,8 +24,8 @@ void LineFollowToStorage::initialize() {
  *@param speed Speed that the robot should line follow at
  **/
 void LineFollowToStorage::execute() {
-	curie->drivetrain.drive(_speed, 0.08*curie->lineTracker.lineError());
-	if (curie->lineTracker.isAtCross()) {
+	curie->drivetrain->drive(_speed, 0.08*curie->lineTracker->lineError());
+	if (curie->lineTracker->isAtCross()) {
 		if (!onLine) {
 			linesCrossed++;
 		}
@@ -36,7 +36,7 @@ void LineFollowToStorage::execute() {
 }
 
 void LineFollowToStorage::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool LineFollowToStorage::isFinished() {

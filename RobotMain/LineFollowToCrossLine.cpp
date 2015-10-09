@@ -14,13 +14,13 @@ void LineFollowToCrossLine::initialize() {
  *@param speed Speed that the robot should line follow at
  **/
 void LineFollowToCrossLine::execute() {
-	curie->drivetrain.drive(_speed, 0.08*curie->lineTracker.lineError());
+	curie->drivetrain->drive(_speed, 0.08*curie->lineTracker->lineError());
 }
 
 void LineFollowToCrossLine::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool LineFollowToCrossLine::isFinished() {
-	return curie->lineTracker.isAtCross(); // Is finished if outer sensors are on black (only happens if on a cross line)
+	return curie->lineTracker->isAtCross(); // Is finished if outer sensors are on black (only happens if on a cross line)
 }

@@ -33,6 +33,6 @@ void WaitUntilPressed::end() {
 /** Command is finished when the button is pressed
   **/
 bool WaitUntilPressed::isFinished() {
-	return curie->button.isPressed();
+	return curie->button->isPressed();
 }
 
