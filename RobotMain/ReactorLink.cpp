@@ -87,7 +87,7 @@ uint8_t ReactorLink::getPacket() {
     }
     //Discard garbage data until the header is detected
     while(Serial3.peek() != PACKET_START_BYTE) {
-      Serial.println("Discarding data");
+      //Serial.println("Discarding data");
       Serial3.read();
     }
     //Check again if a packet might be available
@@ -122,8 +122,8 @@ uint8_t ReactorLink::getPacket() {
 
   //Check the checksum, if not valid return an error and exit, discarding the packet
   if(checksum != tempPacketBuff[tempPacketBuff[1]]) {
-    Serial.print("Invalid Checksum: ");
-    Serial.println(checksum, HEX);
+    //Serial.print("Invalid Checksum: ");
+    //Serial.println(checksum, HEX);
     return -1;
   }
 
@@ -133,14 +133,14 @@ uint8_t ReactorLink::getPacket() {
     case 0x01:
       //Copy the storage availability byte
       storageAvailability = tempPacketBuff[5];
-      Serial.println("New Storage Packet");
+      //Serial.println("New Storage Packet");
       break;
 
     //PACKET_TYPE_SUPPLY_AVAILABILITY
     case 0x02:
       //Copy the supply availability byte
       supplyAvailability = tempPacketBuff[5];
-      Serial.println("New Supply Packet");
+      //Serial.println("New Supply Packet");
       break;
 
     //PACKET_TYPE_RADIATION_ALERT
@@ -155,9 +155,9 @@ uint8_t ReactorLink::getPacket() {
       if(tempPacketBuff[4] == ADDRESS_TEAM) {
         //Set the flag to stop the robot
         shouldStop = true;
-        Serial.println("#### Stop this robot ####");
+        //Serial.println("#### Stop this robot ####");
       } else {
-        Serial.println("Stop for other robot");
+        //Serial.println("Stop for other robot");
       }
       break;
 
@@ -167,9 +167,9 @@ uint8_t ReactorLink::getPacket() {
       if(tempPacketBuff[4] == ADDRESS_TEAM) {
         //Clear the stop flag to continue driving
         shouldStop = false;
-        Serial.println("#### Resume this robot ####");
+        //Serial.println("#### Resume this robot ####");
       } else {
-        Serial.println("Resume for other robot");
+        //Serial.println("Resume for other robot");
       }
       break;
 
