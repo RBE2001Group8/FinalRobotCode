@@ -7,14 +7,13 @@
 
 class TurnToPosition : public Command {
 public:
-	TurnToPosition(float turn, int duration, bool sideA);
+	TurnToPosition(float turn, bool sideA);
 	void initialize();
 	void execute();
 	void end();
 	bool isFinished();
 private:
 	float _turn;
-	int _duration;
 	Robot* curie;
 	int deltaPos;
 	bool prevCenter = true;

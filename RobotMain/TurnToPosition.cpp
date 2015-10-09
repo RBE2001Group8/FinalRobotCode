@@ -8,30 +8,21 @@
  * @param currentPos Position of robot on the field at the beginning of the command
  * @param nextPos Position the robot should be pointing toward when the command finishes
  **/
-TurnToPosition::TurnToPosition(float turn, int duration, bool sideA) : Command("TurnToPosition") {
+TurnToPosition::TurnToPosition(float turn, bool sideA) : Command("TurnToPosition") {
 	curie = Robot::getInstance();
 	_turn = abs(turn);
-	_duration = duration;
 	_sideA = sideA;
 }
 
 void TurnToPosition::initialize() {
 	_bitmask = curie->reactorLink->getSupplyAvailabilityByte();
 	deltaPos = curie->tubeProcessor.getFreshRodTube(_bitmask, _sideA)-curie->currentPos;
-	if (deltaPos != 0) {
-		_turn = -1*_turn*deltaPos/abs(deltaPos);
-	} else { // Turning from perpendicular to the new fuel rod directly opposite
-		_duration = _duration * 0.75;
-	}
+	_turn = -1*_turn*deltaPos/abs(deltaPos);
 }
 
 void TurnToPosition::execute() {
 	prevCenter = curie->lineTracker.centerOnLine();
-	if (deltaPos != 0) {
-		curie->drivetrain.swingTurn(_turn);
-	} else {
-		curie->drivetrain.pointTurn(_turn);
-	}
+	curie->drivetrain.swingTurn(_turn);
 }
 
 void TurnToPosition::end() {
@@ -39,5 +30,5 @@ void TurnToPosition::end() {
 }
 
 bool TurnToPosition::isFinished() {
-	return (getTime() > 750) && (curie->lineTracker.centerOnLine() && (!prevCenter)); 
+	return ((getTime() > 750) && (curie->lineTracker.centerOnLine() && (!prevCenter))) || deltaPos; 
 }
