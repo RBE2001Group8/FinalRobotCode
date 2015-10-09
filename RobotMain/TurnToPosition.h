@@ -7,7 +7,7 @@
 
 class TurnToPosition : public Command {
 public:
-	TurnToPosition(float turn, int duration, int currentPos, int nextPos, bool sideA);
+	TurnToPosition(float turn, int duration, bool sideA);
 	void initialize();
 	void execute();
 	void end();

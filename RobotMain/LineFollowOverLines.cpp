@@ -7,13 +7,13 @@
  * @param currentPos Position of robot on the field at the beginning of the command
  * @param newPos Position the robot should be at when the command finishes
  **/
-LineFollowOverLines::LineFollowOverLines(float speed, int currentPos, int newPos) : Command("LineFollowOverLines"){
+LineFollowOverLines::LineFollowOverLines(float speed) : Command("LineFollowOverLines"){
 	_speed = speed;
-	linesToCross = abs(newPos-currentPos);
 	curie = Robot::getInstance();
 }
 
 void LineFollowOverLines::initialize() {
+	linesToCross = curie->nextPos-curie->currentPos;
 }
 
 /** 

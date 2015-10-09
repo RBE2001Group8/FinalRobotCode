@@ -6,13 +6,14 @@
  * @param drive Drivetrain object to use for driving, must be initialized
  * @param newPos Position the robot should be at when the command finishes
  **/
-LineFollowToStorage::LineFollowToStorage(float speed, int newPos, bool sideA) : Command("LineFollowToStorage"){
+LineFollowToStorage::LineFollowToStorage(float speed, bool sideA) : Command("LineFollowToStorage"){
 	_speed = speed;
-	linesToCross = (sideA) ? newPos : (5-newPos);
 	curie = Robot::getInstance();
+	_side = sideA;
 }
 
 void LineFollowToStorage::initialize() {
+	linesToCross = (_side) ? curie->nextPos : (5-curie->nextPos);
 }
 
 /** 

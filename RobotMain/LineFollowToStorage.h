@@ -7,7 +7,7 @@
 
 class LineFollowToStorage : public Command {
 public:
-	LineFollowToStorage(float speed, int nextPos, bool sideA);
+	LineFollowToStorage(float speed, bool sideA);
 	void initialize();
 	void execute();
 	void end();
@@ -18,6 +18,7 @@ private:
 	bool onLine = false;
 	char linesCrossed = 0;
 	char linesToCross;
+	bool _side;
 };
 
 #endif

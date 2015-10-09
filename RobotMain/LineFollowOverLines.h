@@ -7,7 +7,7 @@
 
 class LineFollowOverLines : public Command {
 public:
-	LineFollowOverLines(float speed, int currentPos, int nextPos);
+	LineFollowOverLines(float speed);
 	void initialize();
 	void execute();
 	void end();

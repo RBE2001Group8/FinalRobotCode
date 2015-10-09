@@ -25,7 +25,8 @@ public:
 	RadiationIndicator* radInd = new RadiationIndicator(RADIATION_LED_PIN, 750);
 	LineTracker lineTracker = *new LineTracker(); //#TODO add parameter for sensor pins
 	AlignmentDetector alignmentDetector = *new AlignmentDetector(); //#TODO add switch pin parameter
-
+	int currentPos = 2;
+	int nextPos = 4;
 
 	void setRadLevel(int newRadLevel);
 	int getRadLevel();
