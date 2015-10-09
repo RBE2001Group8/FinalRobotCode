@@ -3,11 +3,11 @@
 
 #include "Command.h"
 #include <Arduino.h>
-#include "Drivetrain.h"
+#include "Robot.h"
 
 class PointTurnToPosition : public Command {
 public:
-	PointTurnToPosition(float turn, int duration, Drivetrain drive, int *currentPos, int *nextPos);
+	PointTurnToPosition(float turn, int duration, bool sideA);
 	void initialize();
 	void execute();
 	void end();
@@ -15,8 +15,10 @@ public:
 private:
 	float _turn;
 	int _duration;
-	Drivetrain drivetrain;
+	Robot* curie;
 	int deltaPos;
+	char _bitmask;
+	bool _sideA;
 };
 
 #endif

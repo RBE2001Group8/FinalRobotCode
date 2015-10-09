@@ -1,28 +1,28 @@
-#include "LineFollowOverLines.h"
+#include "LineFollowToStorage.h"
 
 /* Constructor */
-/** Line follows, counting lines until the robot is at the position specified in newPos parameter, based on the inital position of the robot
+/** Line follows, counting lines until the robot is at the position specified in newPos parameter
  * @param speed Linefollowing speed
  * @param drive Drivetrain object to use for driving, must be initialized
- * @param currentPos Position of robot on the field at the beginning of the command
  * @param newPos Position the robot should be at when the command finishes
  **/
-LineFollowOverLines::LineFollowOverLines(float speed, bool sideA) : Command("LineFollowOverLines"){
+LineFollowToStorage::LineFollowToStorage(float speed, bool sideA) : Command("LineFollowToStorage"){
 	_speed = speed;
 	curie = Robot::getInstance();
 	_sideA = sideA;
 }
 
-void LineFollowOverLines::initialize() {
-	_bitmask = curie->reactorLink.getSupplyAvailabilityByte();
-	linesToCross = abs(curie->tubeProcessor.getFreshRodTube(_bitmask, _sideA)-curie->currentPos);
+void LineFollowToStorage::initialize() {
+	_bitmask = curie->reactorLink.getStorageAvailabilityByte();
+	tubeNum = curie->tubeProcessor.getStorageTube(_bitmask, _sideA);
+	linesToCross = (_sideA) ? tubeNum : (5-tubeNum);
 }
 
 /** 
  * Commands the robot to follow the line at the specified speed
  *@param speed Speed that the robot should line follow at
  **/
-void LineFollowOverLines::execute() {
+void LineFollowToStorage::execute() {
 	curie->drivetrain.drive(_speed, 0.08*curie->lineTracker.lineError());
 	if (curie->lineTracker.isAtCross()) {
 		if (!onLine) {
@@ -34,10 +34,10 @@ void LineFollowOverLines::execute() {
 	}
 }
 
-void LineFollowOverLines::end() {
+void LineFollowToStorage::end() {
 	curie->drivetrain.stop();
 }
 
-bool LineFollowOverLines::isFinished() {
+bool LineFollowToStorage::isFinished() {
 	return linesCrossed == linesToCross; 
 }

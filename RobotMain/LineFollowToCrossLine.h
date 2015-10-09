@@ -3,20 +3,18 @@
 
 #include "Command.h"
 #include <Arduino.h>
-#include "Drivetrain.h"
-#include "LineTracker.h"
+#include "Robot.h"
 
 class LineFollowToCrossLine : public Command {
 public:
-	LineFollowToCrossLine(float speed, Drivetrain drive);
+	LineFollowToCrossLine(float speed);
 	void initialize();
 	void execute();
 	void end();
 	bool isFinished();
 private:
 	float _speed;
-	Drivetrain drivetrain;
-	LineTracker lineTracker;
+	Robot* curie;
 };
 
 #endif

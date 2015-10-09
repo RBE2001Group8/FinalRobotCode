@@ -3,19 +3,19 @@
 
 #include "Command.h"
 #include <Arduino.h>
-#include "Drivetrain.h"
+#include "Robot.h"
 #include "LineTracker.h"
 
 class PointTurnToLine : public Command {
 public:
-	PointTurnToLine(float turn, Drivetrain drive);
+	PointTurnToLine(float turn);
 	void initialize();
 	void execute();
 	void end();
 	bool isFinished();
 private:
 	float _turn;
-	Drivetrain drivetrain;
+	Robot* curie;
 	LineTracker lineTracker;
 	bool onLine = false;
 };

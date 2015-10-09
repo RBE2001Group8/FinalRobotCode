@@ -7,8 +7,8 @@
 /** Constructor
   * @param button Button to wait for
   **/
-WaitUntilPressed::WaitUntilPressed(UserButton button) : _button(button) {
-
+WaitUntilPressed::WaitUntilPressed() : Command("WaitUntilPressed") {
+  curie = Robot::getInstance();
 }
 
 /** Does nothing.  Assumes the button is
@@ -33,6 +33,6 @@ void WaitUntilPressed::end() {
 /** Command is finished when the button is pressed
   **/
 bool WaitUntilPressed::isFinished() {
-	return _button.isPressed();
+	return curie->button.isPressed();
 }
 

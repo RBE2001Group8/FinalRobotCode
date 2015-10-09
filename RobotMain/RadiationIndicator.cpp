@@ -8,8 +8,7 @@
   * @param pin Pin for the LED
   * @param period Total period of the blink patter
   **/
-RadiationIndicator::RadiationIndicator(int pin, int period) 
-	: _ledPin(pin), _period(period) {
+RadiationIndicator::RadiationIndicator(int pin, int period) : _ledPin(pin), _period(period) {
 	_onTime = period/8;
 	shouldBlink = false;
 }

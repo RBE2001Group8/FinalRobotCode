@@ -6,23 +6,24 @@
  * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right. 0.0 is straight ahead
  * @param duration Length of time in milliseconds to drive for
  **/
-Drive::Drive(float speed, float turn, int duration, Drivetrain drive) : Command("Drive"), drivetrain(drive) {
+Drive::Drive(float speed, float turn, int duration) : Command("Drive") {
 	_speed = speed;
 	_turn = turn;
 	_duration = duration;
+	curie = Robot::getInstance();
 }
 
 void Drive::initialize() {
-	drivetrain.initialize();
+	curie->drivetrain.initialize();
 }
 
 void Drive::execute() {
-	drivetrain.drive(_speed, _turn);
+	curie->drivetrain.drive(_speed, _turn);
 
 }
 
 void Drive::end() {
-	drivetrain.stop();
+	curie->drivetrain.stop();
 }
 
 bool Drive::isFinished() {

@@ -3,12 +3,12 @@
 
 #include "Command.h"
 #include <Arduino.h>
-#include "Drivetrain.h"
+#include "Robot.h"
 #include "LineTracker.h"
 
 class DriveToRearLine : public Command {
 public:
-	DriveToRearLine(float speed, float turn, Drivetrain drive);
+	DriveToRearLine(float speed, float turn);
 	void initialize();
 	void execute();
 	void end();
@@ -16,8 +16,7 @@ public:
 private:
 	float _speed, _turn;
 	int _duration;
-	Drivetrain drivetrain;
-	LineTracker lineTracker;
+	Robot* curie;
 };
 
 #endif

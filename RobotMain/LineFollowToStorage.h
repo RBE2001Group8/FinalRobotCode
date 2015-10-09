@@ -1,13 +1,13 @@
-#ifndef LINEFOLLOWOVERLINES_H
-#define LINEFOLLOWOVERLINES_H
+#ifndef LINEFOLLOWToStorage_H
+#define LINEFOLLOWToStorage_H
 
 #include "Command.h"
 #include <Arduino.h>
 #include "Robot.h"
 
-class LineFollowOverLines : public Command {
+class LineFollowToStorage : public Command {
 public:
-	LineFollowOverLines(float speed, bool sideA);
+	LineFollowToStorage(float speed, bool sideA);
 	void initialize();
 	void execute();
 	void end();
@@ -18,8 +18,9 @@ private:
 	bool onLine = false;
 	char linesCrossed = 0;
 	char linesToCross;
-	char _bitmask;
 	bool _sideA;
+	char _bitmask;
+	int tubeNum;
 };
 
 #endif
