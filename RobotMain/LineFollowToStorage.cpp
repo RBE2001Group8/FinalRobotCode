@@ -15,6 +15,7 @@ LineFollowToStorage::LineFollowToStorage(float speed, bool sideA) : Command("Lin
 void LineFollowToStorage::initialize() {
 	_bitmask = curie->reactorLink->getStorageAvailabilityByte();
 	tubeNum = curie->tubeProcessor.getStorageTube(_bitmask, _sideA);
+	curie->currentPos = tubeNum;
 	linesToCross = (_sideA) ? tubeNum : (5-tubeNum);
 }
 
