@@ -26,6 +26,7 @@
 #include "SetRadiationLevel.h"
 #include "PersistentSendHeartbeats.h"
 #include "PersistentSendRadAlerts.h"
+#include "PersistentGetPackets.h"
 
 const int potDown = 665;
 
@@ -47,6 +48,7 @@ void setup() {
 	scheduler->addParallelCommand(new PersistentWarnRadiation(curie, curie->radInd));
 	scheduler->addParallelCommand(new PersistentSendHeartbeats());
 	scheduler->addParallelCommand(new PersistentSendRadAlerts());
+	scheduler->addParallelCommand(new PersistentGetPackets());
 	scheduler->addSequentialCommand(new WaitUntilPressed(curie->button));
 	
 	scheduler->addSequentialCommand(new MoveArm(potDown));
