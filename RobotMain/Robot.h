@@ -8,6 +8,7 @@
 #include "UserButton.h"
 #include "Roller.h"
 #include "RadiationIndicator.h"
+#include "ReactorLink.h"
 
 //#TODO Hack to fix cyclical dependency
 class RadiationIndicator;
@@ -22,6 +23,7 @@ public:
 	UserButton button = *new UserButton(USER_BUTTON_PIN);
 	Roller roller = *new Roller();
 	RadiationIndicator* radInd = new RadiationIndicator(RADIATION_LED_PIN, 750);
+	ReactorLink* reactorLink = new ReactorLink();
 
 
 	void setRadLevel(int newRadLevel);
