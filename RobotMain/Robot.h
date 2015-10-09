@@ -12,6 +12,7 @@
 #include "AlignmentDetector.h"
 #include "TubeProcessing.h"
 #include "ReactorLink.h"
+#include "PausableTimer.h"
 
 //#TODO Hack to fix cyclical dependency
 class RadiationIndicator;
