@@ -21,6 +21,7 @@ unsigned long getPauseMillis() {
 
 /** Initialize the pausable timer **/
 void initializePauseTimer() {
+	_SHOULD_PAUSE = false;
 	Timer1.initialize(1000);  //1000 usec = 1 msec
 	Timer1.attachInterrupt(incrementPauseTime);
 }
