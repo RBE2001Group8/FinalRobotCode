@@ -3,8 +3,8 @@
 
 #include <TimerOne.h>
 
-volatile bool _SHOULD_PAUSE = false;
-volatile unsigned long _PAUSE_TIME_COUNT = 0;
+static volatile bool _SHOULD_PAUSE = false;
+static volatile unsigned long _PAUSE_TIME_COUNT = 0;
 
 unsigned long getPauseMillis();
 void initializePauseTimer();
