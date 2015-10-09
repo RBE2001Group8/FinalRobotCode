@@ -9,7 +9,7 @@
 LineFollowToStorage::LineFollowToStorage(float speed, bool sideA) : Command("LineFollowToStorage"){
 	_speed = speed;
 	curie = Robot::getInstance();
-	_side = sideA;
+	_sideA = sideA;
 }
 
 void LineFollowToStorage::initialize() {

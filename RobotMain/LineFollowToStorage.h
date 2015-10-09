@@ -18,7 +18,8 @@ private:
 	bool onLine = false;
 	char linesCrossed = 0;
 	char linesToCross;
-	bool _side;
+	bool _sideA;
+	char _bitmask;
 	int tubeNum;
 };
 

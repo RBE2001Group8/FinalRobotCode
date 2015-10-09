@@ -1,4 +1,9 @@
-int getStorageTube(char bitmask, bool sideA) {
+#include "TubeProcessing.h"
+
+/* Constructor */
+TubeProcessing::TubeProcessing() {}
+
+int TubeProcessing::getStorageTube(char bitmask, bool sideA) {
   int i;
   if (sideA) {
     for (i = 0; i<4; i++) {
@@ -16,7 +21,7 @@ int getStorageTube(char bitmask, bool sideA) {
   return i+1; //(Code assumes first storage tube is number 1)
 }
 
-int getFreshRodTube(char bitmask, bool sideA) {
+int TubeProcessing::getFreshRodTube(char bitmask, bool sideA) {
   int i;
   if (sideA) {
     for (i = 0; i<4; i++) {

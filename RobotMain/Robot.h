@@ -11,6 +11,7 @@
 #include "LineTracker.h"
 #include "AlignmentDetector.h"
 #include "TubeProcessing.h"
+#include "ReactorLink.h"
 
 //#TODO Hack to fix cyclical dependency
 class RadiationIndicator;
@@ -27,6 +28,7 @@ public:
 	LineTracker lineTracker = *new LineTracker(); //#TODO add parameter for sensor pins
 	AlignmentDetector alignmentDetector = *new AlignmentDetector(); //#TODO add switch pin parameter
 	TubeProcessing tubeProcessor = *new TubeProcessing();
+	ReactorLink reactorLink = *new ReactorLink();
 	int currentPos = 2;
 
 	void setRadLevel(int newRadLevel);
