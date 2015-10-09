@@ -12,7 +12,6 @@ PointTurn::PointTurn(float turn, int duration) : Command("PointTurn") {
 }
 
 void PointTurn::initialize() {
-	curie->drivetrain->initialize();
 }
 
 void PointTurn::execute() {

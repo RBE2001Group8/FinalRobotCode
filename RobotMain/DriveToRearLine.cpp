@@ -13,7 +13,7 @@ DriveToRearLine::DriveToRearLine(float speed, float turn) : Command("Drive") {
 }
 
 void DriveToRearLine::initialize() {
-	curie->drivetrain->initialize();
+
 }
 
 void DriveToRearLine::execute() {
