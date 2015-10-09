@@ -51,7 +51,7 @@ void setup() {
 	scheduler->addParallelCommand(new PersistentSendHeartbeats());
 	scheduler->addParallelCommand(new PersistentSendRadAlerts());
 	scheduler->addParallelCommand(new PersistentGetPackets());
-	scheduler->addSequentialCommand(new WaitUntilPressed(curie->button));
+	scheduler->addSequentialCommand(new WaitUntilPressed());
 	
 	scheduler->addSequentialCommand(new MoveArm(potDown));
 	scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_SPENT));
