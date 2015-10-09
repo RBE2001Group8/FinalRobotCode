@@ -29,7 +29,7 @@
 #include "PersistentSendRadAlerts.h"
 #include "PersistentGetPackets.h"
 
-const int potDown = 670;
+const int potDown = 665;
 
 
 Scheduler* scheduler = Scheduler::getInstance();
