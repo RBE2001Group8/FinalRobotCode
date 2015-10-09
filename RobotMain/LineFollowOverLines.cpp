@@ -14,7 +14,7 @@ LineFollowOverLines::LineFollowOverLines(float speed, bool sideA) : Command("Lin
 }
 
 void LineFollowOverLines::initialize() {
-	_bitmask = curie->reactorLink.getSupplyAvailabilityByte();
+	_bitmask = curie->reactorLink->getSupplyAvailabilityByte();
 	linesToCross = abs(curie->tubeProcessor.getFreshRodTube(_bitmask, _sideA)-curie->currentPos);
 }
 

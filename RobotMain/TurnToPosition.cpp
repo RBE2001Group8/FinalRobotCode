@@ -16,7 +16,7 @@ TurnToPosition::TurnToPosition(float turn, int duration, bool sideA) : Command("
 }
 
 void TurnToPosition::initialize() {
-	_bitmask = curie->reactorLink.getSupplyAvailabilityByte();
+	_bitmask = curie->reactorLink->getSupplyAvailabilityByte();
 	deltaPos = curie->tubeProcessor.getFreshRodTube(_bitmask, _sideA)-curie->currentPos;
 	if (deltaPos != 0) {
 		_turn = -1*_turn*deltaPos/abs(deltaPos);
