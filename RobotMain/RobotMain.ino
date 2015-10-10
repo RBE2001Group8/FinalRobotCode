@@ -64,7 +64,7 @@ void setup() {
 	scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 	scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
 	//#TODO Add constant for SIDE_A and SIDE_B
-	scheduler->addSequentialCommand(new LineFollowToStorage(0.5, true));
+	scheduler->addSequentialCommand(new LineFollowToStorage(0.5, SIDE_A));
 
 	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 200)); // Back up to center on line
 	//#TODO Make this swing turn to line
@@ -83,10 +83,10 @@ void setup() {
 	scheduler->addSequentialCommand(new LineFollowToCrossLine(0.5));
 	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 200));
 
-	scheduler->addSequentialCommand(new TurnToSupplyDirection(0.375, true));
-    scheduler->addSequentialCommand(new LineFollowOverLines(0.5, true));
+	scheduler->addSequentialCommand(new TurnToSupplyDirection(0.375, SIDE_A));
+    scheduler->addSequentialCommand(new LineFollowOverLines(0.5, SIDE_A));
     //scheduler->addSequentialCommand(new Drive(0.5, 0.0, 100));
-    scheduler->addSequentialCommand(new TurnToPosition(0.4, true));
+    scheduler->addSequentialCommand(new TurnToPosition(0.4, SIDE_A));
 
   	scheduler->addSequentialCommand(new LineFollowToSwitch(0.5));
 
@@ -132,7 +132,7 @@ void setup() {
 	// scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 1000));
 	// scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 	// scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
-	// scheduler->addSequentialCommand(new LineFollowToStorage(0.5, false));
+	// scheduler->addSequentialCommand(new LineFollowToStorage(0.5, SIDE_B));
 
 	// scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 200)); // Back up to center on line
 	// scheduler->addSequentialCommand(new SwingTurn(-1.0, 950));
@@ -145,12 +145,12 @@ void setup() {
 
 	// scheduler->addSequentialCommand(new DriveToRearLine(-0.375, 0.07));
 	// scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 250));
-	// scheduler->addSequentialCommand(new PointTurnToPosition(0.375, 1700, false));
+	// scheduler->addSequentialCommand(new PointTurnToPosition(0.375, 1700, SIDE_B));
 	// scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 550));
 	// scheduler->addSequentialCommand(new DriveAndSquareOnLine(0.375, 0.07));
 	// scheduler->addSequentialCommand(new Drive(-0.375, 0.07, 600));
- //    scheduler->addSequentialCommand(new LineFollowOverLines(0.5, false));
- //    scheduler->addSequentialCommand(new TurnToPosition(0.4, 2000, false));
+ //    scheduler->addSequentialCommand(new LineFollowOverLines(0.5, SIDE_B));
+ //    scheduler->addSequentialCommand(new TurnToPosition(0.4, 2000, SIDE_B));
  //    scheduler->addSequentialCommand(new LineFollowToSwitch(0.5));
 
  //    scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_NEW));

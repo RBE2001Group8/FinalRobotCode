@@ -11,6 +11,9 @@ const int ROLLER_MOTOR_PIN = 8;
 const int ALIGNMENT_SWITCH_PIN = 22;
 const int RADIATION_LED_PIN = 24;
 
+const bool SIDE_A = true;
+const bool SIDE_B = false;
+
 //Enumerations for robot radiation levels
 //note: different than radiation levels in
 //the reactor link class
