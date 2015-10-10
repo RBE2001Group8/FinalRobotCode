@@ -19,6 +19,7 @@ private:
 	bool prevCenter = true;
 	bool _sideA;
 	char _bitmask;
+	bool offLine;
 };
 
 #endif

@@ -21,7 +21,7 @@ void TurnToPosition::initialize() {
 }
 
 void TurnToPosition::execute() {
-	prevCenter = curie->lineTracker->centerOnLine();
+	offLine = (curie->lineTracker->centerOnLine()) | offLine;
 	curie->drivetrain->swingTurn(_turn);
 }
 
@@ -31,5 +31,5 @@ void TurnToPosition::end() {
 
 bool TurnToPosition::isFinished() {
 
-	return ((getTime() > 750) && (curie->lineTracker->centerOnLine() && (!prevCenter))) || (deltaPos==0); 
+	return ((getTime() > 750) && (curie->lineTracker->centerOnLine() && (offLine))) || (deltaPos==0); 
 }
