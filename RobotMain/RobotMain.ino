@@ -63,7 +63,6 @@ void setup() {
 	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 1000));
 	scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 	scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
-	//#TODO Add constant for SIDE_A and SIDE_B
 	scheduler->addSequentialCommand(new LineFollowToStorage(0.5, SIDE_A));
 
 	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 200)); // Back up to center on line
@@ -100,9 +99,9 @@ void setup() {
 	//scheduler->addSequentialCommand(new Drive(-0.5, 0.07, 500));
 	scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 	scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
-	scheduler->addSequentialCommand(new PointTurn(-0.5, 500));
 	scheduler->addSequentialCommand(new LineFollowToCrossLine(0.5));
 	scheduler->addSequentialCommand(new SwingTurnToLine(0.5));
+	scheduler->addSequentialCommand(new SwingTurn(0.5, 500));
 
 	scheduler->addSequentialCommand(new LineFollowToSwitch(0.75));
 
