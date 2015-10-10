@@ -54,4 +54,5 @@ bool MoveArm::isFinished() {
 
 void MoveArm::end() {
 	armMotor.writeMicroseconds(1500);
+	armMotor.detach();
 }
