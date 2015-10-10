@@ -85,7 +85,7 @@ void setup() {
 
 	scheduler->addSequentialCommand(new TurnToSupplyDirection(0.375, true));
     scheduler->addSequentialCommand(new LineFollowOverLines(0.5, true));
-    scheduler->addSequentialCommand(new Drive(0.5, 0.0, 250));
+    //scheduler->addSequentialCommand(new Drive(0.5, 0.0, 100));
     scheduler->addSequentialCommand(new TurnToPosition(0.4, true));
 
   	scheduler->addSequentialCommand(new LineFollowToSwitch(0.5));
@@ -100,6 +100,7 @@ void setup() {
 	//scheduler->addSequentialCommand(new Drive(-0.5, 0.07, 500));
 	scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 	scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
+	scheduler->addSequentialCommand(new PointTurn(-0.5, 500));
 	scheduler->addSequentialCommand(new LineFollowToCrossLine(0.5));
 	scheduler->addSequentialCommand(new SwingTurnToLine(0.5));
 

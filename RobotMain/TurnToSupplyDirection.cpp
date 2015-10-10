@@ -16,19 +16,19 @@ TurnToSupplyDirection::TurnToSupplyDirection(float turn, bool sideA) : Command("
 
 void TurnToSupplyDirection::initialize() {
 	_bitmask = curie->reactorLink->getSupplyAvailabilityByte();
-	deltaPos = curie->tubeProcessor.getFreshRodTube(_bitmask, _sideA)-curie->currentPos;
+	deltaPos = curie->tubeProcessor->getFreshRodTube(_bitmask, _sideA)-curie->currentPos;
 	_turn = _turn*deltaPos/abs(deltaPos);
 }
 
 void TurnToSupplyDirection::execute() {
-	prevCenter = curie->lineTracker.centerOnLine();
-	curie->drivetrain.swingTurn(_turn);
+	prevCenter = curie->lineTracker->centerOnLine();
+	curie->drivetrain->swingTurn(_turn);
 }
 
 void TurnToSupplyDirection::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool TurnToSupplyDirection::isFinished() {
-	return ((getTime() > 750) && (curie->lineTracker.centerOnLine() && (!prevCenter))) || (deltaPos==0); 
+	return ((getTime() > 750) && (curie->lineTracker->centerOnLine() && (!prevCenter))) || (deltaPos==0); 
 }

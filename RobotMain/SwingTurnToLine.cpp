@@ -14,14 +14,14 @@ void SwingTurnToLine::initialize() {
 }
 
 void SwingTurnToLine::execute() {
-	curie->drivetrain.pointTurn(_turn);
-	onLine = (abs(curie->lineTracker.lineError()) > 8) | onLine;
+	curie->drivetrain->pointTurn(_turn);
+	onLine = (abs(curie->lineTracker->lineError()) > 8) | onLine;
 }
 
 void SwingTurnToLine::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool SwingTurnToLine::isFinished() {
-	return curie->lineTracker.centerOnLine() && onLine; 
+	return curie->lineTracker->centerOnLine() && onLine; 
 }
