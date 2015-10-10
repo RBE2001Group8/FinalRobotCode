@@ -16,20 +16,20 @@ void DriveAndSquareOnLine::initialize() {
 }
 
 void DriveAndSquareOnLine::execute() {
-	if (curie->lineTracker.leftRear() > 500) {
+	if (curie->lineTracker->leftRear() > 500) {
 		_speed = 0;
 		_turn = 0.5;
-	} else if (curie->lineTracker.rightRear() > 500) {
+	} else if (curie->lineTracker->rightRear() > 500) {
 		_speed = 0;
 		_turn = -0.5;
 	}
-	curie->drivetrain.drive(_speed, _turn);
+	curie->drivetrain->drive(_speed, _turn);
 }
 
 void DriveAndSquareOnLine::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool DriveAndSquareOnLine::isFinished() {
-	return curie->lineTracker.rearOnLine();
+	return curie->lineTracker->rearOnLine();
 }

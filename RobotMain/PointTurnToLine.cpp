@@ -14,12 +14,17 @@ void PointTurnToLine::initialize() {
 }
 
 void PointTurnToLine::execute() {
+<<<<<<< HEAD
 	curie->drivetrain.pointTurn(_turn);
 	onLine = (abs(curie->lineTracker.lineError()) > 8) | onLine;
+=======
+	curie->drivetrain->pointTurn(_turn);
+	onLine = (abs(lineTracker.lineError()) > 8) | onLine;
+>>>>>>> refs/remotes/origin/master
 }
 
 void PointTurnToLine::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool PointTurnToLine::isFinished() {

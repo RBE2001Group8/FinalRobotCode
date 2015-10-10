@@ -15,7 +15,7 @@ LineFollowOverLines::LineFollowOverLines(float speed, bool sideA) : Command("Lin
 
 void LineFollowOverLines::initialize() {
 	_bitmask = curie->reactorLink->getSupplyAvailabilityByte();
-	linesToCross = abs(curie->tubeProcessor.getFreshRodTube(_bitmask, _sideA)-curie->currentPos);
+	linesToCross = abs(curie->tubeProcessor->getFreshRodTube(_bitmask, _sideA)-curie->currentPos);
 }
 
 /** 
@@ -23,8 +23,8 @@ void LineFollowOverLines::initialize() {
  *@param speed Speed that the robot should line follow at
  **/
 void LineFollowOverLines::execute() {
-	curie->drivetrain.drive(_speed, 0.08*curie->lineTracker.lineError());
-	if (curie->lineTracker.isAtCross()) {
+	curie->drivetrain->drive(_speed, 0.08*curie->lineTracker->lineError());
+	if (curie->lineTracker->isAtCross()) {
 		if (!onLine) {
 			linesCrossed++;
 		}
@@ -35,7 +35,7 @@ void LineFollowOverLines::execute() {
 }
 
 void LineFollowOverLines::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool LineFollowOverLines::isFinished() {

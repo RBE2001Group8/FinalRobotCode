@@ -12,15 +12,14 @@ SwingTurn::SwingTurn(float turn, int duration) : Command("SwingTurn") {
 }
 
 void SwingTurn::initialize() {
-	curie->drivetrain.initialize();
 }
 
 void SwingTurn::execute() {
-	curie->drivetrain.swingTurn(_turn);
+	curie->drivetrain->swingTurn(_turn);
 }
 
 void SwingTurn::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool SwingTurn::isFinished() {

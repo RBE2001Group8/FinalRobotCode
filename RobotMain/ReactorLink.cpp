@@ -155,6 +155,7 @@ uint8_t ReactorLink::getPacket() {
       if(tempPacketBuff[4] == ADDRESS_TEAM) {
         //Set the flag to stop the robot
         shouldStop = true;
+        pauseTimer();
         //Serial.println("#### Stop this robot ####");
       } else {
         //Serial.println("Stop for other robot");
@@ -167,6 +168,7 @@ uint8_t ReactorLink::getPacket() {
       if(tempPacketBuff[4] == ADDRESS_TEAM) {
         //Clear the stop flag to continue driving
         shouldStop = false;
+        resumeTimer();
         //Serial.println("#### Resume this robot ####");
       } else {
         //Serial.println("Resume for other robot");

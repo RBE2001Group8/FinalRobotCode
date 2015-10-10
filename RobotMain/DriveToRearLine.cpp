@@ -13,17 +13,17 @@ DriveToRearLine::DriveToRearLine(float speed, float turn) : Command("Drive") {
 }
 
 void DriveToRearLine::initialize() {
-	curie->drivetrain.initialize();
+
 }
 
 void DriveToRearLine::execute() {
-	curie->drivetrain.drive(_speed, _turn);
+	curie->drivetrain->drive(_speed, _turn);
 }
 
 void DriveToRearLine::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool DriveToRearLine::isFinished() {
-	return curie->lineTracker.oneRearOnLine();
+	return curie->lineTracker->oneRearOnLine();
 }

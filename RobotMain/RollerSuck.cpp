@@ -14,11 +14,11 @@ void RollerSuck::initialize() {
 }
 
 void RollerSuck::execute() {
-	curie->roller.suck();
+	curie->roller->suck();
 }
 
 void RollerSuck::end() {
-	curie->roller.stop();
+	curie->roller->stop();
 }
 
 bool RollerSuck::isFinished() {

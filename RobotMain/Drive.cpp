@@ -14,16 +14,16 @@ Drive::Drive(float speed, float turn, int duration) : Command("Drive") {
 }
 
 void Drive::initialize() {
-	curie->drivetrain.initialize();
+
 }
 
 void Drive::execute() {
-	curie->drivetrain.drive(_speed, _turn);
+	curie->drivetrain->drive(_speed, _turn);
 
 }
 
 void Drive::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool Drive::isFinished() {

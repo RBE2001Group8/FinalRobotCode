@@ -17,13 +17,13 @@ void LineFollowToSwitch::initialize() {
  *@param speed Speed that the robot should line follow at
  **/
 void LineFollowToSwitch::execute() {
-	curie->drivetrain.drive(_speed, 0.08*curie->lineTracker.lineError());
+	curie->drivetrain->drive(_speed, 0.08*curie->lineTracker->lineError());
 }
 
 void LineFollowToSwitch::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool LineFollowToSwitch::isFinished() {
-	return curie->alignmentDetector.isAligned(); // Is finished if limit switch is triggered
+	return curie->alignmentDetector->isAligned(); // Is finished if limit switch is triggered
 }
