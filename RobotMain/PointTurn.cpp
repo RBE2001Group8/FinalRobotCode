@@ -12,15 +12,14 @@ PointTurn::PointTurn(float turn, int duration) : Command("PointTurn") {
 }
 
 void PointTurn::initialize() {
-	curie->drivetrain.initialize();
 }
 
 void PointTurn::execute() {
-	curie->drivetrain.pointTurn(_turn);
+	curie->drivetrain->pointTurn(_turn);
 }
 
 void PointTurn::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool PointTurn::isFinished() {

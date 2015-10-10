@@ -15,11 +15,11 @@ void RollerSpit::initialize() {
 }
 
 void RollerSpit::execute() {
-	curie->roller.spit();
+	curie->roller->spit();
 }
 
 void RollerSpit::end() {
-	curie->roller.stop();
+	curie->roller->stop();
 }
 
 bool RollerSpit::isFinished() {

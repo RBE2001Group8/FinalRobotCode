@@ -12,7 +12,7 @@ SwingTurnToPosition::SwingTurnToPosition(float turn, int duration, Drivetrain dr
 }
 
 void SwingTurnToPosition::initialize() {
-	drivetrain.initialize();
+
 }
 
 void SwingTurnToPosition::execute() {

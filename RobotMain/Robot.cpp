@@ -20,9 +20,9 @@ Robot* Robot::getInstance() {
   **/
 void Robot::initializeSubsystems() {
 	initializePauseTimer();
-	drivetrain.initialize();
-	button.initialize();
-	roller.initialize();
+	drivetrain->initialize();
+	button->initialize();
+	roller->initialize();
 	radInd->initialize();
 }
 

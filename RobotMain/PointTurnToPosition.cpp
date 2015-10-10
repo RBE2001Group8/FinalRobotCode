@@ -14,18 +14,18 @@ PointTurnToPosition::PointTurnToPosition(float turn, int duration, bool sideA) :
 
 void PointTurnToPosition::initialize() {
 	_bitmask = curie->reactorLink->getSupplyAvailabilityByte();
-	deltaPos = curie->tubeProcessor.getFreshRodTube(_bitmask, _sideA)-curie->currentPos;
+	deltaPos = curie->tubeProcessor->getFreshRodTube(_bitmask, _sideA)-curie->currentPos;
 	if (deltaPos != 0) {
 		_turn = -1*abs(_turn)*deltaPos/abs(deltaPos);
 	} 
 }
 
 void PointTurnToPosition::execute() {
-	curie->drivetrain.pointTurn(_turn);
+	curie->drivetrain->pointTurn(_turn);
 }
 
 void PointTurnToPosition::end() {
-	curie->drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool PointTurnToPosition::isFinished() {
