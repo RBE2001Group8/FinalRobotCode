@@ -25,5 +25,7 @@ const int RAD_LEVEL_NONE = 0;
 const int SERIAL3_RX_PIN = 15;
 const int SERIAL3_TX_PIN = 14;
 
+const int ARM_POT_OFFSET = 665;
+
 
 #endif
