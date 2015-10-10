@@ -1,14 +1,13 @@
-#ifndef POINTTURN2LINE_H
-#define POINTTURN2LINE_H
+#ifndef SWINGTURN2LINE_H
+#define SWINGTURN2LINE_H
 
 #include "Command.h"
 #include <Arduino.h>
 #include "Robot.h"
 
-
-class PointTurnToLine : public Command {
+class SwingTurnToLine : public Command {
 public:
-	PointTurnToLine(float turn);
+	SwingTurnToLine(float turn);
 	void initialize();
 	void execute();
 	void end();

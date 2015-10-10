@@ -29,8 +29,9 @@
 #include "PersistentWarnRadiation.h"
 #include "LineFollowToCrossLine.h"
 #include "SwingTurnToLine.h"
+#include "TurnToSupplyDirection.h"
 
-const int potDown = 665;
+int potDown = 665;
 
 
 Scheduler* scheduler = Scheduler::getInstance();
@@ -39,6 +40,7 @@ Robot* curie = Robot::getInstance();
 
 /** Code to initialize the robot **/
 void setup() {	
+	potDown = 665;
 	Serial.begin(115200);
 	curie->initializeSubsystems();
 
@@ -61,9 +63,11 @@ void setup() {
 	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 1000));
 	scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 	scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
+	//#TODO Add constant for SIDE_A and SIDE_B
 	scheduler->addSequentialCommand(new LineFollowToStorage(0.5, true));
 
 	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 200)); // Back up to center on line
+	//#TODO Make this swing turn to line
 	scheduler->addSequentialCommand(new SwingTurn(1.0, 950));
 	scheduler->addSequentialCommand(new LineFollowToSwitch(0.75));
 
@@ -77,23 +81,27 @@ void setup() {
 	scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 	scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
 	scheduler->addSequentialCommand(new LineFollowToCrossLine(0.5));
+	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 200));
+
 	scheduler->addSequentialCommand(new TurnToSupplyDirection(0.375, true));
     scheduler->addSequentialCommand(new LineFollowOverLines(0.5, true));
+    scheduler->addSequentialCommand(new Drive(0.5, 0.0, 250));
     scheduler->addSequentialCommand(new TurnToPosition(0.4, true));
- 	scheduler->addSequentialCommand(new LineFollowToSwitch(0.5));
+
+  	scheduler->addSequentialCommand(new LineFollowToSwitch(0.5));
 
     scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_NEW));
     scheduler->addSequentialCommand(new RollerSuck(1000));
-	scheduler->addParallelCommand(new Drive(-0.5, 0.0, 750));
+	scheduler->addParallelCommand(new Drive(-0.5, 0.0, 500));
 	scheduler->addSequentialCommand(new RollerSuck(1000));
 
 	scheduler->addParallelCommand(new MoveArm(potDown+90));
 
-	scheduler->addSequentialCommand(new Drive(-0.5, 0.07, 500));
+	//scheduler->addSequentialCommand(new Drive(-0.5, 0.07, 500));
 	scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 	scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
 	scheduler->addSequentialCommand(new LineFollowToCrossLine(0.5));
-	scheduler->addSequentialCommand(new SwingTurnToLine(-0.5));
+	scheduler->addSequentialCommand(new SwingTurnToLine(0.5));
 
 	scheduler->addSequentialCommand(new LineFollowToSwitch(0.75));
 

@@ -30,5 +30,5 @@ void TurnToPosition::end() {
 }
 
 bool TurnToPosition::isFinished() {
-	return ((getTime() > 750) && (curie->lineTracker.centerOnLine() && (!prevCenter))) || deltaPos; 
+	return ((getTime() > 750) && (curie->lineTracker.centerOnLine() && (!prevCenter))) || (deltaPos==0); 
 }
