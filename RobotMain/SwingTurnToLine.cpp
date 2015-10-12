@@ -23,5 +23,5 @@ void SwingTurnToLine::end() {
 }
 
 bool SwingTurnToLine::isFinished() {
-	return curie->lineTracker->centerOnLine() && onLine; 
+	return (curie->lineTracker->centerOnLine() && onLine);// && (!curie->lineTracker->isAtCross()); 
 }
