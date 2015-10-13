@@ -1,5 +1,8 @@
 /** Singleton class that abstracts pausing and resuming a robot
   * and holding the current paused/resumed state of the robot.
+  * This class also interfaces with PausableTimer and pauses/resumes
+  * the timer appropriately.  It is intended to be the only class that
+  * should pause/resume the PausableTimer
   * @author Jordan Burklund
   * @date Oct. 2015S
   **/
