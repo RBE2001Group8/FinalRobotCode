@@ -13,7 +13,7 @@ public:
 
 	/* Timeout related */
 	void setTimeout(unsigned long timeout);
-	unsigned long getTime();
+	virtual unsigned long getTime();
 	bool isTimedOut();
 
 	/* Code to execute once on first iteration
@@ -37,7 +37,7 @@ public:
 	virtual void _end();
 
 	/* Execute an iteration */
-	bool cycle();
+	virtual bool cycle();
 
 	/* Schedule the command */
 	void start();
