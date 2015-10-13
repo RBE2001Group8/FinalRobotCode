@@ -40,7 +40,6 @@ Robot* curie = Robot::getInstance();
 
 /** Code to initialize the robot **/
 void setup() {	
-	initializePauseTimer();
 	Serial.begin(115200);
 	curie->initializeSubsystems();
 
