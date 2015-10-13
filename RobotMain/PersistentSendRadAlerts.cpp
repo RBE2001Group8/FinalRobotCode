@@ -32,7 +32,7 @@ void PersistentSendRadAlerts::execute() {
 		if(robot->getRadLevel() == RAD_LEVEL_NEW) {
 			rLink->sendRadiationAlertNew();
 		} else if(robot->getRadLevel() == RAD_LEVEL_SPENT) {
-			rLink->sendRadiationAlertNew();
+			rLink->sendRadiationAlertSpent();
 		}
 		//Dont set alerts if neither condition is satisfied
 		//Reset the timer so that this case gets executed periodically

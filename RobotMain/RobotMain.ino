@@ -32,12 +32,15 @@
 #include "TurnToSupplyDirection.h"
 #include "EnsureRodInserted.h"
 
+#include "PausableTimer.h"
+
 Scheduler* scheduler = Scheduler::getInstance();
 
 Robot* curie = Robot::getInstance();
 
 /** Code to initialize the robot **/
 void setup() {	
+	initializePauseTimer();
 	Serial.begin(115200);
 	curie->initializeSubsystems();
 
