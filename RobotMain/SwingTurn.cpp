@@ -5,14 +5,13 @@
  * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right
  * @param duration Length of time in milliseconds to turn for
  **/
-SwingTurn::SwingTurn(float turn, int duration) : Command("SwingTurn") {
+SwingTurn::SwingTurn(float turn, int duration) : PausableCommand("SwingTurn") {
 	_turn = turn;
 	_duration = duration;
 	curie = Robot::getInstance();
 }
 
-void SwingTurn::initialize() {
-}
+void SwingTurn::initialize() {}
 
 void SwingTurn::execute() {
 	curie->drivetrain->swingTurn(_turn);
@@ -25,3 +24,11 @@ void SwingTurn::end() {
 bool SwingTurn::isFinished() {
 	return getTime() > _duration; 
 }
+
+/** Stop the drivetrain when paused **/
+void SwingTurn::onPause() {
+	curie->drivetrain->stop();
+}
+
+/** Nothing special on resume **/ 
+void SwingTurn::onResume() {}

@@ -1,17 +1,19 @@
 #ifndef TURN2SD_H
 #define TURN2SD_H
 
-#include "Command.h"
+#include "PausableCommand.h"
 #include <Arduino.h>
 #include "Robot.h"
 
-class TurnToSupplyDirection : public Command {
+class TurnToSupplyDirection : public PausableCommand {
 public:
 	TurnToSupplyDirection(float turn, bool sideA);
 	void initialize();
 	void execute();
 	void end();
 	bool isFinished();
+	void onPause();
+	void onResume();
 private:
 	float _turn;
 	Robot* curie;

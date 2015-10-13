@@ -7,7 +7,7 @@
  * @param currentPos Position of robot on the field at the beginning of the command
  * @param newPos Position the robot should be at when the command finishes
  **/
-LineFollowOverLines::LineFollowOverLines(float speed, bool sideA) : Command("LineFollowOverLines"){
+LineFollowOverLines::LineFollowOverLines(float speed, bool sideA) : PausableCommand("LineFollowOverLines"){
 	_speed = speed;
 	curie = Robot::getInstance();
 	_sideA = sideA;
@@ -41,3 +41,11 @@ void LineFollowOverLines::end() {
 bool LineFollowOverLines::isFinished() {
 	return (linesCrossed == linesToCross) || (linesToCross == 1); 
 }
+
+/** Stop the drivetrain while paused **/
+void LineFollowOverLines::onPause() {
+	curie->drivetrain->stop();
+}
+
+/** Do nothing special on resume **/
+void LineFollowOverLines::onResume() {}
