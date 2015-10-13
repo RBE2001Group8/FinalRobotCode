@@ -73,6 +73,7 @@ void setup() {
 	scheduler->addSequentialCommand(new RollerSpit(1000)); // Ensure rod is fully placed
 	scheduler->addParallelCommand(new RollerSpit(1000));
 	scheduler->addSequentialCommand(new Drive(-0.25, 0.0, 350));
+	scheduler->addSequentialCommand(new WaitTime(1000));
 	scheduler->addSequentialCommand(new EnsureRodInserted(0.5, SIDE_A));
 	scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_NONE));
 
@@ -139,6 +140,7 @@ void setup() {
 	scheduler->addSequentialCommand(new RollerSpit(1000)); // Ensure rod is fully placed
 	scheduler->addParallelCommand(new RollerSpit(1000));
 	scheduler->addSequentialCommand(new Drive(-0.25, 0.0, 350));
+	scheduler->addSequentialCommand(new WaitTime(1000));
 	scheduler->addSequentialCommand(new EnsureRodInserted(0.5, SIDE_B));
 	scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_NONE));
 
