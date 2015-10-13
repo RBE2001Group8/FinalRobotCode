@@ -39,5 +39,5 @@ void LineFollowOverLines::end() {
 }
 
 bool LineFollowOverLines::isFinished() {
-	return linesCrossed == linesToCross; 
+	return (linesCrossed == linesToCross) || (linesToCross == 1); 
 }

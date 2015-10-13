@@ -4,7 +4,7 @@
 #include "Command.h"
 #include <Arduino.h>
 #include "Robot.h"
-#include "LineTracker.h"
+
 
 class PointTurnToLine : public Command {
 public:
@@ -16,7 +16,6 @@ public:
 private:
 	float _turn;
 	Robot* curie;
-	LineTracker lineTracker;
 	bool onLine = false;
 };
 

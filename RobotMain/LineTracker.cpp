@@ -73,5 +73,5 @@ bool LineTracker::centerOnLine () {
   int s4 = analogRead(4);
   int s2 = analogRead(2);
   int s5 = analogRead(5);
-  return (s3 > 500) || (s4 > 500) || (s2 > 500) || (s5 > 500);
+  return (s3 > 500) || (s2 > 500);// || (s4 > 500) || (s5 > 500);
 }
