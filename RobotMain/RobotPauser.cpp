@@ -20,11 +20,13 @@ RobotPauser* RobotPauser::getInstance() {
 /** Set the flag to pause the robot **/
 void RobotPauser::pauseRobot() {
 	paused = true;
+	pauseTimer();
 }
 
 /** Set the flag to resume the robot **/
 void RobotPauser::resumeRobot() {
 	paused = false;
+	resumeTimer();
 }
 
 /** Check if the flag is set to be paused
