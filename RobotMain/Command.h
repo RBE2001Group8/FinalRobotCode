@@ -4,6 +4,7 @@
 #include <Arduino.h>
 
 class Command {
+	friend class PausableCommand;
 public:
 	/* Constructors */
 	Command();
