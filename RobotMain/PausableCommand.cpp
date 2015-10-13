@@ -6,6 +6,11 @@ PausableCommand::PausableCommand() : Command() {
 	robotPauser = RobotPauser::getInstance();
 }
 
+/** Constructor with name **/
+PausableCommand::PausableCommand(const String name) : Command(name) {
+	robotPauser = RobotPauser::getInstance();
+}
+
 
 /** Get the time from the start of the command
   * @return time since the command has started in milliseconds
@@ -24,7 +29,7 @@ void PausableCommand::_initialize() {
   **/
 bool PausableCommand::cycle() {
 	bool finished = false;
-	bool isNowPaused = robotPauser.isPaused(); 
+	bool isNowPaused = robotPauser->isPaused(); 
 
 	if(!initialized) {
 		initialize();
