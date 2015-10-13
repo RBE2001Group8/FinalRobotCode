@@ -22,7 +22,7 @@ void SwingTurnToLine::end() {
 }
 
 bool SwingTurnToLine::isFinished() {
-	return curie->lineTracker->centerOnLine() && onLine; 
+	return (curie->lineTracker->centerOnLine() && onLine);// && (!curie->lineTracker->isAtCross()); 
 }
 
 /** Stop the drivetrain while paused **/
