@@ -6,7 +6,7 @@
  * @param drive Drivetrain object to use for driving, must be initialized
  * @param newPos Position the robot should be at when the command finishes
  **/
-LineFollowToStorage::LineFollowToStorage(float speed, bool sideA) : Command("LineFollowToStorage"){
+LineFollowToStorage::LineFollowToStorage(float speed, bool sideA) : PausableCommand("LineFollowToStorage"){
 	_speed = speed;
 	curie = Robot::getInstance();
 	_sideA = sideA;
@@ -41,4 +41,12 @@ void LineFollowToStorage::end() {
 
 bool LineFollowToStorage::isFinished() {
 	return linesCrossed == linesToCross; 
+}
+
+void LineFollowToStorage::onPause() {
+	curie->drivetrain->stop();
+}
+
+void LineFollowToStorage::onResume() {
+
 }

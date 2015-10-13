@@ -5,13 +5,12 @@
  * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right
  * @param duration Length of time in milliseconds to turn for
  **/
-PointTurnToLine::PointTurnToLine(float turn) : Command("PointTurnToLine") {
+PointTurnToLine::PointTurnToLine(float turn) : PausableCommand("PointTurnToLine") {
 	_turn = turn;
 	curie = Robot::getInstance();
 }
 
-void PointTurnToLine::initialize() {
-}
+void PointTurnToLine::initialize() {}
 
 void PointTurnToLine::execute() {
 	curie->drivetrain->pointTurn(_turn);
@@ -25,3 +24,11 @@ void PointTurnToLine::end() {
 bool PointTurnToLine::isFinished() {
 	return curie->lineTracker->centerOnLine() && onLine; 
 }
+
+/** Stop the drivetrain while paused **/
+void PointTurnToLine::onPause() {
+	curie->drivetrain->stop();
+}
+
+/** Nothing special on resume **/
+void PointTurnToLine::onResume() {}

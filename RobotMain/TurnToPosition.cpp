@@ -8,7 +8,7 @@
  * @param currentPos Position of robot on the field at the beginning of the command
  * @param nextPos Position the robot should be pointing toward when the command finishes
  **/
-TurnToPosition::TurnToPosition(float turn, bool sideA) : Command("TurnToPosition") {
+TurnToPosition::TurnToPosition(float turn, bool sideA) : PausableCommand("TurnToPosition") {
 	curie = Robot::getInstance();
 	_turn = abs(turn);
 	_sideA = sideA;
@@ -33,3 +33,11 @@ bool TurnToPosition::isFinished() {
 
 	return ((getTime() > 750) && (curie->lineTracker->centerOnLine() && (offLine))) || (deltaPos==0); 
 }
+
+/** Stop the drivetrain when paused **/
+void TurnToPosition::onPause() {
+	curie->drivetrain->stop();
+}
+
+/** Nothing special on resume **/
+void TurnToPosition::onResume() {}

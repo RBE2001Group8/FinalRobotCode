@@ -4,11 +4,12 @@
  * @param speed Linefollowing speed
  * @param drive Drivetrain object to use for driving, must be initialized
  **/
-LineFollowToSwitch::LineFollowToSwitch(float speed) : Command("LineFollowToSwitch") {
+LineFollowToSwitch::LineFollowToSwitch(float speed) : PausableCommand("LineFollowToSwitch") {
 	_speed = speed;
 	curie = Robot::getInstance();
 }
 
+/** Nothing to do for initialization **/
 void LineFollowToSwitch::initialize() {
 }
 
@@ -24,6 +25,15 @@ void LineFollowToSwitch::end() {
 	curie->drivetrain->stop();
 }
 
+/** Command is done when the alignment switch detects the post **/
 bool LineFollowToSwitch::isFinished() {
 	return curie->alignmentDetector->isAligned(); // Is finished if limit switch is triggered
 }
+
+/** Stop the drivetrain while paused **/
+void LineFollowToSwitch::onPause() {
+	curie->drivetrain->stop();
+}
+
+/** Nothing special when resuming **/
+void LineFollowToSwitch::onResume() {}

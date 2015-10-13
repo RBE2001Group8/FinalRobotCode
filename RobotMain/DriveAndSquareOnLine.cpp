@@ -6,7 +6,7 @@
  * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right. 0.0 is straight ahead
  * @param duration Length of time in milliseconds to drive for
  **/
-DriveAndSquareOnLine::DriveAndSquareOnLine(float speed, float turn) : Command("Drive") {
+DriveAndSquareOnLine::DriveAndSquareOnLine(float speed, float turn) : PausableCommand("Drive") {
 	_speed = speed;
 	_turn = turn;
 	curie = Robot::getInstance();
@@ -32,4 +32,14 @@ void DriveAndSquareOnLine::end() {
 
 bool DriveAndSquareOnLine::isFinished() {
 	return curie->lineTracker->rearOnLine();
+}
+
+/** Stop the drivetrain **/
+void DriveAndSquareOnLine::onPause() {
+	curie->drivetrain->stop();
+}
+
+/** Do nothing special **/
+void DriveAndSquareOnLine::onResume() {
+
 }

@@ -5,7 +5,7 @@
  * @param turn Turning rate of robot
  * @param duration Length of time in milliseconds to turn for
  **/
-PointTurnToPosition::PointTurnToPosition(float turn, int duration, bool sideA) : Command("PointTurnToPosition") {
+PointTurnToPosition::PointTurnToPosition(float turn, int duration, bool sideA) : PausableCommand("PointTurnToPosition") {
 	curie = Robot::getInstance();
 	_turn = turn;
 	_duration = duration;
@@ -31,3 +31,11 @@ void PointTurnToPosition::end() {
 bool PointTurnToPosition::isFinished() {
 	return getTime() > _duration; 
 }
+
+/** Stop the drivetrain while paused **/
+void PointTurnToPosition::onPause() {
+	curie->drivetrain->stop();
+}
+
+/** Nothing special on resume **/
+void PointTurnToPosition::onResume() {}

@@ -8,7 +8,7 @@
  * @param currentPos SupplyDirection of robot on the field at the beginning of the command
  * @param nextPos SupplyDirection the robot should be pointing toward when the command finishes
  **/
-TurnToSupplyDirection::TurnToSupplyDirection(float turn, bool sideA) : Command("TurnToSupplyDirection") {
+TurnToSupplyDirection::TurnToSupplyDirection(float turn, bool sideA) : PausableCommand("TurnToSupplyDirection") {
 	curie = Robot::getInstance();
 	_turn = abs(turn);
 	_sideA = sideA;
@@ -33,3 +33,11 @@ void TurnToSupplyDirection::end() {
 bool TurnToSupplyDirection::isFinished() {
 	return ((getTime() > 1250) && (curie->lineTracker->isAtCross()) && offLine) || (deltaPos==0); //&& (!prevCenter)))
 }
+
+/** Stop the robot while paused **/
+void TurnToSupplyDirection::onPause() {
+	curie->drivetrain->stop();
+}
+
+/** Nothing special on resume **/
+void TurnToSupplyDirection::onResume() {}

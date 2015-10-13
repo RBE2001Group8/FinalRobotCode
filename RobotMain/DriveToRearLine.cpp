@@ -6,15 +6,13 @@
  * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right. 0.0 is straight ahead
  * @param drivetrain Drivetrain object to use for driving
  **/
-DriveToRearLine::DriveToRearLine(float speed, float turn) : Command("Drive") {
+DriveToRearLine::DriveToRearLine(float speed, float turn) : PausableCommand("Drive") {
 	_speed = speed;
 	_turn = turn;
 	curie = Robot::getInstance();
 }
 
-void DriveToRearLine::initialize() {
-
-}
+void DriveToRearLine::initialize() {}
 
 void DriveToRearLine::execute() {
 	curie->drivetrain->drive(_speed, _turn);
@@ -27,3 +25,11 @@ void DriveToRearLine::end() {
 bool DriveToRearLine::isFinished() {
 	return curie->lineTracker->oneRearOnLine();
 }
+
+/** Stop the drivetrain when paused **/
+void DriveToRearLine::onPause() {
+	curie->drivetrain->stop();
+}
+
+/** Do nothing special on resume **/
+void DriveToRearLine::onResume() {}
