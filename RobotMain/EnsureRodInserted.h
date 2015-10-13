@@ -1,25 +1,23 @@
-#ifndef TURN2P_H
-#define TURN2P_H
+#ifndef ENSUREROD_H
+#define ENSUREROD_H
 
 #include "Command.h"
 #include <Arduino.h>
 #include "Robot.h"
 
-class TurnToPosition : public Command {
+class EnsureRodInserted : public Command {
 public:
-	TurnToPosition(float turn, bool sideA);
+	EnsureRodInserted(float speed, bool sideA);
 	void initialize();
 	void execute();
 	void end();
 	bool isFinished();
 private:
-	float _turn;
+	float _speed;
 	Robot* curie;
-	int deltaPos;
-	bool prevCenter = true;
+	int closestStorage;
 	bool _sideA;
 	char _bitmask;
-	bool offLine;
 };
 
 #endif

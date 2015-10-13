@@ -5,22 +5,23 @@
  * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right
  * @param duration Length of time in milliseconds to turn for
  **/
-SwingTurnToLine::SwingTurnToLine(float turn, Drivetrain drive) : Command("SwingTurnToLine"), drivetrain(drive) {
+SwingTurnToLine::SwingTurnToLine(float turn) : Command("SwingTurnToLine") {
 	_turn = turn;
+	curie = Robot::getInstance();
 }
 
 void SwingTurnToLine::initialize() {
 }
 
 void SwingTurnToLine::execute() {
-	drivetrain.swingTurn(0.07*lineTracker.lineError());
-	
+	curie->drivetrain->pointTurn(_turn);
+	onLine = (abs(curie->lineTracker->lineError()) > 8) | onLine;
 }
 
 void SwingTurnToLine::end() {
-	drivetrain.stop();
+	curie->drivetrain->stop();
 }
 
 bool SwingTurnToLine::isFinished() {
-	return lineTracker.lineError() == 0.0;// && onLine; 
+	return curie->lineTracker->centerOnLine() && onLine; 
 }

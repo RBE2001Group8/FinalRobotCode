@@ -3,20 +3,18 @@
 
 #include "Command.h"
 #include <Arduino.h>
-#include "Drivetrain.h"
-#include "LineTracker.h"
+#include "Robot.h"
 
 class SwingTurnToLine : public Command {
 public:
-	SwingTurnToLine(float turn, Drivetrain drive);
+	SwingTurnToLine(float turn);
 	void initialize();
 	void execute();
 	void end();
 	bool isFinished();
 private:
 	float _turn;
-	Drivetrain drivetrain;
-	LineTracker lineTracker;
+	Robot* curie;
 	bool onLine = false;
 };
 

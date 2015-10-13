@@ -1,13 +1,13 @@
-#ifndef TURN2P_H
-#define TURN2P_H
+#ifndef TURN2SD_H
+#define TURN2SD_H
 
 #include "Command.h"
 #include <Arduino.h>
 #include "Robot.h"
 
-class TurnToPosition : public Command {
+class TurnToSupplyDirection : public Command {
 public:
-	TurnToPosition(float turn, bool sideA);
+	TurnToSupplyDirection(float turn, bool sideA);
 	void initialize();
 	void execute();
 	void end();

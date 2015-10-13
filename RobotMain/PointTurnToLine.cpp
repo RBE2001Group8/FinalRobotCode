@@ -15,7 +15,7 @@ void PointTurnToLine::initialize() {
 
 void PointTurnToLine::execute() {
 	curie->drivetrain->pointTurn(_turn);
-	onLine = (abs(lineTracker.lineError()) > 8) | onLine;
+	onLine = (abs(curie->lineTracker->lineError()) > 8) | onLine;
 }
 
 void PointTurnToLine::end() {
@@ -23,5 +23,5 @@ void PointTurnToLine::end() {
 }
 
 bool PointTurnToLine::isFinished() {
-	return lineTracker.centerOnLine() && onLine; 
+	return curie->lineTracker->centerOnLine() && onLine; 
 }

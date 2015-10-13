@@ -5,7 +5,7 @@
  * @param Setpoint The pot value to move the arm to
  **/
 MoveArm::MoveArm(int Setpoint) : Command("MoveArm") {
-	setpoint = Setpoint;
+	setpoint = Setpoint+ARM_POT_OFFSET;
 }
 
 /** 
@@ -54,4 +54,5 @@ bool MoveArm::isFinished() {
 
 void MoveArm::end() {
 	armMotor.writeMicroseconds(1500);
+	armMotor.detach();
 }
