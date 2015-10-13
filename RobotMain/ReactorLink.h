@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include "RobotConstants.h"
-#include "PausableTimer.h"
+#include "RobotPauser.h"
 
 class ReactorLink {
 public:
