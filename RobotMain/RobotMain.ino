@@ -79,7 +79,7 @@ void setup() {
 	scheduler->addSequentialCommand(new RollerSpit(1000)); // Ensure rod is fully placed
 	scheduler->addParallelCommand(new RollerSpit(1000));
 	scheduler->addSequentialCommand(new Drive(-0.25, 0.0, 350));
-	scheduler->addSequentialCommand(new WaitTime(1000));
+	scheduler->addSequentialCommand(new WaitTime(1500));
 	scheduler->addSequentialCommand(new EnsureRodInserted(0.5, SIDE_A));
 	scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_NONE));
 
@@ -146,13 +146,13 @@ void setup() {
 	scheduler->addParallelCommand(new RollerSpit(250));
 	scheduler->addSequentialCommand(new MoveArm(290));
 
-	/* Drive to the correct supply location */
+	/* Drive to the correct storage location */
 	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 1000));
 	scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 	scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
 	scheduler->addSequentialCommand(new LineFollowToStorage(0.5, SIDE_B));
 
-	/* Face the supply tube */
+	/* Face the storage tube */
 	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 200)); // Back up to center on line
 	//#TODO Make this swing turn to line
 	scheduler->addSequentialCommand(new SwingTurn(-1.0, 950));
@@ -175,6 +175,7 @@ void setup() {
 
 	/* Go to the nearest supply tube to the reactor */
 	scheduler->addSequentialCommand(new TurnToSupplyDirection(0.375, SIDE_B));
+	scheduler->addSequentialCommand(new Drive(-0.5, 0.0, 200));
     scheduler->addSequentialCommand(new LineFollowOverLines(0.5, SIDE_B));
     scheduler->addSequentialCommand(new TurnToPosition(0.4, SIDE_B));
 
