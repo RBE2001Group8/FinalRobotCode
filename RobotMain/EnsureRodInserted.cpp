@@ -1,40 +1,26 @@
-#include "EnsureRodInserted.h"
+#include "StopEverything.h"
 
 /* Constructor */
 /**
  * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right
  * @param duration Length of time in milliseconds to turn for
  **/
-EnsureRodInserted::EnsureRodInserted(float speed, bool sideA) : PausableCommand("EnsureRodInserted") {
-	_speed = speed;
-	_sideA = sideA;
+StopEverything::StopEverything() : Command("StopEverything") {
 	curie = Robot::getInstance();
 }
 
-void EnsureRodInserted::initialize() {
-	_bitmask = curie->reactorLink->getSupplyAvailabilityByte();
-	closestStorage = curie->tubeProcessor->getFreshRodTube(_bitmask, _sideA);
-}
-
-void EnsureRodInserted::execute() {
-	curie->drivetrain->drive(_speed, 0.0);
-}
-
-void EnsureRodInserted::end() {
+void StopEverything::initialize() {
 	curie->drivetrain->stop();
+	curie->roller->stop();
 }
+
+void StopEverything::execute() {}
+
+void StopEverything::end() {}
 
 /** Command is finished if the rod is detected to be fully inserted,
   * or if the robot as driven up to the alignment post
   **/
-bool EnsureRodInserted::isFinished() {
-	return curie->alignmentDetector->isAligned() || ((curie->currentPos-closestStorage) != 0); 
+bool StopEverything::isFinished() {
+	return true; 
 }
-
-/** Stop the drivetrain while paused **/
-void EnsureRodInserted::onPause() {
-	curie->drivetrain->stop();
-}
-
-/** Do nothing special on resume **/
-void EnsureRodInserted::onResume() {}
