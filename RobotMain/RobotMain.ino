@@ -32,7 +32,7 @@
 #include "TurnToSupplyDirection.h"
 #include "EnsureRodInserted.h"
 #include "WaitTime.h"
-#include "PausableTimer.h"
+#include "StopEverything.h"
 
 Scheduler* scheduler = Scheduler::getInstance();
 
@@ -40,7 +40,6 @@ Robot* curie = Robot::getInstance();
 
 /** Code to initialize the robot **/
 void setup() {	
-	initializePauseTimer();
 	Serial.begin(115200);
 	curie->initializeSubsystems();
 
@@ -112,8 +111,10 @@ void setup() {
 	scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 	scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
 	scheduler->addSequentialCommand(new LineFollowToCrossLine(0.5));
-	//scheduler->addSequentialCommand(new SwingTurnToLine(0.5));
-	scheduler->addSequentialCommand(new SwingTurn(0.5, 2000));
+	scheduler->addSequentialCommand(new Drive(-0.4, 0, 300));
+	scheduler->addSequentialCommand(new SwingTurn(0.5, 1000));
+	//Seems to work great
+	scheduler->addSequentialCommand(new PointTurnToLine(0.5));
 
 	/* Go to the reactor */
 	scheduler->addSequentialCommand(new LineFollowToSwitch(0.75));
@@ -189,12 +190,13 @@ void setup() {
 	/* Lower the arm */
 	scheduler->addParallelCommand(new MoveArm(90));
 
-	/* Turn towards the reactor */
+	/* Go to the center, and turn towards the reactor */
 	scheduler->addSequentialCommand(new PointTurn(-0.5, 1000));
 	scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
 	scheduler->addSequentialCommand(new LineFollowToCrossLine(0.5));
-	//scheduler->addSequentialCommand(new SwingTurnToLine(-0.5));
-	scheduler->addSequentialCommand(new SwingTurn(-0.5, 2000));
+	scheduler->addSequentialCommand(new Drive(-0.4, 0,  300));
+	scheduler->addSequentialCommand(new SwingTurn(-0.5, 1000));
+	scheduler->addSequentialCommand(new PointTurnToLine(-0.5));
 
 	/* Drive to the reactor */
 	scheduler->addSequentialCommand(new LineFollowToSwitch(0.75));
@@ -207,6 +209,9 @@ void setup() {
 	scheduler->addParallelCommand(new RollerSpit(500));
 	scheduler->addParallelCommand(new SetRadiationLevel(curie, RAD_LEVEL_NONE));
 	scheduler->addSequentialCommand(new MoveArm(100));
+
+	/* Done */
+	scheduler->addSequentialCommand(new StopEverything());
 }
 
 /** Code to iteratively operate the robot **/
