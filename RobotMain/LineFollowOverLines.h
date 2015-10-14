@@ -22,6 +22,7 @@ private:
 	char linesToCross;
 	char _bitmask;
 	bool _sideA;
+	unsigned long lastCrossTime;
 };
 
 #endif
