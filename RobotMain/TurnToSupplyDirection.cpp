@@ -23,7 +23,7 @@ void TurnToSupplyDirection::initialize() {
 void TurnToSupplyDirection::execute() {
 	prevCenter = curie->lineTracker->centerOnLine();
 	curie->drivetrain->swingTurn(_turn);
-	offLine = (!curie->lineTracker->isAtCross()) | offLine;
+	offLine = (!curie->lineTracker->centerOnLine()) | offLine;
 }
 
 void TurnToSupplyDirection::end() {
@@ -31,7 +31,7 @@ void TurnToSupplyDirection::end() {
 }
 
 bool TurnToSupplyDirection::isFinished() {
-	return ((getTime() > 1250) && (curie->lineTracker->isAtCross()) && offLine) || (deltaPos==0); //&& (!prevCenter)))
+	return ((getTime() > 1250) && (curie->lineTracker->centerOnLine()) && offLine) || (deltaPos==0); //&& (!prevCenter)))
 }
 
 /** Stop the robot while paused **/
