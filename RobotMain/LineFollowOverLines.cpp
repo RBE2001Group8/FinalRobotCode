@@ -15,7 +15,8 @@ LineFollowOverLines::LineFollowOverLines(float speed, bool sideA) : PausableComm
 
 void LineFollowOverLines::initialize() {
 	_bitmask = curie->reactorLink->getSupplyAvailabilityByte();
-	linesToCross = abs(curie->tubeProcessor->getFreshRodTube(_bitmask, _sideA)-curie->currentPos);
+	linesToCross = abs(curie->tubeProcessor->getFreshRodTube(_bitmask, _sideA) - curie->currentPos);
+	lastCrossTime = getTime();
 }
 
 /** 
@@ -25,8 +26,10 @@ void LineFollowOverLines::initialize() {
 void LineFollowOverLines::execute() {
 	curie->drivetrain->drive(_speed, 0.08*curie->lineTracker->lineError());
 	if (curie->lineTracker->isAtCross()) {
-		if (!onLine) {
+		//Check if it was not previously on the line, and has surpassed the time heuristic
+		if (!onLine && (getTime() - lastCrossTime) > 400) {
 			linesCrossed++;
+			lastCrossTime = getTime();
 		}
 		onLine = true;
 	} else {
