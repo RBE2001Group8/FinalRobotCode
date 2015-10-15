@@ -18,7 +18,6 @@
 #include "WaitUntilPressed.h"
 #include "LineFollowOverLines.h"
 #include "DriveToRearLine.h"
-#include "DriveAndSquareOnLine.h"
 #include "PointTurnToPosition.h"
 #include "TurnToPosition.h"
 #include "SetRadiationLevel.h"
