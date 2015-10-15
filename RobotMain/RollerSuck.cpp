@@ -1,9 +1,12 @@
+/** Command to make the rollers intake a rod for the given amount of time
+  * @author Hans Johnson
+  * @date Oct. 2015
+  **/
+
 #include "RollerSuck.h"
 
-/* Constructor */
-/**
- * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right
- * @param duration Length of time in milliseconds to turn for
+/** Constructor
+ * @param duration Length of time in milliseconds to intake for
  **/
 RollerSuck::RollerSuck(int duration) : PausableCommand("RollerSuck"){
 	_duration = duration;
@@ -21,6 +24,7 @@ void RollerSuck::end() {
 	curie->roller->stop();
 }
 
+/** Command has finished when the set amount of time has elapsed **/
 bool RollerSuck::isFinished() {
 	return getTime() > _duration; 
 }

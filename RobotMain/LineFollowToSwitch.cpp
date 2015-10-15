@@ -1,6 +1,12 @@
+/** Line follows until the limit switch in the slot on the front of the robot
+  * is triggered
+  * @author Hans Johnson
+  * @date Oct. 2015
+  **/
+
 #include "LineFollowToSwitch.h"
 
-/** Line follows until the limit switch in the slot on the front of the robot is triggered
+/** Constructor
  * @param speed Linefollowing speed
  * @param drive Drivetrain object to use for driving, must be initialized
  **/

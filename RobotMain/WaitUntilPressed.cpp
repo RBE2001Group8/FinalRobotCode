@@ -1,4 +1,3 @@
-
 /** Command to wait until a button is pressed 
   * @author Jordan Burklund
   **/

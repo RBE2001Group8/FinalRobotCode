@@ -1,7 +1,12 @@
+/** Command to make the robot do a zero radius turn at the given speed
+  * (with direction) for the given amount of time.
+  * @author Hans Johnson
+  * @date Oct. 2015
+  **/
+
 #include "PointTurn.h"
 
-/* Constructor */
-/**
+/** Constructor
  * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right
  * @param duration Length of time in milliseconds to turn for
  **/
@@ -21,6 +26,7 @@ void PointTurn::end() {
 	curie->drivetrain->stop();
 }
 
+/** Command is finished when the appropriate amount of time has elapsed **/
 bool PointTurn::isFinished() {
 	return getTime() > _duration; 
 }

@@ -1,4 +1,8 @@
-
+/** Example Command to continuously blink an LED
+  * with a given period.
+  * @author Jordan Burklund
+  * @date Sept. 2015
+  **/ 
 #include "PersistentBlink.h"
 
 PersistentBlink::PersistentBlink(unsigned long period) : Command("PersistentBlink") {

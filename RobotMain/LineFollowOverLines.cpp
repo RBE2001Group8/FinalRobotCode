@@ -1,3 +1,10 @@
+/** Line follow over the appropriate amount of lines given the
+  * robot's current position and desired position relative to 
+  * the storage/supply tubes.
+  * @author Hans Johnson
+  * @date Oct. 2015
+  **/
+
 #include "LineFollowOverLines.h"
 
 /* Constructor */
@@ -41,6 +48,9 @@ void LineFollowOverLines::end() {
 	curie->drivetrain->stop();
 }
 
+/** Command has finished when it has crossed the appropriate
+  * amount of lines or just needs to go to the next line
+  **/
 bool LineFollowOverLines::isFinished() {
 	return (linesCrossed == linesToCross) || (linesToCross == 1); 
 }

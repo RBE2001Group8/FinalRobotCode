@@ -1,9 +1,12 @@
+/** Command to move the rollers to spit out the rod for the given amount of time
+  * @author Hans Johnson
+  * @date Oct. 2015
+  **/
+
 #include "RollerSpit.h"
 
-/* Constructor */
-/**
- * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right
- * @param duration Length of time in milliseconds to turn for
+/** Constructor 
+ * @param duration Length of time in milliseconds to outtake for
  **/
 RollerSpit::RollerSpit(int duration) : PausableCommand("RollerSpit") {
 	_duration = duration;
@@ -20,6 +23,7 @@ void RollerSpit::end() {
 	curie->roller->stop();
 }
 
+/** Command has finished when the amount of time has elapsed **/
 bool RollerSpit::isFinished() {
 	return getTime() > _duration; 
 }

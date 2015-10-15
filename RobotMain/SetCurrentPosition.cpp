@@ -1,3 +1,8 @@
+/** Command to set the current position of the robot
+  * @author Hans Johnson
+  * @date Oct. 2015
+  **/
+
 #include "SetCurrentPosition.h"
 
 SetCurrentPosition::SetCurrentPosition(bool sideA) : Command("SetCurrentPosition"){

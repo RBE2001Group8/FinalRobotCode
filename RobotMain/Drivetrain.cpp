@@ -1,6 +1,10 @@
+/** Abstraction for the Drivetrain subsytem on the robot.
+  * This class provides methods for driving the drivetrain
+  * @author Jordan Burklund
+  * @date Sept. 2015
+  **/
+
 #include "Drivetrain.h"
-
-
 
 /** Constructor
   * Assumes the left and right motors are Vex motors geared 1:1

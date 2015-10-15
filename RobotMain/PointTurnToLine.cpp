@@ -1,7 +1,11 @@
+/** Turn the robot with a zero turn radius to a line
+  * @author Hans Johnson
+  * @date Oct. 2015
+  **/
+
 #include "PointTurnToLine.h"
 
-/* Constructor */
-/**
+/** Constructor 
  * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right
  * @param duration Length of time in milliseconds to turn for
  **/
@@ -21,6 +25,9 @@ void PointTurnToLine::end() {
 	curie->drivetrain->stop();
 }
 
+/** Command is finished when the line tracker is on the 
+  * center of the line
+  **/
 bool PointTurnToLine::isFinished() {
 	return curie->lineTracker->centerOnLine() && onLine; 
 }

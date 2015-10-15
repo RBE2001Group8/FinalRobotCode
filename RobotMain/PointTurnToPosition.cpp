@@ -1,7 +1,12 @@
+/** Command to do a point turn to a position between the supply
+  * and storage tubes
+  * @author Hans Johnson
+  * @date Oct. 2015
+  **/
+
 #include "PointTurnToPosition.h"
 
-/* Constructor */
-/**
+/** Constructor 
  * @param turn Turning rate of robot
  * @param duration Length of time in milliseconds to turn for
  **/
@@ -13,6 +18,7 @@ PointTurnToPosition::PointTurnToPosition(float turn, int duration, bool sideA) :
 }
 
 void PointTurnToPosition::initialize() {
+	//Calculate the direction to turn based on the current position, and closest Supply
 	_bitmask = curie->reactorLink->getSupplyAvailabilityByte();
 	deltaPos = curie->tubeProcessor->getFreshRodTube(_bitmask, _sideA)-curie->currentPos;
 	if (deltaPos != 0) {

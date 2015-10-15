@@ -1,3 +1,9 @@
+/** Command to turn to the correct direction for the next supply tube
+  * @author Hans Johnson
+  * @author Jordan Burklund
+  * @date Oct. 2015
+  **/
+
 #include "TurnToSupplyDirection.h"
 
 /* Constructor */

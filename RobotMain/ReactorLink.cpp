@@ -7,28 +7,13 @@
 
 #include "ReactorLink.h"
 
-
-//Constructor
+/** Constructor **/
 ReactorLink::ReactorLink() {
 	Serial3.begin(115200);
   pinMode(SERIAL3_RX_PIN, INPUT_PULLUP);
   pinMode(SERIAL3_TX_PIN, INPUT_PULLUP);
 }
 
-//#TODO Make a constructor that specifies the serial interface to use
-//Alternate Constructor that specifies the serial interface to use,
-//team number, 
-/*
-ReactorLink::ReactorLink(HardwareSerial serialPort, uint8_t teamNum) {
-  
-  serialX = serialPort;
-  serialX.begin(115200);
-}
-*/
-
-//#TODO use the HardwareSerial specified in the constructor
-//e.g. linkSerial.write(xxx);
-// for debugging: debugSerial.write(XXX);
 /** Send a heartbeat packet to the Field Computer **/
 void ReactorLink::sendHeartbeat() {
     Serial3.write(PACKET_START_BYTE);

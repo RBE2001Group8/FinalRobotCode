@@ -24,14 +24,14 @@ void RadiationIndicator::initialize() {
 
 /** Updates the current state of the LED
   * based on the time, and if it should be 
-  * blinking
+  * blinking. Does a fancy heartbeat blink!
   **/
 void RadiationIndicator::update() {
 	//Check if the light should be blinking
 	if(shouldBlink) {
 		//Get the current time in the period
 		long periodIime = millis() % _period;
-		//Blink a heartbeat like pattern
+		//Blink in a heartbeat like pattern
 		if((periodIime < _onTime) ||
 		   ((periodIime > 2*_onTime) && (periodIime < 3*_onTime))) {
 			digitalWrite(_ledPin, HIGH);

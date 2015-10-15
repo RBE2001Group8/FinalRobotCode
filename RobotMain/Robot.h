@@ -14,12 +14,11 @@
 #include "ReactorLink.h"
 #include "PausableTimer.h"
 
-//#TODO Hack to fix cyclical dependency
-class RadiationIndicator;
-
 class Robot {
 public:
+	//Get the singleton instance
 	static Robot* getInstance();
+	//All of the subsytem in the robot
 	Scheduler* scheduler; 
 	Drivetrain* drivetrain = new Drivetrain(LEFT_MOTOR_PIN, RIGHT_MOTOR_PIN);
 	UserButton* button = new UserButton(USER_BUTTON_PIN);
@@ -37,6 +36,7 @@ public:
 	void initializeSubsystems();
 
 private:
+	//Constructor is private so it cannot be invoked
 	Robot();
 	static Robot* instance;
 	int radLevel = RAD_LEVEL_NONE;

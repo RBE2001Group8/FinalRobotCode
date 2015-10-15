@@ -1,33 +1,25 @@
 /** Command to set the radiation level of the robot
+  * @author Jordan Burklund
+  * @date Oct. 2015
   **/
 
 #include "SetRadiationLevel.h"
 
-/** Constructor
-  **/
+/** Constructor **/
 SetRadiationLevel::SetRadiationLevel(Robot* robot, int radiationLevel) 
 	: Command("SetRadiationLevel"), _radLevel(radiationLevel), _robot(robot) {
 }
 
-/** Nothing to initialize
-  **/
+/** Set the robot radiation level **/
 void SetRadiationLevel::initialize() {
 	_robot->setRadLevel(_radLevel);
 }
 
-/** Set the robot radiation level
-  **/
-//#TODO might need to move to initialize for faster execution
-// Does this take 2 cycles to fully complete?
-void SetRadiationLevel::execute() {
-}
+void SetRadiationLevel::execute() {}
 
-/** Nothing to clean up
-  **/
-void SetRadiationLevel::end() {
+void SetRadiationLevel::end() {}
 
-}
-
+/** Simple command that finishes instantly **/
 bool SetRadiationLevel::isFinished() {
 	return true;
 }

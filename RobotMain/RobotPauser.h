@@ -4,7 +4,7 @@
   * the timer appropriately.  It is intended to be the only class that
   * should pause/resume the PausableTimer
   * @author Jordan Burklund
-  * @date Oct. 2015S
+  * @date Oct. 2015
   **/
 
 #ifndef ROBOTPAUSER_H

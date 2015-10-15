@@ -1,3 +1,8 @@
+/** Moves the arm to the specified position
+  * @author Hans Johnson
+  * @date Sept. 2015
+  **/
+
 #include "MoveArm.h"
 
 /**
@@ -29,16 +34,6 @@ void MoveArm::execute() {
 	output = constrain(output, -500, 500);
 	armMotor.writeMicroseconds(1500+output);//+output);
 	last_error = error;
-	//prev_time = current_time;
-	/*Serial.print(Kp*(float)error);
-	Serial.print(", ");
-	Serial.print(Ki*(accum_error));
-	Serial.print(", ");
-	Serial.print(Kd*(float)(error-last_error));
-	Serial.print(", ");
-	Serial.print(output);
-	Serial.print(", ");
-	Serial.println(error);*/
 }
 
 /**
@@ -51,7 +46,6 @@ bool MoveArm::isFinished() {
 /**
  * Stops the MoveArm movement when Finished
  **/
-
 void MoveArm::end() {
 	armMotor.writeMicroseconds(1500);
 	armMotor.detach();

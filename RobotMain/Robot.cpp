@@ -1,4 +1,8 @@
-
+/** Singleton instance for a robot that contains all of the relevant
+  * subsystems.  Provides methods for initializing and setting radiation levels
+  * @author Jordan Burklund
+  * @date Sept. 2015
+  **/
 #include "Robot.h"
 
 Robot* Robot::instance = NULL;

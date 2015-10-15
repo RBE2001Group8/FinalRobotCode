@@ -1,3 +1,11 @@
+/** Extension of the Command class that allows itself to be paused
+  * Uses a pausable timer for getTime rather than millis like Command
+  * Methods onPause and onResume get called once when the state of the
+  * robot switches to the respective state.  Any time based commands
+  * will behave as expected, even when paused
+  * @author Jordan Burklund
+  * @date Oct. 2015
+  **/
 
 #include "PausableCommand.h"
 
@@ -6,7 +14,7 @@ PausableCommand::PausableCommand() : Command() {
 	robotPauser = RobotPauser::getInstance();
 }
 
-/** Constructor with name **/
+/** Constructor with given name **/
 PausableCommand::PausableCommand(const String name) : Command(name) {
 	robotPauser = RobotPauser::getInstance();
 }

@@ -1,3 +1,8 @@
+/** Line follow to an intersection between two lines
+  * @author Hans Johnson
+  * @date Oct. 2015
+  **/
+
 #include "LineFollowToCrossLine.h"
 
 /* Constructor */

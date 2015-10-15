@@ -1,3 +1,9 @@
+/** Command to perform a swing turn until the linesensor
+  * detects the line
+  * @author Jordan Burklund
+  * @date Oct. 2015
+  **/
+
 #include "SwingTurnToLine.h"
 
 /* Constructor */
@@ -21,8 +27,11 @@ void SwingTurnToLine::end() {
 	curie->drivetrain->stop();
 }
 
+/** Command is done when the line sensor detects the line,
+  * and did not previously detect the line
+  **/
 bool SwingTurnToLine::isFinished() {
-	return (curie->lineTracker->centerOnLine() && onLine);// && (!curie->lineTracker->isAtCross()); 
+	return (curie->lineTracker->centerOnLine() && onLine);
 }
 
 /** Stop the drivetrain while paused **/

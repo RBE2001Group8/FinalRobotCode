@@ -1,9 +1,10 @@
 /** Commands encapsulate functionality of a task to execute
   * iteratively with a timeout.
-  * Code is mostly copied from WPILib, and adapted to work 
-  * on the Arduino
-  * credits to PeterMitrano for initial code porting
-  * 
+  * Code is mostly copied from WPILib, and adapted/stripped
+  * down to work on the Arduino
+  * credits to PeterMitrano for some of the initial code
+  * @author Jordan Burkllund
+  * @date Sept. 2015
   **/
 
 #include "Command.h"
@@ -47,41 +48,44 @@ bool Command::isRunning() {
 	return running;
 }
 
-/** Schedule the command to start executing
-  **/
+/** Schedule the command to start executing **/
 void Command::start() {
 	Scheduler::getInstance()->addCommand(this);
 }
 
-/* Background code for initialization */
+/** Background code for initialization **/
 void Command::_initialize() {
 	running = true;
 	startTime = millis();
 }
 
-/* Background code for executing */
+/** Background code for executing **/
 void Command::_execute() {
 }
 
-/* Background code for ending */
+/** Background code for ending **/
 void Command::_end() {
 	running = false;
 }
 
-/** Execute an iteration of the command
+/** Execute an iteration of the command 
+  * @return True if the command is finished
   **/
 bool Command::cycle() {
 	bool finished = false;
 
 	if(!initialized) {
+		//Initialize the command if it hasn't been already
 		initialize();
 		_initialize();
 		initialized = true;
 	} else if (isFinished()) {
+		//Call the end method when the command is done
 		finished = true;
 		end();
 		_end();
 	} else {
+		//Otherwise execute one iteration of the command
 		execute();
 		_execute();
 	}
@@ -91,7 +95,7 @@ bool Command::cycle() {
 
 /** Set the flag to run in parallel, or
   * run sequentially
-  * @param value If true, parallel, if false sequential
+  * @param value If true: parallel, if false: sequential
   **/ 
 void Command::setParallel(bool value) {
 	parallel = value;

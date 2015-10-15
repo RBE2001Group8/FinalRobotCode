@@ -1,7 +1,8 @@
 /** A Scheduler schedules iterative commands to be run, and then executes them
   * in order.  Commands can be added, and removed, can be scheduled to run in parallel
   * with other commands, and can be scheduled to run persistently.  Credits to PeterMitrano
-  * for most of the code
+  * for some of the initial code
+  * @author Jordan Burklund
   * @version 1.0
   * @date Sept. 2015
   **/
@@ -61,14 +62,7 @@ void Scheduler::addSequentialCommand(Command* command) {
 void Scheduler::run() {
 	//Execute commands until there is a command that is not parallel
 	int size = commands.size();
-	/*if(size> 0) {
-		Command* command = commands.get(0);
-		bool isFinished = command->cycle();
-		if(isFinished) {
-			commands.remove(0);
-		}
-	}*/
-	//#TODO make sure this works!!!
+
 	Command* command;
 	bool isFinished;
 	int i = 0;
@@ -111,35 +105,3 @@ void Scheduler::printCommands() {
 		Serial.println("Scheduler: No Commands Scheduled");
 	}
 }
-
-
-
-
-
-
-/** #TODO
-
-Scheduler.addPersistent
-	//Adds a command that is persistent, and will always run.
-	//Adds the item to an array, and the array is always iterated through and each run method is called.
-	//e.g. a heartbeat command
-	//e.g. a Status Light for bluetooth, system state, etc.
-
-Scheduler.add
-	//make a new struct, and make the last element point to this
-Scheduler.addParallel
-	//call add, and set the parallel member variable to true
-Scheduler.addSynchronized\
-	//call add, and set the parallel member variable to false
-Scheduler.remove
-
-Scheduler.run
-	//call the first command in the list and call the run method
-	if the first command has parallel set to true, call the next command as well, etc.
-			//or add both to a dynamically allocated array, and end when all elements have finished=true
-
-	//While iterating through parallel commands, if the command is finished, remove it from the array.  Execution will not contiue
-		until the last command is removed.  Not true.  If the synchronized command is removed, the parallel command will still run while the next command is run
-
-	when the command returns finished = true
-		remove the current command **/

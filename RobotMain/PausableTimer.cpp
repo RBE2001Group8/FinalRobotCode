@@ -40,6 +40,7 @@ void pauseTimer() {
 	_SHOULD_PAUSE = true;
 }
 
+/** Unpause the timer **/
 void resumeTimer() {
 	_SHOULD_PAUSE = false;
 }

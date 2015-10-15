@@ -1,6 +1,8 @@
 /** Persistent command to blink the Radiation
   * Indicator when the robot is carrying an
   * exposed rod
+  * @author Jordan Burklund
+  * @date Oct. 2015
   **/
 
 #include "PersistentWarnRadiation.h"

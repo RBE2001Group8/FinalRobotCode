@@ -1,7 +1,12 @@
+/** Command to execute a swing turn with the robot where only the outer wheel spins
+  * for a given amount of time
+  * @author Hans Johnson
+  * @date Oct. 2015
+  **/
+
 #include "SwingTurn.h"
 
-/* Constructor */
-/**
+/** Constructor 
  * @param turn Turning rate of robot -1.0 is full left turn, 1.0 is full right
  * @param duration Length of time in milliseconds to turn for
  **/

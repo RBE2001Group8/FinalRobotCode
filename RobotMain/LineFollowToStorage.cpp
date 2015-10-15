@@ -1,3 +1,10 @@
+/** Line follow across the appropriate number of lines to get to 
+  * the storage area when coming from the reactor
+  * @author Hans Jonhson
+  * @date Oct. 2015
+  **/
+
+
 #include "LineFollowToStorage.h"
 
 /* Constructor */
@@ -39,6 +46,7 @@ void LineFollowToStorage::end() {
 	curie->drivetrain->stop();
 }
 
+/** Command is done when it has crossed the appropriate number of lines **/
 bool LineFollowToStorage::isFinished() {
 	return linesCrossed == linesToCross; 
 }

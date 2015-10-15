@@ -1,14 +1,19 @@
+/** Abstraction for the Pololu Line sensor to detect
+  * where the line is in relation to the sensor, intersections,
+  * and if it is centered on the line
+  * @author Jordan Burklund
+  * @author Hans Johnson
+  * @date Sept. 2015
+  **/
+
 #include "LineTracker.h"
 
-LineTracker::LineTracker() {
-	
-}
+LineTracker::LineTracker() {}
 
 /** 
  * Computes the distance that the approximate distance that the line is away from the center of the line sensor in 1/16ths of an inch.
  * @return Float error in 1/16ths of an inch
  **/
-
 float LineTracker::lineError () {
   int s0 = analogRead(0);
   int s1 = analogRead(1);
@@ -19,11 +24,12 @@ float LineTracker::lineError () {
   int s6 = analogRead(6);
   int s7 = analogRead(7);
 
+  //Compute the weigted sum to find the position
   return (m1*(s7-s0)+m2*(s6-s1)+m3*(s5-s2)+m4*(s4-s3))/(s0+s1+s2+s3+s4+s5+s6+s7);
 }
 
-/**
- * @return True if outer two sensors are on a black line
+/** Detects if the sensor is at an instersection
+ * @return True if 3 or more sensors detect a line
  **/
 bool LineTracker::isAtCross () {
   //Read all of the sensors
@@ -48,30 +54,11 @@ bool LineTracker::isAtCross () {
   return numSensorsOnLine >= 3;
 }
 
-bool LineTracker::rearOnLine () {
-  int left = analogRead(10);
-  int right = analogRead(9);
-  return (left > 500 && right > 500);
-}
-
-bool LineTracker::oneRearOnLine () {
-  int left = analogRead(10);
-  int right = analogRead(9);
-  return (left > 500 || right > 500);
-}
-
-int LineTracker::leftRear() {
-  return analogRead(10);
-}
-
-int LineTracker::rightRear() {
-  return analogRead(9);
-}
-
+/** Check if either of the two center sensors are on the line
+  * @return True if the center of the sensor is on the line
+  **/
 bool LineTracker::centerOnLine () {
   int s3 = analogRead(3);
-  int s4 = analogRead(4);
   int s2 = analogRead(2);
-  int s5 = analogRead(5);
-  return (s3 > 500) || (s2 > 500);// || (s4 > 500) || (s5 > 500);
+  return (s3 > 500) || (s2 > 500);
 }
