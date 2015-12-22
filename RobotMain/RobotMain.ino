@@ -31,6 +31,7 @@
 #include "EnsureRodInserted.h"
 #include "WaitTime.h"
 #include "StopEverything.h"
+#include "MemoryFree.h"
 
 Scheduler* scheduler = Scheduler::getInstance();
 
@@ -41,6 +42,7 @@ void setup() {
 	Serial.begin(115200);
 	curie->initializeSubsystems();
 
+	//#TODO change these so that they are allocated before hand, and not allocated to the heap!
 	/* Schedule Persistent Commands */
 	scheduler->addParallelCommand(new PersistentWarnRadiation(curie, curie->radInd));
 	scheduler->addParallelCommand(new PersistentSendHeartbeats());
@@ -216,4 +218,6 @@ void setup() {
 /** Code to iteratively operate the robot **/
 void loop() {
 	scheduler->run();
+	Serial.print("freeMemory()=");
+    Serial.println(freeMemory());
 }
